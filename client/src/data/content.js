@@ -31,7 +31,11 @@ export const options = [
     ],
     segments: [
       {
+        slug: "government-institutions",
+        num: "01",
         name: "Government Institutions",
+        accent: "rust",
+        teaser: "Scheme appraisal, cluster plans, and technical reports that reduce post-harvest losses across public programmes.",
         quote: "\"Technical report preparation for creating value chains and reducing post-harvest losses.\"",
         blocks: [
           { label: "We help with", text: "Appraising and sanctioning projects under horticulture, food processing, cold chain and post-harvest schemes; detailed process flow charts, layouts and technical standards for pack houses, pre-cooling, cold rooms and ripening chambers; clear documentation of infrastructure gaps in power, water, connectivity and effluent treatment." },
@@ -39,7 +43,11 @@ export const options = [
         ]
       },
       {
+        slug: "private-companies",
+        num: "02",
         name: "Private Companies",
+        accent: "steel",
+        teaser: "Bank- and investor-ready DPRs for pack houses, cold chain, ripening units, and value-addition plants.",
         quote: null,
         blocks: [
           { label: "We prepare", text: "DPRs for pack houses, cold storage, ripening units, primary processing, or integrated post-harvest hubs — to secure bank finance, investor funding, or internal approvals." },
@@ -48,7 +56,11 @@ export const options = [
         ]
       },
       {
+        slug: "educational-institutes",
+        num: "03",
         name: "Educational Institutes",
+        accent: "forest",
+        teaser: "Structured technical reports, protocols, and technology packages for research, training, and extension.",
         quote: "\"Technical reports and project documentation for research and academic institutes.\"",
         blocks: [
           { label: "What we deliver", text: "Structured technical reports covering introduction, problem statement, objectives, methodology, expected outcomes and impact; detailed action plans and cost breakdowns for product/process development and infrastructure; documentation of post-harvest protocols and technology packages suitable for training and extension." },
@@ -56,6 +68,29 @@ export const options = [
         ]
       }
     ],
+    audiencePages: {
+      "government-institutions": {
+        heroTitle: "Technical advisory for public horticulture and post-harvest programmes",
+        heroSub:
+          "We support government institutions with the reports, layouts, and scheme-ready documentation needed to appraise, sanction, and implement post-harvest infrastructure that cuts losses and builds regional value chains.",
+        photo: "government",
+        relatedProjectNums: ["01", "02"]
+      },
+      "private-companies": {
+        heroTitle: "DPRs and operational design for agri-business investment",
+        heroSub:
+          "We prepare investor- and bank-ready project reports for pack houses, cold storage, ripening units, and integrated hubs — with process flows, capacity planning, and CAPEX/OPEX models that stand up to financing and internal approval.",
+        photo: "companies",
+        relatedProjectNums: ["04", "05", "06"]
+      },
+      "educational-institutes": {
+        heroTitle: "Research documentation and post-harvest technology packages",
+        heroSub:
+          "We work with universities, ICAR institutes, and training centres to structure technical reports, action plans, and extension-ready protocols — from field trials to technology packages used in teaching and outreach.",
+        photo: "education",
+        relatedProjectNums: ["03", "07"]
+      }
+    },
     scope: [
       "Project at a glance — summary, investment, key outcomes",
       "About the applicant / promoter",

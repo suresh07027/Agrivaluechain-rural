@@ -13,7 +13,7 @@ export default function ServicePage() {
 
   return (
     <div className="page active" id={`page-${option.id}`}>
-      <div className="detail-hero">
+      <div className="detail-hero service-hero">
         <div className="wrap">
           <Link className="back-link" to="/">
             &larr; Back to home
@@ -26,7 +26,7 @@ export default function ServicePage() {
 
       {option.hasFullContent ? (
         <>
-          <section className="section">
+            <section className="section section-offer">
             <div className="wrap">
               <h2>What we offer</h2>
               <ul className="bullets">
@@ -37,7 +37,7 @@ export default function ServicePage() {
             </div>
           </section>
 
-          <section className="section">
+          <section className="section section-serve">
             <div className="wrap">
               <h2>Whom we serve</h2>
               <div className="segment-grid">
@@ -57,7 +57,7 @@ export default function ServicePage() {
             </div>
           </section>
 
-          <section className="section">
+          <section className="section section-scope">
             <div className="wrap">
               <h2>Scope of deliverables</h2>
               <ul className="bullets">
@@ -68,7 +68,7 @@ export default function ServicePage() {
             </div>
           </section>
 
-          <section className="projects">
+            <section className="projects section-projects">
             <div className="wrap">
               <h2>Projects we've worked on</h2>
               <div className="project-list">
@@ -96,7 +96,7 @@ export default function ServicePage() {
           </section>
         </>
       ) : (
-        <section className="section">
+        <section className="section section-placeholder">
           <div className="wrap">
             <div className="placeholder-box">
               <h3>Content pending</h3>

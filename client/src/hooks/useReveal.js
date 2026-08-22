@@ -18,7 +18,7 @@ export default function useReveal(deps = []) {
       { threshold: 0.15 }
     );
 
-    const targets = document.querySelectorAll(".option-card, .segment, .project");
+    const targets = document.querySelectorAll(".option-card, .segment, .project, .audience-card, .audience-block");
     targets.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
