@@ -94,12 +94,14 @@ export default function TechnicalPage() {
       </div>
 
       <section className="section who-serve section-serve">
-        <div className="wrap">
-          <div className="section-eyebrow">Our Clients</div>
-          <h2>Who we serve</h2>
-          <p className="section-lede">
-            We partner with organizations across sectors to deliver meaningful and measurable impact.
-          </p>
+        <div className="wrap serve-wrap">
+          <div className="serve-heading">
+            <div className="section-eyebrow">Our Clients</div>
+            <h2>Whom we serve</h2>
+            <p className="section-lede">
+              We partner with organizations across sectors to deliver meaningful and measurable impact.
+            </p>
+          </div>
           <div className="audience-cards">
             {option.segments.map((seg) => {
               const Icon = segmentIcons[seg.slug];
@@ -109,6 +111,7 @@ export default function TechnicalPage() {
                   to={`/option1/${seg.slug}`}
                   key={seg.slug}
                 >
+                  <span className="audience-card-orbit" aria-hidden="true" />
                   <span className="audience-card-icon">{Icon && <Icon />}</span>
                   <span className="audience-card-name">{seg.name}</span>
                   {seg.teaser && <p className="audience-card-desc">{seg.teaser}</p>}
