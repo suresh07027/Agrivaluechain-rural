@@ -2,6 +2,7 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
+import ProjectCarousel from "../components/ProjectCarousel";
 
 export default function ServicePage() {
   const { optionId } = useParams();
@@ -68,30 +69,41 @@ export default function ServicePage() {
             </div>
           </section>
 
-          <section className="projects">
+          <section
+            className={`projects${
+              option.projectCarousel ? " projects-photo-bg" : ""
+            }`}
+          >
             <div className="wrap">
               <h2>Projects we've worked on</h2>
-              <div className="project-list">
-                {option.projects.map((proj) => (
-                  <div className="project" key={proj.num}>
-                    <div className="pnum">{proj.num}</div>
-                    <div>
-                      <h3>{proj.title}</h3>
-                      <p>{proj.text}</p>
-                      {proj.metrics.length > 0 && (
-                        <div className="metric-row">
-                          {proj.metrics.map((m, i) => (
-                            <div className="metric" key={i}>
-                              {m.value}
-                              <span>{m.label}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+
+              {/* Technical Consultancy: photo carousel with click-to-open behavior.
+                  All other service options: original numbered project cards. */}
+              {option.projectCarousel ? (
+                <ProjectCarousel imageWidth={340} imageHeight={340} labelColor="#F7F2E4" />
+              ) : (
+                <div className="project-list">
+                  {option.projects.map((proj) => (
+                    <div className="project" key={proj.num}>
+                      <div className="pnum">{proj.num}</div>
+                      <div>
+                        <h3>{proj.title}</h3>
+                        <p>{proj.text}</p>
+                        {proj.metrics.length > 0 && (
+                          <div className="metric-row">
+                            {proj.metrics.map((m, i) => (
+                              <div className="metric" key={i}>
+                                {m.value}
+                                <span>{m.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         </>

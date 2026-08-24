@@ -25,6 +25,10 @@ export const options = [
     heroSub:
       "We provide end-to-end technical support in post-harvest management, with a strong focus on value chain creation for horticulture, food supply chains, pack houses, cold chains, and value-addition projects. From concept to implementation, we translate technical requirements into practical, financially viable project plans — for businesses, institutions, and stakeholders.",
     hasFullContent: true,
+    // Renders the ProjectCarousel (photo-based, click-to-open) in the
+    // "Projects we've worked on" section instead of the numbered project
+    // cards below. Only this option uses the carousel for now.
+    projectCarousel: true,
     offerings: [
       "Preparation of techno-economic feasibility reports for post-harvest infrastructure — pack houses, cold storage, ripening chambers, pre-cooling units, and more.",
       "Technical reports on post-harvest operations, process flows, and layouts."
@@ -68,6 +72,9 @@ export const options = [
       "Implementation plan",
       "Annexures — data sheets, quotations, technical drawings, references"
     ],
+    // Kept as a fallback / data source (e.g. for the individual project detail
+    // pages the carousel links to at /projects/:slug). Not rendered directly
+    // on this page since projectCarousel is true above.
     projects: [
       {
         num: "01",
