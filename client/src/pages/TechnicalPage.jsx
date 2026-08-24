@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
+import ProjectCarousel from "../components/ProjectCarousel";
 import useReveal from "../hooks/useReveal";
 import technicalBg from "../assets/technical-hero-bg.jpeg";
 
@@ -158,6 +159,7 @@ export default function TechnicalPage() {
       <section className="projects section-projects">
         <div className="wrap">
           <h2>Projects we&apos;ve worked on</h2>
+          <ProjectCarousel imageWidth={340} imageHeight={340} />
           <div className="project-list">
             {option.projects.map((proj) => (
               <div className="project" key={proj.num}>
