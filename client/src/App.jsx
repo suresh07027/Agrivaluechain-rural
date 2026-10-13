@@ -44,14 +44,17 @@ function PageBackButton() {
   const canGoBack = Boolean(returnTo || hasPreviousEntry || location.pathname !== "/");
 
   const handleBack = () => {
-    if (returnTo) {
-      navigate(returnTo, { state: { restoreScrollY: returnScrollY } });
-    } else if (hasPreviousEntry) {
+    if (hasPreviousEntry) {
       navigate(-1);
+    } else if (returnTo) {
+      navigate(returnTo, {
+        replace: true,
+        state: { restoreScrollY: returnScrollY },
+      });
     } else if (location.pathname.startsWith("/projects/")) {
-      navigate("/option1");
+      navigate("/option1", { replace: true });
     } else if (location.pathname !== "/") {
-      navigate("/");
+      navigate("/", { replace: true });
     }
   };
 
