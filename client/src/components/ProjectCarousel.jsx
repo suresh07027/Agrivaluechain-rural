@@ -4,32 +4,24 @@
 //   1st click on a thumbnail  -> makes it active, shows the project title only.
 //   2nd click on the SAME (already active) thumbnail -> navigates to that project's page.
 //
-// FIX (box size not changing): the previous version measured each photo's
-// natural size via the <img onLoad> event. If a photo is already cached by
-// the browser (very likely once you've cycled through the carousel once),
-// the browser can fire `load` before React attaches the listener, so
-// onLoad silently never runs and the box stays stuck at a square default.
-// This version preloads every photo's real width/height ONCE on mount into
-// `naturalSizes`, then always computes the box size by reading that map —
-// no live onLoad race condition anymore.
+// LOGO SWAP: for projects that have a brand logo (TNWC, Lemon Value Chain,
+// Agro Food Supply, Carrot Value Chain), `image` and `buttonImage` now point
+// to the logo file instead of the site photo — the logo IS the hero image
+// for these cards. Projects without a logo keep their original site photo.
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // ---------------------------------------------------------------------------
 // 1. PROJECT DATA — titles pulled from the Technical Consultancy PDF.
-//    Replace `image` / `buttonImage` with your real hosted image paths,
-//    and `slug` with your real route for each project page.
-//    NOTE: photos for project 05 (Agro Food Supply) and project 07
-//    (Mango Drone Study) were swapped per request.
 // ---------------------------------------------------------------------------
-const PROJECTS = [
+export const PROJECTS = [
     {
         slug: "tamil-nadu-warehousing-corporation",
         label: "Tamil Nadu Warehousing Corporation",
-        image: "/images/projects/twc-cold-storage.jpeg",
-        buttonImage: "/images/projects/twc-cold-storage.jpeg",
+        image: "/images/projects/logos/tnwc-logo.jpeg",
+        buttonImage: "/images/projects/logos/tnwc-logo.jpeg",
     },
     {
         slug: "vegetable-cluster-development-olakkur",
@@ -40,8 +32,8 @@ const PROJECTS = [
     {
         slug: "lemon-value-chain",
         label: "Lemon Value Chain",
-        image: "/images/projects/lemon-value-chain.jpeg",
-        buttonImage: "/images/projects/lemon-value-chain.jpeg",
+        image: "/images/projects/logos/lemon-value-chain-logo.png",
+        buttonImage: "/images/projects/logos/lemon-value-chain-logo.png",
     },
     {
         slug: "onion-value-chain",
@@ -50,24 +42,22 @@ const PROJECTS = [
         buttonImage: "/images/projects/carrot-value-chain.jpeg",
     },
     {
-        // SWAPPED: was agro-food-supply.jpeg, now uses the mango-drone-study photo
         slug: "agro-food-supply",
         label: "Agro Food Supply",
-        image: "/images/projects/mango-drone-study.jpeg",
-        buttonImage: "/images/projects/mango-drone-study.jpeg",
+        image: "/images/projects/logos/agro-food-supply-logo.png",
+        buttonImage: "/images/projects/logos/agro-food-supply-logo.png",
     },
     {
         slug: "carrot-value-chain",
         label: "Carrot Value Chain",
-        image: "/images/projects/onion-value-chain.jpeg",
-        buttonImage: "/images/projects/onion-value-chain.jpeg",
+        image: "/images/projects/logos/carrot-value-chain-logo.png",
+        buttonImage: "/images/projects/logos/carrot-value-chain-logo.png",
     },
     {
-        // SWAPPED: was mango-drone-study.jpeg, now uses the agro-food-supply photo
         slug: "mango-drone-study",
         label: "Mango Drone Study",
-        image: "/images/projects/agro-food-supply.jpeg",
-        buttonImage: "/images/projects/agro-food-supply.jpeg",
+        image: "/images/projects/mango-drone-study.jpeg",
+        buttonImage: "/images/projects/mango-drone-study.jpeg",
     },
 ];
 
@@ -107,6 +97,7 @@ export default function ProjectCarousel({
     style,
 }) {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const list = items?.length ? items : PROJECTS;
     const M = list.length;
@@ -116,25 +107,27 @@ export default function ProjectCarousel({
     const rafRef = useRef(null);
     const animRef = useRef({ startPos: 0, targetPos: 0, startTime: 0 });
     const [dir, setDir] = useState(1);
-    // Tracks whether the currently-active item has already been "confirmed"
-    // (i.e. selected once) — a second click while confirmed triggers navigation.
+
     const [confirmed, setConfirmed] = useState(false);
 
-    // NEW: src -> { width, height } natural size, preloaded once on mount.
-    // This replaces the old onLoad-based measurement, which could silently
-    // fail to fire for images the browser had already cached.
     const [naturalSizes, setNaturalSizes] = useState({});
 
     useEffect(() => {
         let cancelled = false;
+
         list.forEach((item) => {
             const src = srcOf(item.image);
+
             if (!src) return;
+
             const img = new window.Image();
+
             img.onload = () => {
                 if (cancelled) return;
+
                 setNaturalSizes((prev) => {
-                    if (prev[src]) return prev; // already recorded
+                    if (prev[src]) return prev;
+
                     return {
                         ...prev,
                         [src]: {
@@ -144,76 +137,113 @@ export default function ProjectCarousel({
                     };
                 });
             };
+
             img.src = src;
         });
+
         return () => {
             cancelled = true;
         };
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); // run once — PROJECTS/items is static
+    }, []);
 
     const active = modIdx(Math.round(posDisplay), M);
     const activeSrc = srcOf(list[active]?.image);
 
-    // Box size is now DERIVED, not stored via a live event — always in sync
-    // with `active`, and immune to onLoad timing/caching issues.
     const imgBox = useMemo(() => {
         const natural = naturalSizes[activeSrc];
+
         if (!natural || !natural.width || !natural.height) {
-            return { width: imageWidth, height: imageHeight };
+            return {
+                width: imageWidth,
+                height: imageHeight,
+            };
         }
-        // Scale to fit inside the imageWidth x imageHeight bounding box while
-        // keeping the photo's own orientation (landscape stays wide, portrait
-        // stays tall) — the box then hugs the photo exactly, no empty space.
+
         const scale = Math.min(
             imageWidth / natural.width,
             imageHeight / natural.height
         );
+
         return {
             width: Math.round(natural.width * scale),
             height: Math.round(natural.height * scale),
         };
     }, [naturalSizes, activeSrc, imageWidth, imageHeight]);
 
-    const half = Math.floor(Math.min(Math.max(1, buttonCount), M) / 2);
+    const half = Math.floor(
+        Math.min(Math.max(1, buttonCount), M) / 2
+    );
+
     const buffer = half + 1;
 
     const cardRadiusPx =
         (Math.max(0, Math.min(20, cardRadius)) / 20) *
         (Math.min(imageWidth, imageHeight) / 2);
+
     const buttonRadiusPx =
-        (Math.max(0, Math.min(20, buttonRadius)) / 20) * (buttonSize / 2);
+        (Math.max(0, Math.min(20, buttonRadius)) / 20) *
+        (buttonSize / 2);
+
     const t = Math.max(0.0001, Math.min(10, curve) / 10);
+
     const step = buttonSize + gap;
+
     const dPsi = ((Math.PI * 2) / M) * t;
+
     const R = step / (2 * Math.sin(dPsi / 2));
+
     const baseTop = buttonSize * 0.9;
+
     const fadeInner = Math.max(0, half - 0.4);
+
     const fadeEnd = half + 0.6;
+
     const maxPsi = Math.min(Math.PI, fadeEnd * dPsi);
+
     const stripHeight =
-        baseTop + R * (1 - Math.cos(maxPsi)) + buttonSize / 2 + 16;
+        baseTop +
+        R * (1 - Math.cos(maxPsi)) +
+        buttonSize / 2 +
+        16;
 
     const goToProject = useCallback(
         (item) => {
             if (!item?.slug) return;
-            navigate(`/projects/${item.slug}`);
+
+            navigate(`/projects/${item.slug}`, {
+                state: {
+                    returnTo: `${location.pathname}${location.search}${location.hash}`,
+                    returnScrollY: window.scrollY,
+                },
+            });
         },
-        [navigate]
+        [navigate, location.hash, location.pathname, location.search]
     );
 
     const select = useCallback(
         (itemIdx) => {
-            const currentActive = modIdx(Math.round(posRef.current), M);
+            const currentActive = modIdx(
+                Math.round(posRef.current),
+                M
+            );
+
             if (itemIdx === currentActive) return;
 
-            let delta = itemIdx - Math.round(posRef.current);
+            let delta =
+                itemIdx - Math.round(posRef.current);
+
             delta = ((delta % M) + M) % M;
+
             if (delta > M / 2) delta -= M;
+
             setDir(Math.sign(delta));
             setConfirmed(false);
 
-            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+            }
 
             animRef.current = {
                 startPos: posRef.current,
@@ -222,28 +252,41 @@ export default function ProjectCarousel({
             };
 
             const DURATION = 320;
+
             function tick(now) {
-                const { startPos, targetPos, startTime } = animRef.current;
-                const progress = Math.min(1, (now - startTime) / DURATION);
+                const {
+                    startPos,
+                    targetPos,
+                    startTime,
+                } = animRef.current;
+
+                const progress = Math.min(
+                    1,
+                    (now - startTime) / DURATION
+                );
+
                 posRef.current =
-                    startPos + (targetPos - startPos) * easeCubicInOut(progress);
+                    startPos +
+                    (targetPos - startPos) *
+                        easeCubicInOut(progress);
+
                 setPosDisplay(posRef.current);
+
                 if (progress < 1) {
-                    rafRef.current = requestAnimationFrame(tick);
+                    rafRef.current =
+                        requestAnimationFrame(tick);
                 } else {
                     posRef.current = targetPos;
                     setPosDisplay(targetPos);
                     rafRef.current = null;
                 }
             }
+
             rafRef.current = requestAnimationFrame(tick);
         },
         [M]
     );
 
-    // Central click handler for a thumbnail:
-    //  - clicking a NEW item          -> select it, show its title (not confirmed yet)
-    //  - clicking the ACTIVE item again -> navigate to its project page
     const handleThumbClick = useCallback(
         (itemIdx) => {
             if (itemIdx === active) {
@@ -261,15 +304,21 @@ export default function ProjectCarousel({
 
     useEffect(() => {
         return () => {
-            if (rafRef.current) cancelAnimationFrame(rafRef.current);
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+            }
         };
     }, []);
 
     const center = Math.round(posDisplay);
+
     const renderItems = [];
+
     const seen = new Set();
+
     for (let s = -buffer; s <= buffer; s++) {
         const idx = modIdx(center + s, M);
+
         if (!seen.has(idx)) {
             seen.add(idx);
             renderItems.push(idx);
@@ -278,32 +327,60 @@ export default function ProjectCarousel({
 
     function getVisualSlot(itemIdx) {
         let slot = itemIdx - posDisplay;
+
         slot = slot % M;
+
         if (slot > M / 2) slot -= M;
+
         if (slot < -M / 2) slot += M;
+
         return slot;
     }
 
     function slotStyle(slot) {
         const angle = slot * dPsi;
+
         const x = R * Math.sin(angle);
+
         const y = R * (1 - Math.cos(angle));
+
         const deg = (angle * 180) / Math.PI;
+
         const absSlot = Math.abs(slot);
-        const depth = Math.max(0, 1 - (0.55 * absSlot) / Math.max(1, half));
+
+        const depth = Math.max(
+            0,
+            1 - (0.55 * absSlot) / Math.max(1, half)
+        );
+
         const scale = 0.55 + 0.45 * depth;
+
         const opacity =
             absSlot <= fadeInner
                 ? 1
                 : absSlot >= fadeEnd
-                  ? 0
-                  : 1 - (absSlot - fadeInner) / (fadeEnd - fadeInner);
-        const zIndex = Math.round(depth * 100) + (absSlot < 0.5 ? 100 : 0);
-        return { x, y, deg, scale, opacity, zIndex };
+                ? 0
+                : 1 -
+                  (absSlot - fadeInner) /
+                      (fadeEnd - fadeInner);
+
+        const zIndex =
+            Math.round(depth * 100) +
+            (absSlot < 0.5 ? 100 : 0);
+
+        return {
+            x,
+            y,
+            deg,
+            scale,
+            opacity,
+            zIndex,
+        };
     }
 
-    const imgSweep = 260,
-        imgDip = 150;
+    const imgSweep = 260;
+    const imgDip = 150;
+
     const imageVariants = {
         enter: (d) => ({
             x: d * imgSweep,
@@ -312,7 +389,15 @@ export default function ProjectCarousel({
             scale: 0.82,
             rotate: d * 8,
         }),
-        center: { x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 },
+
+        center: {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            rotate: 0,
+        },
+
         exit: (d) => ({
             x: -d * imgSweep,
             y: imgDip,
@@ -353,7 +438,8 @@ export default function ProjectCarousel({
                     boxShadow: confirmed
                         ? "0 8px 32px rgba(37, 99, 235, 0.28), 0 0 0 3px rgba(37, 99, 235, 0.25)"
                         : "0 8px 32px rgba(31, 38, 135, 0.15)",
-                    transition: "border 0.35s ease, box-shadow 0.35s ease",
+                    transition:
+                        "border 0.35s ease, box-shadow 0.35s ease",
                     flex: "0 0 auto",
                 }}
             >
@@ -376,10 +462,15 @@ export default function ProjectCarousel({
                         background: backgroundColor,
                         cursor: "pointer",
                         outline: "none",
-                        transition: "width 0.3s ease, height 0.3s ease",
+                        transition:
+                            "width 0.3s ease, height 0.3s ease",
                     }}
                 >
-                    <AnimatePresence mode="popLayout" initial={false} custom={dir}>
+                    <AnimatePresence
+                        mode="popLayout"
+                        initial={false}
+                        custom={dir}
+                    >
                         <motion.div
                             key={active}
                             custom={dir}
@@ -387,7 +478,10 @@ export default function ProjectCarousel({
                             initial="enter"
                             animate="center"
                             exit="exit"
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{
+                                duration: 0.5,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
                             style={{
                                 position: "absolute",
                                 inset: 0,
@@ -410,7 +504,7 @@ export default function ProjectCarousel({
                         </motion.div>
                     </AnimatePresence>
 
-                    {/* Glass sheen overlay — subtle diagonal highlight, stronger once confirmed */}
+                    {/* Glass sheen overlay — subtle diagonal highlight */}
                     <div
                         style={{
                             position: "absolute",
@@ -425,16 +519,21 @@ export default function ProjectCarousel({
                 </div>
             </div>
 
-
             {/* Title + hint */}
             {labelShow && (
-                <AnimatePresence mode="popLayout" initial={false}>
+                <AnimatePresence
+                    mode="popLayout"
+                    initial={false}
+                >
                     <motion.div
                         key={`label-${active}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
                         style={{
                             flex: "0 0 auto",
                             maxWidth: "100%",
@@ -450,6 +549,7 @@ export default function ProjectCarousel({
                         }}
                     >
                         <div>{list[active]?.label ?? ""}</div>
+
                         {confirmed && hint && (
                             <div
                                 style={{
@@ -478,8 +578,18 @@ export default function ProjectCarousel({
             >
                 {renderItems.map((itemIdx) => {
                     const slot = getVisualSlot(itemIdx);
-                    const { x, y, deg, scale, opacity, zIndex } = slotStyle(slot);
+
+                    const {
+                        x,
+                        y,
+                        deg,
+                        scale,
+                        opacity,
+                        zIndex,
+                    } = slotStyle(slot);
+
                     const isActive = itemIdx === active;
+
                     const item = list[itemIdx];
 
                     return (
@@ -497,7 +607,8 @@ export default function ProjectCarousel({
                                 transformOrigin: "center",
                                 opacity,
                                 zIndex,
-                                willChange: "transform, opacity",
+                                willChange:
+                                    "transform, opacity",
                             }}
                         >
                             <div
@@ -508,9 +619,14 @@ export default function ProjectCarousel({
                                         ? `Open ${item?.label}`
                                         : `Show ${item?.label}`
                                 }
-                                onClick={() => handleThumbClick(itemIdx)}
+                                onClick={() =>
+                                    handleThumbClick(itemIdx)
+                                }
                                 onKeyDown={(e) => {
-                                    if (e.key === "Enter" || e.key === " ") {
+                                    if (
+                                        e.key === "Enter" ||
+                                        e.key === " "
+                                    ) {
                                         e.preventDefault();
                                         handleThumbClick(itemIdx);
                                     }
@@ -527,21 +643,25 @@ export default function ProjectCarousel({
                                         ? "rgba(255,255,255,0.65)"
                                         : "rgba(255,255,255,0.55)",
                                     backdropFilter: "blur(6px)",
-                                    WebkitBackdropFilter: "blur(6px)",
+                                    WebkitBackdropFilter:
+                                        "blur(6px)",
                                     boxShadow:
                                         isActive && confirmed
                                             ? "0 4px 16px rgba(37,99,235,0.35), 0 0 0 2px rgba(37,99,235,0.55)"
                                             : isActive
-                                              ? "0 4px 14px rgba(31,38,135,0.2), 0 0 0 1px rgba(255,255,255,0.6)"
-                                              : "0 1px 4px rgba(0,0,0,0.15)",
+                                            ? "0 4px 14px rgba(31,38,135,0.2), 0 0 0 1px rgba(255,255,255,0.6)"
+                                            : "0 1px 4px rgba(0,0,0,0.15)",
                                     cursor: "pointer",
-                                    WebkitTapHighlightColor: "transparent",
+                                    WebkitTapHighlightColor:
+                                        "transparent",
                                     outline: "none",
                                 }}
                             >
                                 {srcOf(item?.buttonImage) && (
                                     <img
-                                        src={srcOf(item?.buttonImage)}
+                                        src={srcOf(
+                                            item?.buttonImage
+                                        )}
                                         alt=""
                                         draggable={false}
                                         style={{

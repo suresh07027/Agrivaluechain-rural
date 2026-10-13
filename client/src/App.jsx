@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -10,22 +10,72 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import "./styles/style.css";
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash, state } = useLocation();
+  const navigationType = useNavigationType();
 
   useEffect(() => {
+    if (hash) {
+      requestAnimationFrame(() => {
+        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+      });
+      return;
+    }
+
+    if (state?.restoreScrollY != null) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: state.restoreScrollY, left: 0, behavior: "auto" });
+      });
+      return;
+    }
+
+    if (navigationType === "POP") return;
+
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
+  }, [pathname, hash, state, navigationType]);
 
   return null;
 }
 
-export default function App() {
-  const { pathname } = useLocation();
+function PageBackButton() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const hasPreviousEntry = window.history.state?.idx > 0;
+  const { returnTo, returnScrollY } = location.state || {};
+  const canGoBack = Boolean(returnTo || hasPreviousEntry || location.pathname !== "/");
 
+  const handleBack = () => {
+    if (returnTo) {
+      navigate(returnTo, { state: { restoreScrollY: returnScrollY } });
+    } else if (hasPreviousEntry) {
+      navigate(-1);
+    } else if (location.pathname.startsWith("/projects/")) {
+      navigate("/option1");
+    } else if (location.pathname !== "/") {
+      navigate("/");
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      className="page-back-button"
+      onClick={handleBack}
+      disabled={!canGoBack}
+      aria-label="Go back to the previous page"
+      title="Go back"
+    >
+      &larr;
+    </button>
+  );
+}
+
+export default function App() {
   return (
     <>
       <ScrollToTop />
-      {!pathname.startsWith("/option1") && pathname !== "/" && <Header />}
+      <Header>
+        <PageBackButton />
+      </Header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/option1/:audienceId" element={<AudiencePage />} />

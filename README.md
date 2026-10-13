@@ -1,96 +1,82 @@
-# Agrivaluechain — PERN rebuild
+# Agrivaluechain Client
 
-The original static site (HTML/CSS/vanilla JS) rebuilt as a PERN-style app:
+This project is now a frontend-only React application. The backend has been removed, and the site runs entirely from the client folder.
 
-- **P**ostgres — not wired up yet (you chose to skip it for now). The contact
-  form route (`server/routes/contact.js`) is written so a Postgres `INSERT`
-  can replace the in-memory array later with almost no other changes.
-- **E**xpress — `server/` — a small API (`/api/health`, `/api/contact`)
-- **R**eact — `client/` — the site rebuilt as React components with
-  React Router instead of the old hash-based `navigate()` function
-- **N**ode — runs both of the above
+## Overview
+
+This is a Vite + React app built to recreate and modernize the original Agrivaluechain marketing site.
+
+The app includes:
+- a multi-page React experience using React Router
+- reusable components for the header, footer, project carousel, and scope sections
+- animated reveals and motion effects
+- static content organized in a central data file
+- styling based on the original site’s design
 
 ## Folder structure
 
-```
+```bash
 pern-app/
-├── client/                 → React app (Vite)
+├── client/
+│   ├── public/
 │   ├── src/
-│   │   ├── components/     → Header.jsx, Footer.jsx
-│   │   ├── pages/          → Home.jsx, ServicePage.jsx
-│   │   ├── data/           → content.js (all page copy — swap for API calls later)
-│   │   ├── hooks/          → useReveal.js (scroll-reveal animation)
-│   │   ├── styles/         → style.css (from the original site)
-│   │   └── assets/         → hero-bg.png (extracted from the old inline base64)
-│   └── index.html
-└── server/                 → Express API
-    ├── index.js
-    └── routes/contact.js
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── data/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── ...
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   └── ...
+├── README.md
+├── .gitignore
+└── .git/
 ```
 
 ## Prerequisites
 
-- **Node.js 18+** installed. Check with:
-  ```bash
-  node -v
-  ```
-  If you don't have it, install from https://nodejs.org (LTS version).
+Make sure you have Node.js installed:
 
-## How to run in the VS Code terminal
+```bash
+node -v
+```
 
-1. Open this `pern-app` folder in VS Code: **File → Open Folder…**
+If Node.js is not installed, download the LTS version from https://nodejs.org.
 
-2. Open a terminal: **Terminal → New Terminal** (or `` Ctrl+` ``).
+## Run the app locally
 
-3. **Install and start the server** (Terminal 1):
-   ```bash
-   cd server
-   npm install
-   npm run dev
-   ```
-   You should see: `Express API listening on http://localhost:5000`
+From the project root:
 
-4. **Open a second terminal** (`` Ctrl+Shift+` `` or the `+` icon in the
-   terminal panel) and **install and start the client** (Terminal 2):
-   ```bash
-   cd client
-   npm install
-   npm run dev
-   ```
-   You should see a `Local: http://localhost:5173/` link — open that in
-   your browser.
+```bash
+cd client
+npm install
+npm run dev
+```
 
-5. The React app on port 5173 proxies any request to `/api/*` to the
-   Express server on port 5000 (configured in `client/vite.config.js`),
-   so both need to be running for the contact form to work.
+Then open the local URL shown in the terminal, usually:
 
-Both `npm run dev` commands auto-reload on save — the client via Vite HMR,
-the server via `node --watch`.
+```bash
+http://localhost:5173
+```
 
-## Building for production
+## Production build
+
+To create a production build:
 
 ```bash
 cd client
 npm run build
 ```
-This outputs static files to `client/dist/`, which Express (or any static
-host) can serve. To have Express serve the built React app directly,
-add to `server/index.js`:
-```js
-import path from "path";
-import { fileURLToPath } from "url";
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.join(__dirname, "../client/dist")));
-```
 
-## Adding Postgres later
+This generates the production files in the `client/dist` folder.
 
-When you're ready:
-1. `npm install pg` in `server/`
-2. Create a `contact_messages` table (and, if you want, `options` /
-   `projects` tables mirroring the shape in `client/src/data/content.js`)
-3. Replace the in-memory `messages` array in `server/routes/contact.js`
-   with `pg` queries
-4. Optionally add `GET /api/options` and `GET /api/options/:id` routes
-   and fetch from those in `Home.jsx` / `ServicePage.jsx` instead of
-   importing `content.js` directly
+## Notes
+
+- This version is intentionally frontend-only.
+- There is no Express or database backend in the current project.
+- Any future backend integration would need to be added separately if required.

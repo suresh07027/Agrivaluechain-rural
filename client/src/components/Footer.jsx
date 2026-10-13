@@ -1,6 +1,6 @@
 export function CtaStrip({ contact }) {
   return (
-    <section className="cta-strip">
+    <section className="cta-strip" id="contact">
       <div className="wrap">
         <h2>For further details</h2>
         <div className="contact-line">
