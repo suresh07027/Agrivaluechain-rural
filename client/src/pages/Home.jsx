@@ -101,8 +101,8 @@ function OptionCard({ option, photo }) {
     <Link
       ref={cardRef}
       className={`option-card${hasPhoto ? " has-photo" : ""}`}
-      id={option.id}
-      to={`/${option.id}`}
+      id={option.id === "option1" ? "technical-support-pillar" : option.id === "option2" ? "collaborative-pillar" : option.id === "option3" ? "linking-farmers" : option.id}
+      to={option.id === "option1" ? "/technical-support" : option.id === "option2" ? "/collaborative" : option.id === "option3" ? "/linking-farmers" : option.id === "option4" ? "/capacity-development" : `/${option.id}`}
     >
       <div className={hasPhoto ? "card-copy" : undefined}>
         <h3>{option.title}</h3>

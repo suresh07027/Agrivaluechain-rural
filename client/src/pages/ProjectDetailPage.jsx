@@ -9,12 +9,9 @@ import agroSupplyMap from "../assets/map.jpeg";
 // carry a slug field yet.
 const SLUG_TO_PROJECT_NUM = {
   "tamil-nadu-warehousing-corporation": "01",
-  "vegetable-cluster-development-olakkur": "02",
   "lemon-value-chain": "03",
-  "onion-value-chain": "04",
   "agro-food-supply": "05",
   "carrot-value-chain": "06",
-  "mango-drone-study": "07",
 };
 
 // Reuses the exact same photos already shown in ProjectCarousel.jsx —
@@ -22,13 +19,9 @@ const SLUG_TO_PROJECT_NUM = {
 // strings (no import needed) at /images/projects/...
 const SLUG_TO_HERO_IMAGE = {
   "tamil-nadu-warehousing-corporation": "/images/projects/twc-cold-storage.jpeg",
-  "vegetable-cluster-development-olakkur":
-    "/images/projects/vegetable-cluster-olakkur.jpeg",
   "lemon-value-chain": "/images/projects/lemon-value-chain.jpeg",
-  "onion-value-chain": "/images/projects/carrot-value-chain.jpeg",
   "agro-food-supply": "/images/projects/agro-food-supply.jpeg",
-  "carrot-value-chain": "/images/projects/onion-value-chain.jpeg",
-  "mango-drone-study": "/images/projects/mango-drone-study.jpeg",
+  "carrot-value-chain": "/images/projects/carrot-value-chain.jpeg",
 };
 
 // ---------------------------------------------------------------------------
@@ -204,7 +197,7 @@ export default function ProjectDetailPage() {
   const option = options.find((o) => o.id === "option1");
   const project = option?.projects.find((p) => p.num === projectNum);
 
-  if (!project) return <Navigate to="/option1" replace />;
+  if (!project) return <Navigate to="/technical-support" replace />;
 
   const gallery = getGalleryForProjectNum(projectNum);
   const overviewSectionId = `project-overview-${slug}`;
@@ -298,112 +291,63 @@ export default function ProjectDetailPage() {
         <AgroHighlights project={project} gallery={gallery} />
       ) : project.facilityText ? (
         <>
-          {/* ---------------- About the Facility ---------------- */}
-          <section
-            className="section facility-bg project-detail-content"
-            id={overviewSectionId}
-          >
-            <div
-              className="facility-blob"
-              style={{
-                width: 260,
-                height: 260,
-                top: -70,
-                right: 260,
-                background: "radial-gradient(circle, rgba(184,217,61,0.4), transparent 70%)",
-              }}
-            />
-            <div
-              className="facility-blob"
-              style={{
-                width: 220,
-                height: 220,
-                bottom: -40,
-                right: 40,
-                background: "radial-gradient(circle, rgba(255,209,102,0.35), transparent 70%)",
-              }}
-            />
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 100 100"
-              style={{ position: "absolute", left: 20, bottom: 10, width: 130, height: 130, opacity: 0.16, pointerEvents: "none" }}
+          {/* ---------------- Social Impact / Our Impact ---------------- */}
+          {project.impactText && (
+            <section
+              className="section facility-bg"
+              id={impactSectionId}
+              style={{ paddingTop: 26, paddingBottom: 18, marginTop: 0 }}
             >
-              <path
-                d="M85 15C60 15 25 35 15 85C55 90 80 60 85 15Z"
-                fill="none"
-                stroke="var(--forest-deep)"
-                strokeWidth="2.5"
-              />
-              <path d="M20 82C40 60 55 45 82 20" fill="none" stroke="var(--forest-deep)" strokeWidth="2" />
-            </svg>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 40 40"
-              style={{ position: "absolute", right: 30, bottom: 30, width: 30, height: 30, opacity: 0.35, pointerEvents: "none" }}
-            >
-              <path d="M20 2L24 16L38 20L24 24L20 38L16 24L2 20L16 16Z" fill="var(--wheat-soft)" />
-            </svg>
-            <div className="wrap">
-              <span className="section-eyebrow">Facility Overview</span>
-              <h2 style={{ marginTop: 0 }}>About the Facility</h2>
-
-              <div
-                className={`facility-overview-grid${slug === "carrot-value-chain" ? " carrot-overview-grid visual-overview-grid" : slug === "lemon-value-chain" ? " lemon-overview-grid visual-overview-grid" : slug === "tamil-nadu-warehousing-corporation" ? " warehouse-overview-grid visual-overview-grid" : slug === "agro-food-supply" ? " agro-overview-grid visual-overview-grid" : ""}`}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.35fr 0.65fr",
-                  gap: 40,
-                  alignItems: "start",
-                  marginTop: 28,
-                }}
-              >
-                <div className={slug === "carrot-value-chain" ? "carrot-overview-copy visual-overview-copy" : slug === "lemon-value-chain" ? "lemon-overview-copy visual-overview-copy" : slug === "tamil-nadu-warehousing-corporation" ? "warehouse-overview-copy visual-overview-copy" : slug === "agro-food-supply" ? "agro-overview-copy visual-overview-copy" : undefined} style={{ paddingLeft: 22 }}>
-                  {project.facilityText.map((para, i) => (
-                    <p key={i}>{para}</p>
-                  ))}
-                </div>
-                {gallery.length > 0 && (
-                  <div className={slug === "carrot-value-chain" ? "carrot-overview-gallery visual-overview-gallery" : slug === "lemon-value-chain" ? "lemon-overview-gallery visual-overview-gallery" : slug === "tamil-nadu-warehousing-corporation" ? "warehouse-overview-gallery visual-overview-gallery" : slug === "agro-food-supply" ? "agro-overview-gallery visual-overview-gallery" : undefined} style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 260 }}>
-                    {overviewGallery.map((src, i) => {
-                      const isMap = slug === "agro-food-supply" && src === agroSupplyMap;
-                      const accent = i % 2 === 0 ? "var(--rust)" : "var(--forest)";
-                      return (
-                        <div
-                          key={src}
-                          style={{
-                            borderRadius: 20,
-                            padding: 6,
-                            background: `linear-gradient(135deg, ${accent}, transparent 65%)`,
-                            boxShadow: "0 18px 40px -18px var(--shadow-deep)",
-                            transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = "translateY(-4px)";
-                            e.currentTarget.style.boxShadow = "0 24px 50px -16px var(--shadow-deep)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = "translateY(0)";
-                            e.currentTarget.style.boxShadow = "0 18px 40px -18px var(--shadow-deep)";
-                          }}
-                        >
-                          <div className="project-overview-image-wrap" style={{ borderRadius: 15, overflow: "hidden", aspectRatio: "4 / 3", background: "#ffffff" }}>
-                            <img
-                              className="project-overview-image"
-                              src={src}
-                              alt={isMap
-                                ? "Map showing agricultural production states in northern India connected to consumption states in southern India"
-                                : `${project.title} facility photo ${i + 1}`}
-                              style={{ width: "100%", height: "100%", display: "block" }}
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
+              <div className="wrap">
+                <div
+                  style={{
+                    width: "100%",
+                    maxWidth: "100%",
+                    boxSizing: "border-box",
+                    background: "linear-gradient(120deg, var(--forest-deep) 0%, var(--forest) 130%)",
+                    color: "#ffffff",
+                    borderRadius: 16,
+                    padding: "24px 28px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 20,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 48,
+                      height: 48,
+                      flex: "0 0 auto",
+                      borderRadius: "50%",
+                      background: "var(--rust)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {HIGHLIGHT_ICONS.target}
                   </div>
-                )}
+                  <div>
+                    <h3 style={{ margin: "0 0 6px", color: "#ffffff" }}>
+                      {slug === "tamil-nadu-warehousing-corporation"
+                        ? "Social Impact"
+                        : slug === "lemon-value-chain"
+                          ? "Socio Economic Impact helps to farmers to increase the revenue"
+                          : "Our Impact"}
+                    </h3>
+                    {slug === "lemon-value-chain" ? (
+                      <ul style={{ margin: 0, padding: 0, listStyle: "none", color: "rgba(255,255,255,0.88)" }}>
+                        <li>* {project.impactText}</li>
+                        
+                      </ul>
+                    ) : (
+                      <p style={{ margin: 0, color: "rgba(255,255,255,0.88)" }}>{project.impactText}</p>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* ---------------- Project Highlights ---------------- */}
           {project.highlights?.length > 0 && (
@@ -415,9 +359,12 @@ export default function ProjectDetailPage() {
                 <span className="section-eyebrow">By the Numbers</span>
                 <h2>Project Highlights</h2>
                 {slug === "lemon-value-chain" && (
-                  <p style={{ margin: "0 0 20px" }}>
-                    Extended shelf life in controlled condition and relative humidity.
-                  </p>
+                  <>
+                  
+                    <p style={{ margin: "0 0 20px" }}>
+                      Research Project with a objective to understand the optimum shelf life of lemons in the controlled environmental condition.
+                    </p>
+                  </>
                 )}
                 <div
                   style={{
@@ -475,66 +422,125 @@ export default function ProjectDetailPage() {
                     );
                   })}
                 </div>
-                <PreviousSectionArrow href={`#${overviewSectionId}`} label="Back to facility overview" />
+                {slug === "lemon-value-chain" && (
+                  <h3 style={{ margin: "24px auto 0", color: "var(--forest-deep)", textAlign: "center", fontStyle: "italic" }}>Findings of the Project</h3>
+                )}
+                {slug !== "lemon-value-chain" && (
+                  <PreviousSectionArrow href={`#${impactSectionId}`} label="Back to social impact" />
+                )}
               </div>
             </section>
           )}
 
-          {/* ---------------- Social Impact / Our Impact ---------------- */}
-          {project.impactText && (
-            <section
-              className="section facility-bg"
-              id={impactSectionId}
-              style={{ paddingTop: 0 }}
+          {/* ---------------- About the Facility ---------------- */}
+          <section
+            className="section facility-bg project-detail-content"
+            id={overviewSectionId}
+          >
+            <div
+              className="facility-blob"
+              style={{
+                width: 260,
+                height: 260,
+                top: -70,
+                right: 260,
+                background: "radial-gradient(circle, rgba(184,217,61,0.4), transparent 70%)",
+              }}
+            />
+            <div
+              className="facility-blob"
+              style={{
+                width: 220,
+                height: 220,
+                bottom: -40,
+                right: 40,
+                background: "radial-gradient(circle, rgba(255,209,102,0.35), transparent 70%)",
+              }}
+            />
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 100 100"
+              style={{ position: "absolute", left: 20, bottom: 10, width: 130, height: 130, opacity: 0.16, pointerEvents: "none" }}
             >
-              <div className="wrap">
-                <div
-                  style={{
-                    background: "linear-gradient(120deg, var(--forest-deep) 0%, var(--forest) 130%)",
-                    color: "#ffffff",
-                    borderRadius: 16,
-                    padding: "24px 28px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 20,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 48,
-                      height: 48,
-                      flex: "0 0 auto",
-                      borderRadius: "50%",
-                      background: "var(--rust)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {HIGHLIGHT_ICONS.target}
-                  </div>
-                  <div>
-                    <h3 style={{ margin: "0 0 6px", color: "#ffffff" }}>
-                      {slug === "tamil-nadu-warehousing-corporation"
-                        ? "Social Impact"
-                        : slug === "lemon-value-chain"
-                          ? "Socio economic impact"
-                          : "Our Impact"}
-                    </h3>
-                    {slug === "lemon-value-chain" ? (
-                      <ul style={{ margin: 0, padding: 0, listStyle: "none", color: "rgba(255,255,255,0.88)" }}>
-                        <li>* {project.impactText}</li>
-                        <li>* It helps farmers decide between different markets.</li>
-                      </ul>
-                    ) : (
-                      <p style={{ margin: 0, color: "rgba(255,255,255,0.88)" }}>{project.impactText}</p>
-                    )}
-                  </div>
+              <path
+                d="M85 15C60 15 25 35 15 85C55 90 80 60 85 15Z"
+                fill="none"
+                stroke="var(--forest-deep)"
+                strokeWidth="2.5"
+              />
+              <path d="M20 82C40 60 55 45 82 20" fill="none" stroke="var(--forest-deep)" strokeWidth="2" />
+            </svg>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 40 40"
+              style={{ position: "absolute", right: 30, bottom: 30, width: 30, height: 30, opacity: 0.35, pointerEvents: "none" }}
+            >
+              <path d="M20 2L24 16L38 20L24 24L20 38L16 24L2 20L16 16Z" fill="var(--wheat-soft)" />
+            </svg>
+            <div className="wrap">
+              <span className="section-eyebrow">Brief of the project</span>
+              <h2 style={{ marginTop: 0 }}>Brief of the project</h2>
+
+              <div
+                className={`facility-overview-grid${slug === "carrot-value-chain" ? " carrot-overview-grid visual-overview-grid" : slug === "lemon-value-chain" ? " lemon-overview-grid visual-overview-grid" : slug === "tamil-nadu-warehousing-corporation" ? " warehouse-overview-grid visual-overview-grid" : slug === "agro-food-supply" ? " agro-overview-grid visual-overview-grid" : ""}`}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1.35fr 0.65fr",
+                  gap: 40,
+                  alignItems: "start",
+                  marginTop: 28,
+                }}
+              >
+                <div className={slug === "carrot-value-chain" ? "carrot-overview-copy visual-overview-copy" : slug === "lemon-value-chain" ? "lemon-overview-copy visual-overview-copy" : slug === "tamil-nadu-warehousing-corporation" ? "warehouse-overview-copy visual-overview-copy" : slug === "agro-food-supply" ? "agro-overview-copy visual-overview-copy" : undefined} style={{ paddingLeft: 22 }}>
+                  {project.facilityText.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
                 </div>
-                <PreviousSectionArrow href={`#${highlightsSectionId}`} label="Back to project highlights" />
+                {gallery.length > 0 && (
+                  <div className={slug === "carrot-value-chain" ? "carrot-overview-gallery visual-overview-gallery" : slug === "lemon-value-chain" ? "lemon-overview-gallery visual-overview-gallery" : slug === "tamil-nadu-warehousing-corporation" ? "warehouse-overview-gallery visual-overview-gallery" : slug === "agro-food-supply" ? "agro-overview-gallery visual-overview-gallery" : undefined} style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 260 }}>
+                    {overviewGallery.map((src, i) => {
+                      const isMap = slug === "agro-food-supply" && src === agroSupplyMap;
+                      const accent = i % 2 === 0 ? "var(--rust)" : "var(--forest)";
+                      return (
+                        <div
+                          key={src}
+                          style={{
+                            borderRadius: 20,
+                            padding: 6,
+                            background: `linear-gradient(135deg, ${accent}, transparent 65%)`,
+                            boxShadow: "0 18px 40px -18px var(--shadow-deep)",
+                            transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.transform = "translateY(-4px)";
+                            e.currentTarget.style.boxShadow = "0 24px 50px -16px var(--shadow-deep)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.transform = "translateY(0)";
+                            e.currentTarget.style.boxShadow = "0 18px 40px -18px var(--shadow-deep)";
+                          }}
+                        >
+                          <div className="project-overview-image-wrap" style={{ borderRadius: 15, overflow: "hidden", aspectRatio: "4 / 3", background: "#ffffff" }}>
+                            <img
+                              className="project-overview-image"
+                              src={src}
+                              alt={isMap
+                                ? "Map showing agricultural production states in northern India connected to consumption states in southern India"
+                                : `${project.title} facility photo ${i + 1}`}
+                              style={{ width: "100%", height: "100%", display: "block" }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            </section>
-          )}
+              {slug !== "lemon-value-chain" && (
+                <PreviousSectionArrow href={`#${highlightsSectionId}`} label="Back to project highlights" />
+              )}
+            </div>
+          </section>
         </>
       ) : (
         <section className="section facility-bg project-detail-content">
@@ -542,7 +548,7 @@ export default function ProjectDetailPage() {
             <span className="section-eyebrow">Project Overview</span>
             <div className="project-fallback-grid">
               <div className="project-fallback-copy">
-                <h2>About the Project</h2>
+                <h2>Brief of the Project</h2>
                 {project.fullContent ? (
                   project.fullContent.map((block, i) => {
                     if (block.type === "h3") return <h3 key={i}>{block.text}</h3>;

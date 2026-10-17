@@ -24,22 +24,10 @@ export const PROJECTS = [
         buttonImage: "/images/projects/logos/tnwc-logo.jpeg",
     },
     {
-        slug: "vegetable-cluster-development-olakkur",
-        label: "Vegetable Cluster Development Program (Olakkur)",
-        image: "/images/projects/vegetable-cluster-olakkur.jpeg",
-        buttonImage: "/images/projects/vegetable-cluster-olakkur.jpeg",
-    },
-    {
         slug: "lemon-value-chain",
         label: "Lemon Value Chain",
         image: "/images/projects/logos/lemon-value-chain-logo.png",
         buttonImage: "/images/projects/logos/lemon-value-chain-logo.png",
-    },
-    {
-        slug: "onion-value-chain",
-        label: "Onion Value Chain",
-        image: "/images/projects/carrot-value-chain.jpeg",
-        buttonImage: "/images/projects/carrot-value-chain.jpeg",
     },
     {
         slug: "agro-food-supply",
@@ -52,12 +40,6 @@ export const PROJECTS = [
         label: "Carrot Value Chain",
         image: "/images/projects/logos/carrot-value-chain-logo.png",
         buttonImage: "/images/projects/logos/carrot-value-chain-logo.png",
-    },
-    {
-        slug: "mango-drone-study",
-        label: "Mango Drone Study",
-        image: "/images/projects/mango-drone-study.jpeg",
-        buttonImage: "/images/projects/mango-drone-study.jpeg",
     },
 ];
 
@@ -76,7 +58,7 @@ export default function ProjectCarousel({
     cardRadius = 0,
     imageWidth = 320,
     imageHeight = 320,
-    buttonCount = 7,
+    buttonCount = 4,
     buttonSize = 46,
     buttonRadius = 23,
     curve = 5,

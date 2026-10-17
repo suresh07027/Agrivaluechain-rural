@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import technicalBg from "../assets/technical-hero-bg.jpeg";
+import technicalBg from "../assets/Technical/technical-hero-bg.jpeg";
 import offerProduceImage from "../assets/option1-photo.jpg";
-import offerFacilityImage from "../assets/integrated-packhouse-layout.jpeg";
+import offerFacilityImage from "../assets/Linking-farmers/integrated-packhouse-layout.jpeg";
 
 // 3D Scope of Deliverables component
 import ScopeOfDeliverables from "../components/scope/ScopeOfDeliverables";
@@ -226,7 +226,7 @@ export default function TechnicalPage() {
               return (
                 <Link
                   className={`audience-card accent-${seg.accent}`}
-                  to={`/option1/${seg.slug}`}
+                  to={`/technical-support/${seg.slug}`}
                   key={seg.slug}
                 >
                   <span

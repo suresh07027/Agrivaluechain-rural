@@ -56,8 +56,8 @@ const deliverables = [
   },
   {
     type: "flow",
-    image: "/images/projects/vegetable-cluster-olakkur.jpeg",
-    imageAlt: "Organized vegetable production and handling",
+    image: "/images/projects/lemon-value-chain.jpeg",
+    imageAlt: "Lemon value chain process flow",
     text: (
       <>
         Process flow chart and layout / floor plan of operations
@@ -67,7 +67,7 @@ const deliverables = [
   },
   {
     type: "operations",
-    image: "/images/projects/onion-value-chain.jpeg",
+    image: "/images/projects/agro-food-supply.jpeg",
     imageAlt: "Post-harvest agricultural operations",
     text: (
       <>
@@ -79,7 +79,7 @@ const deliverables = [
   },
   {
     type: "standards",
-    image: "/images/projects/mango-drone-study.jpeg",
+    image: "/images/projects/carrot-value-chain.jpeg",
     imageAlt: "Agricultural infrastructure and technical survey",
     text: (
       <>

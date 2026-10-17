@@ -2,19 +2,19 @@
 // this is exactly the shape you'd fetch from GET /api/options and
 // GET /api/options/:id instead of importing it statically.
 
-import capacityDevelopmentHero from "../assets/capacity.jpeg";
-import capacityDevelopmentContentImage from "../assets/capacity-development-hero.jpg";
-import postHarvestHandbookCover from "../assets/post-harvest-handbook-cover.jpg";
-import collaborativeImage from "../assets/collabrative.jpeg";
-import linkingFarmersHero from "../assets/linking-farmers-hero.png";
+import capacityDevelopmentHero from "../assets/capacity/capacity.jpeg";
+import capacityDevelopmentContentImage from "../assets/capacity/capacity-development-hero.jpg";
+import postHarvestHandbookCover from "../assets/capacity/post-harvest-handbook-cover.jpg";
+import collaborativeImage from "../assets/collabrative/collabrative.jpeg";
+import linkingFarmersHero from "../assets/Linking-farmers/linking-farmers-hero.png";
 import packhouseFlowDiagram from "../assets/packhouse-flow-diagram.png";
-import integratedPackhouseLayout from "../assets/integrated-packhouse-layout.jpeg";
-import ripeningChamberImage from "../assets/ripening-chamber.jpeg";
-import reeferTransportImage from "../assets/reefer-transport-vehicle.jpeg";
-import coldRoomSolarImage from "../assets/cold-room-solar.png";
-import coldRoomConventionalImage from "../assets/cold-room-conventional.jpeg";
-import coldRoomTechImage from "../assets/cold-room-tech.jpeg";
-import preCoolingUnitImage from "../assets/pre-cooling-unit.jpeg";
+import integratedPackhouseLayout from "../assets/Linking-farmers/integrated-packhouse-layout.jpeg";
+import ripeningChamberImage from "../assets/Linking-farmers/ripening-chamber.jpeg";
+import reeferTransportImage from "../assets/Linking-farmers/reefer-transport-vehicle.jpeg";
+import coldRoomSolarImage from "../assets/Linking-farmers/cold-room-solar.png";
+import coldRoomConventionalImage from "../assets/Linking-farmers/cold-room-conventional.jpeg";
+import coldRoomTechImage from "../assets/Linking-farmers/cold-room-tech.jpeg";
+import preCoolingUnitImage from "../assets/Linking-farmers/pre-cooling-unit.jpeg";
 
 // Content for the two-column hero showcase panel (title + audience badge +
 // feature list + photo) that sits over the hero background image.
@@ -82,7 +82,7 @@ export const options = [
               "Clear documentation of infrastructure gaps (power, water, connectivity, effluent treatment)"
             ]
           },
-          { label: "We work for", text: "State Departments of Horticulture / Agriculture, NHB / NABARD-linked projects, District-level integrated post-harvest infrastructure plans, FPO's and cluster-based post-harvest projects" }
+          { label: "We work for State Horticulture Department", text: "State Departments of Horticulture / Agriculture, NHB / NABARD-linked projects, District-level integrated post-harvest infrastructure plans, FPO's and cluster-based post-harvest projects" }
         ]
       },
       {
@@ -172,7 +172,7 @@ export const options = [
           { icon: "leaf", value: "40–50 days", label: "Lemon Shelf Life" },
           { icon: "solar", value: "55 days", label: "MAP + Cold Storage" }
         ],
-        impactText: "The role of temperature, relative humidity, ethylene management and Modified atmosphericpackaging (MAP) with cold storage increased the revenue to  farmers by extending shelf life of 40-50 days.",
+        impactText: "The role of temperature,  high relative humidity, ethylene management and Modified atmosphericpackaging (MAP) with cold storage increased the revenue to  farmers by extending shelf life of 40-50 days.",
         fullContent: [
           {
             type: "p",
@@ -287,9 +287,9 @@ export const options = [
     tag: "02 · Collaborative Research & Development",
     heroTitle: "Industry academic research with agricultural University.",
     heroSub:
-      "Agri Value Chain Services has partnering with Tamil Nadu Agricultural University (TNAU), Coimbatore, to co-create practical, science-based solutions for post-harvest management, value addition, and rural livelihood enhancement. This collaboration brings together AVC's field implementation experience with TNAU's research and technical expertise to strengthen horticulture value chains in Tamil Nadu and beyond.",
+      "Agri Value Chain Services has been partnering with Tamil Nadu Agricultural University (TNAU), Coimbatore, to co-create practical, science-based solutions for post-harvest management, value addition, and rural livelihood enhancement. This collaboration brings together AVC's field implementation experience with TNAU's research and technical expertise to strengthen horticulture value chains in Tamil Nadu and beyond.",
     hasFullContent: true,
-    offeringsTitle: "What we work?",
+    offeringsTitle: "Our Work with Academic Institution in Collabrative Research in Training & Development",
     offeringsIntro:
       "Small and marginal horticulture farmers often face losses due to gaps in post-harvest handling, storage, grading, and market linkages. By working closely with TNAU, Agri Value Chain aims to:",
     offerings: [
@@ -338,18 +338,12 @@ export const options = [
         details: ["3 MT (pre-cooling) and 20 MT (cold room)", "Sorting and grading hall", "Receiving and delivery area"]
       }
     ],
-    sustainableTechTitle: "Adopting sustainable technologies",
+    sustainableTechTitle: "Adopting sustainable technologies in Post-Harvestment Management",
     sustainableTech: [
       "Integration of solar panels system",
       "Evaporative cooling",
-      "Ethylene management",
+      "Ethylene & Carbon di-oxide management",
       "Natural refrigerants"
-    ],
-    scope: [
-      "Concept design",
-      "Budgeting",
-      "Government assistance",
-      "Training"
     ],
     midh: {
          midhTitle: "MIDH guidelines",
@@ -434,8 +428,20 @@ export const options = [
     contentImage: capacityDevelopmentContentImage,
     contentImageAlt: "Capacity development training in post-harvest management and cold chain operations",
     intro: [
-      "The training programs are developed in consultation with industry experts and tailored to meet the operational standards of export pack houses, cold chain logistics providers, food processing companies, organised retail outlets, and supermarkets. Participants are trained in technical aspects such as handling, storage, and value addition of produce, as well as operational efficiency, quality assurance, and safety standards essential in today's competitive agri-business environment.",
-      "AVC is partnering with Tamil Nadu Agricultural University (TNAU) to conduct a training program on post-harvest management, and TNAU will give certificates to everyone who completes the course."
+      "The training programs are developed in consultation with industry experts and tailored to met the operational requirements & best practices: ",
+      {
+        label: "* Export & Market Linkages",
+        text: "Export packhouses, cold chain logistics providers, food processing companies, organised retail outlets, and distribution markets."
+      },
+      {
+        label: "* Post-Harvest Management & Value Addition",
+        text: "Participants are trained in technical aspects such as handling, storage, and value addition of products."
+      },
+      {
+        label: "*Quality, Safety & Environmental Sustainability",
+        text: "Operational efficiency, quality assurance, and safety standards are essential in today's competitive agri-business environment."
+      },
+      "AVC is partnering with Tamil Nadu Agricultural University (TNAU) to conduct a training program on post-harvest management, and TNAU will give certificates to the participants who completes the course."
     ],
     coursesTitle: "Course details (Tentative)",
     courses: [
