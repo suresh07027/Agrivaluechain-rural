@@ -475,7 +475,9 @@ export default function ProjectDetailPage() {
                     );
                   })}
                 </div>
-                <PreviousSectionArrow href={`#${overviewSectionId}`} label="Back to facility overview" />
+                {slug !== "lemon-value-chain" && (
+                  <PreviousSectionArrow href={`#${overviewSectionId}`} label="Back to facility overview" />
+                )}
               </div>
             </section>
           )}
@@ -531,7 +533,9 @@ export default function ProjectDetailPage() {
                     )}
                   </div>
                 </div>
-                <PreviousSectionArrow href={`#${highlightsSectionId}`} label="Back to project highlights" />
+                {slug !== "lemon-value-chain" && (
+                  <PreviousSectionArrow href={`#${highlightsSectionId}`} label="Back to project highlights" />
+                )}
               </div>
             </section>
           )}

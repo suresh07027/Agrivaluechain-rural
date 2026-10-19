@@ -338,7 +338,7 @@ export const options = [
         details: ["3 MT (pre-cooling) and 20 MT (cold room)", "Sorting and grading hall", "Receiving and delivery area"]
       }
     ],
-    sustainableTechTitle: "Adopting sustainable technologies",
+    sustainableTechTitle: "Adopting sustainable technologies in post **H**arvestment **M**anagement",
     sustainableTech: [
       "Integration of solar panels system",
       "Evaporative cooling",

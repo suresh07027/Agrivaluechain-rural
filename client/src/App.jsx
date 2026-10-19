@@ -44,13 +44,13 @@ function PageBackButton() {
   const canGoBack = Boolean(returnTo || hasPreviousEntry || location.pathname !== "/");
 
   const handleBack = () => {
-    if (hasPreviousEntry) {
-      navigate(-1);
-    } else if (returnTo) {
+    if (returnTo) {
       navigate(returnTo, {
         replace: true,
         state: { restoreScrollY: returnScrollY },
       });
+    } else if (hasPreviousEntry) {
+      navigate(-1);
     } else if (location.pathname.startsWith("/projects/")) {
       navigate("/option1", { replace: true });
     } else if (location.pathname !== "/") {

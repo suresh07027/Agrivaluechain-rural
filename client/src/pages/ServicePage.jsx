@@ -5,7 +5,11 @@ import useReveal from "../hooks/useReveal";
 import collaborativeHeroBg from "../assets/collab-hero-bg.jpeg";
 import linkingBg from "../assets/linking-bg.jpeg";
 import developmentFarmImage from "../assets/development-farm.jpeg";
+import largerFarmersGroupImage from "../assets/larger-farmers-group.png";
+import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.png";
+import smallFarmersGroupImage from "../assets/small-farmers-group.png";
 import sustainableSolarImage from "../assets/sustainable-solar.svg";
+import solarPanelsHoverImage from "../assets/solar.png";
 import sustainableCoolingImage from "../assets/sustainable-cooling.svg";
 import sustainableEthyleneImage from "../assets/sustainable-ethylene.svg";
 import sustainableRefrigerantImage from "../assets/sustainable-refrigerants.svg";
@@ -23,6 +27,7 @@ const linkingSustainableCards = [
     title: "Integration of solar panels system",
     description: "Harnessing clean energy for efficient and cost-effective operations.",
     image: sustainableSolarImage,
+    hoverImage: solarPanelsHoverImage,
     accent: "green",
   },
   {
@@ -32,7 +37,7 @@ const linkingSustainableCards = [
     accent: "blue",
   },
   {
-    title: "Ethylene management",
+    title: "Ethylene and carbon dioxide management",
     description: "Controlled ripening and extended shelf life of fresh produce.",
     image: sustainableEthyleneImage,
     accent: "gold",
@@ -45,12 +50,11 @@ const linkingSustainableCards = [
   },
 ];
 
-const linkingScopeCards = [
-  { title: "Concept design", accent: "teal" },
-  { title: "Budgeting", accent: "blue" },
-  { title: "Government assistance", accent: "orange" },
-  { title: "Training", accent: "purple" },
-];
+function renderAccentTitle(text) {
+  return text.split("**").map((chunk, i) => (
+    i % 2 === 1 ? <span className="accent" key={i}>{chunk}</span> : chunk
+  ));
+}
 
 function SustainableTechIcon({ index }) {
   const icons = [
@@ -62,21 +66,6 @@ function SustainableTechIcon({ index }) {
 
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {icons[index]}
-    </svg>
-  );
-}
-
-function LinkingScopeIcon({ index }) {
-  const icons = [
-    <><path d="M12 3v11" /><path d="M8 8h8M9 12h6" /><path d="M8 17h8M10 21h4" /></>,
-    <><path d="M5 5h14v14H5z" /><path d="M8 9h8M8 13h5M8 17h8" /><path d="m15 13 2 2 3-4" /></>,
-    <><path d="m3 10 9-6 9 6v10H3V10Z" /><path d="M7 20v-6h10v6M3 10h18" /></>,
-    <><circle cx="12" cy="7" r="3" /><path d="M5 21c0-4 3-6 7-6s7 2 7 6M19 9v4M17 11h4" /></>,
-  ];
-
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {icons[index]}
     </svg>
   );
@@ -356,6 +345,15 @@ export default function ServicePage() {
                 <div className="capacity-grid">
                   {option.capacityTiers.map((tier, i) => (
                     <div className="capacity-card" key={i}>
+                      {isLinking && i === 0 && (
+                        <img className="capacity-hover-image" src={smallFarmersGroupImage} alt="Tractor spraying crops across a small farmers group field" />
+                      )}
+                      {isLinking && i === 1 && (
+                        <img className="capacity-hover-image" src={smallAndMediumFarmersImage} alt="Small and medium farmers working in a field" />
+                      )}
+                      {isLinking && i === 2 && (
+                        <img className="capacity-hover-image" src={largerFarmersGroupImage} alt="Tractor spraying crops in a large farmers group field" />
+                      )}
                       <div className="capacity-label">{tier.label}</div>
                       <div className="capacity-card-top">
                         <span className="capacity-icon">
@@ -392,7 +390,7 @@ export default function ServicePage() {
           {option.sustainableTech && (
             <section className="section section-tech">
               <div className="wrap">
-                <h2>{option.sustainableTechTitle || "Sustainable technologies"}</h2>
+                <h2>{renderAccentTitle(option.sustainableTechTitle || "Sustainable technologies")}</h2>
                 {isLinking ? (
                   <p className="linking-tech-intro">We embrace innovative and eco-friendly solutions to build a resilient and sustainable agricultural value chain for a better tomorrow.</p>
                 ) : null}
@@ -401,6 +399,7 @@ export default function ServicePage() {
                     <article className={`linking-tech-card accent-${card.accent}`} key={card.title}>
                       <div className="linking-tech-image-wrap">
                         <img src={card.image} alt="" />
+                        {card.hoverImage && <img className="linking-tech-hover-image" src={card.hoverImage} alt="" /> }
                         <span className="linking-tech-badge">{String(i + 1).padStart(2, "0")}</span>
                       </div>
                       <div className="linking-tech-icon"><SustainableTechIcon index={i} /></div>
@@ -420,44 +419,12 @@ export default function ServicePage() {
             </section>
           )}
 
-          {option.scope && (
-            <section className="section section-scope">
-              <div className="wrap">
-                {isLinking ? (
-                  <>
-                    <h2>Scope of deliverables</h2>
-                    <div className="linking-scope-underline" aria-hidden="true" />
-                    <div className="linking-scope-grid">
-                      {linkingScopeCards.map((card, i) => (
-                        <article className={`linking-scope-card accent-${card.accent}`} key={card.title}>
-                          <span className="linking-scope-number">{String(i + 1).padStart(2, "0")}</span>
-                          <span className="linking-scope-icon"><LinkingScopeIcon index={i} /></span>
-                          <span className="linking-scope-divider" />
-                          <h3>{card.title}</h3>
-                          <span className="linking-scope-arrow" aria-hidden="true">&gt;</span>
-                        </article>
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <h2>Scope of deliverables</h2>
-                    <ul className="bullets">
-                      {option.scope.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-              </div>
-            </section>
-          )}
 
           {midh && (
             <section className="section section-midh">
               <div className="wrap">
                 <div className="midh-section-heading">
-                  <span className="midh-kicker">Investment framework</span>
+                  <span className="midh-kicker">Advising on government support schemes for post-harvest management</span>
                   <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>
