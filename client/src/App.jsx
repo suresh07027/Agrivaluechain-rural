@@ -52,7 +52,7 @@ function PageBackButton() {
     } else if (hasPreviousEntry) {
       navigate(-1);
     } else if (location.pathname.startsWith("/projects/")) {
-      navigate("/option1", { replace: true });
+      navigate("/technical-support", { replace: true });
     } else if (location.pathname !== "/") {
       navigate("/", { replace: true });
     }
@@ -81,6 +81,8 @@ export default function App() {
       </Header>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/technical-support/:audienceId" element={<AudiencePage />} />
+        <Route path="/technical-support" element={<TechnicalPage />} />
         <Route path="/option1/:audienceId" element={<AudiencePage />} />
         <Route path="/option1" element={<TechnicalPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />

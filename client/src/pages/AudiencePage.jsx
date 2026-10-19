@@ -2,8 +2,8 @@ import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import governmentPhoto from "../assets/government.jpeg";
-import companiesPhoto from "../assets/companies.jpeg";
+import governmentPhoto from "../assets/Technical/government.jpeg";
+import companiesPhoto from "../assets/Technical/companies.jpeg";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
 
 const photos = {
@@ -62,12 +62,9 @@ function BotanicalCluster({ className }) {
 // related projects (matched by slug).
 const PROJECT_NUM_TO_SLUG = {
   "01": "tamil-nadu-warehousing-corporation",
-  "02": "vegetable-cluster-development-olakkur",
   "03": "lemon-value-chain",
-  "04": "onion-value-chain",
   "05": "agro-food-supply",
-  "06": "carrot-value-chain",
-  "07": "mango-drone-study"
+  "06": "carrot-value-chain"
 };
 
 const option = options.find((o) => o.id === "option1");
@@ -79,7 +76,7 @@ export default function AudiencePage() {
 
   useReveal([audienceId]);
 
-  if (!segment || !page) return <Navigate to="/option1" replace />;
+  if (!segment || !page) return <Navigate to="/technical-support" replace />;
 
   const photo = photos[page.photo];
 
@@ -153,7 +150,7 @@ export default function AudiencePage() {
       {carouselItems.length > 0 && (
         <section className="projects section-projects projects-photo-bg">
           <div className="wrap">
-            <h2>Our experience on work with {segment.name.toLowerCase()}</h2>
+            <h2>Case Studies for {segment.name.toLowerCase()}</h2>
             <ProjectCarousel
               items={carouselItems}
               imageWidth={340}

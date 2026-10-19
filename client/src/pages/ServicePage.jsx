@@ -1,18 +1,22 @@
+import { useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import collaborativeHeroBg from "../assets/collab-hero-bg.jpeg";
-import linkingBg from "../assets/linking-bg.jpeg";
-import developmentFarmImage from "../assets/development-farm.jpeg";
+import collaborativeHeroBg from "../assets/collabrative/collab-hero-bg.jpeg";
+import exportMarketImage from "../assets/capacity/Export.jpeg";
+import postHarvestImage from "../assets/capacity/Post-harvest.jpeg";
+import qualityImage from "../assets/capacity/Quality.jpeg";
+import linkingBg from "../assets/Linking-farmers/linking-bg.jpeg";
+import developmentFarmImage from "../assets/Linking-farmers/development-farm.jpeg";
 import largerFarmersGroupImage from "../assets/larger-farmers-group.png";
 import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.png";
 import smallFarmersGroupImage from "../assets/small-farmers-group.png";
-import sustainableSolarImage from "../assets/sustainable-solar.svg";
 import solarPanelsHoverImage from "../assets/solar.png";
-import sustainableCoolingImage from "../assets/sustainable-cooling.svg";
-import sustainableEthyleneImage from "../assets/sustainable-ethylene.svg";
-import sustainableRefrigerantImage from "../assets/sustainable-refrigerants.svg";
+import sustainableSolarImage from "../assets/Linking-farmers/sustainable-solar.svg";
+import sustainableCoolingImage from "../assets/Linking-farmers/sustainable-cooling.svg";
+import sustainableEthyleneImage from "../assets/Linking-farmers/sustainable-ethylene.svg";
+import sustainableRefrigerantImage from "../assets/Linking-farmers/sustainable-refrigerants.svg";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
 
 const collaborativeOfferTitles = [
@@ -149,11 +153,39 @@ function toRomanNumeral(value) {
 
 export default function ServicePage() {
   const { optionId } = useParams();
-  const option = options.find((o) => o.id === optionId);
+  const resolvedOptionId = optionId === "linking-farmers"
+    ? "option3"
+    : optionId === "collaborative"
+      ? "option2"
+      : optionId === "capacity-development"
+        ? "option4"
+        : optionId;
+  const option = options.find((o) => o.id === resolvedOptionId);
   const isCapacity = option?.id === "option4";
   const isCollaborative = option?.id === "option2";
   const isLinking = option?.id === "option3";
   const midh = option?.midh;
+  const [activeCapacityFeature, setActiveCapacityFeature] = useState(null);
+
+  const capacityHighlights = isCapacity
+    ? [
+        {
+          label: "Export & Market Linkages",
+          text: "Export packhouses, cold chain logistics providers, food processing companies, organised retail outlets, and distribution markets.",
+          image: exportMarketImage,
+        },
+        {
+          label: "Post-Harvest Management & Value Addition",
+          text: "Participants are trained in handling, storage, grading, and value addition of produce to reduce losses and improve market returns.",
+          image: postHarvestImage,
+        },
+        {
+          label: "Quality, Safety & Environmental Sustainability",
+          text: "Operational efficiency, quality assurance, and safety standards are essential in today's competitive agri-business environment.",
+          image: qualityImage,
+        },
+      ]
+    : [];
 
   useReveal([optionId]);
 
@@ -234,10 +266,41 @@ export default function ServicePage() {
                       alt={option.contentImageAlt || ""}
                     />
                     <div>
-                      {option.intro.map((para, i) => (
-                        <p className="intro-para" key={i}>
-                          {para}
-                        </p>
+                      <p className="intro-para">{option.intro[0]}</p>
+                      <ul className="capacity-highlight-list">
+                        {option.intro.filter((para) => typeof para === "object" && para !== null && "label" in para).map((para, i) => {
+                          const featureLabel = para.label.replace(/^\*+\s*/, "");
+                          const active = activeCapacityFeature === featureLabel;
+
+                          return (
+                            <li key={`${featureLabel}-${i}`} className={`capacity-highlight-block${active ? " active" : ""}`}>
+                              <button
+                                type="button"
+                                className={`capacity-highlight-trigger${active ? " active" : ""}`}
+                                onMouseEnter={() => setActiveCapacityFeature(featureLabel)}
+                                onMouseLeave={() => setActiveCapacityFeature(null)}
+                                onFocus={() => setActiveCapacityFeature(featureLabel)}
+                                onBlur={() => setActiveCapacityFeature(null)}
+                                onClick={() => setActiveCapacityFeature(featureLabel)}
+                              >
+                                <strong>{featureLabel}</strong>
+                              </button>
+                              {active && (
+                                <div className="capacity-highlight-image-popout">
+                                  <h3>{featureLabel}</h3>
+                                  <p>{para.text}</p>
+                                  <img
+                                    src={capacityHighlights.find((item) => item.label === featureLabel)?.image || exportMarketImage}
+                                    alt={featureLabel}
+                                  />
+                                </div>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      {option.intro.slice(1).filter((para) => typeof para === "string").map((para, i) => (
+                        <p className="intro-para" key={i}>{para}</p>
                       ))}
                     </div>
                   </div>
@@ -428,6 +491,11 @@ export default function ServicePage() {
                   <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>
+                {isLinking && (
+                  <div className="linking-government-support">
+                    <p>Advising on Government supports scheme in Post Harvestment for Linking Farmers</p>
+                  </div>
+                )}
                 <div className="midh-list">
                   {midh.midhGuidelines.map((item, i) => (
                     <article className="midh-item" key={item.title}>
@@ -623,7 +691,7 @@ export default function ServicePage() {
       {isCollaborative && (
         <section className="projects section-projects projects-photo-bg">
           <div className="wrap">
-            <h2>Our experience on work with educational institutions</h2>
+            <h2>Case Studies for educational institutions</h2>
             <ProjectCarousel
               items={PROJECTS.filter((project) => project.slug === "lemon-value-chain")}
               imageWidth={340}

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { heroShowcase, options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
+import Stakeholders from "../components/Stakeholders";
 import useReveal from "../hooks/useReveal";
 import useTilt from "../hooks/useTilt";
 import option1Photo from "../assets/option1-photo.jpg";
@@ -101,8 +102,8 @@ function OptionCard({ option, photo }) {
     <Link
       ref={cardRef}
       className={`option-card${hasPhoto ? " has-photo" : ""}`}
-      id={option.id}
-      to={`/${option.id}`}
+      id={option.id === "option1" ? "technical-support-pillar" : option.id === "option2" ? "collaborative-pillar" : option.id === "option3" ? "linking-farmers" : option.id}
+      to={option.id === "option1" ? "/technical-support" : option.id === "option2" ? "/collaborative" : option.id === "option3" ? "/linking-farmers" : option.id === "option4" ? "/capacity-development" : `/${option.id}`}
     >
       <div className={hasPhoto ? "card-copy" : undefined}>
         <h3>{option.title}</h3>
@@ -128,6 +129,31 @@ export default function Home() {
 
   return (
     <div className="page active" id="page-home">
+      <section className="avc-intro" id="agrivaluechain-intro">
+        <div className="wrap">
+          <h2 className="avc-intro-title">Agrivalue Chain</h2>
+          <div className="avc-intro-body">
+            <p>
+              Agri value chain Services adopts a holistic, end-to-end value-chain approach, working
+              collaboratively with all key stakeholders — farmers, traders, processors, retailers and
+              supermarkets, government institutions, financial institutions, logistics providers and
+              technology partners — to develop sustainable, efficient and commercially viable
+              agricultural value chains.
+            </p>
+            <p>
+              Agri value chain work across the entire agricultural value chain — from production and
+              post-harvest management to processing, cold-chain logistics, markets and finance — to
+              create efficient, sustainable and commercially viable value chains.
+            </p>
+            <p className="avc-intro-tagline">
+              &ldquo;Connecting stakeholders. Strengthening value chains. Creating sustainable impact.&rdquo;
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Stakeholders />
+
       <div className="hero-intro-wrap" id="intro">
         <div className="hero-bg"></div>
 

@@ -17,9 +17,9 @@ export default function Header({ children }) {
             </svg>
             Home
           </Link>
-          <Link className="nav-technical" to="/#option1">Technical Support</Link>
-          <Link className="nav-linking" to="/#option3">Linking Farmers</Link>
-          <Link className="nav-collab" to="/#option2">Collaborative Research &amp; Development</Link>
+          <Link className="nav-technical" to="/#technical-support-pillar">Technical Support</Link>
+          <Link className="nav-linking" to="/#linking-farmers">Linking Farmers</Link>
+          <Link className="nav-collab" to="/#collaborative-pillar">Collaborative Research &amp; Development</Link>
           <Link className="nav-capacity" to="/#option4">Capacity Development Program</Link>
           <Link className="nav-contact" to="/#contact">
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
