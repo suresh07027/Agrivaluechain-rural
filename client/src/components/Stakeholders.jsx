@@ -45,24 +45,28 @@ const stakeholders = [
     label: "Government",
     color: "#f0eeec",
     image: governmentImage,
+    href: "/#technical-support-pillar",
     details: ["Programme design, implementation, infrastructure and policy support"]
   },
   {
     label: "Financial institutions",
     color: "#f0eeec",
     image: financialImage,
+    href: "/#technical-support-pillar",
     details: ["Bankable projects, investment appraisal and financing structures"]
   },
   {
     label: "Logistics / Cold-chain providers",
     color: "#f0eeec",
     image: logisticsImage,
+    href: "/#linking-farmers",
     details: ["Infrastructure planning, technology selection and operational optimisation"]
   },
   {
     label: "Technology partners",
     color: "#f0eeec",
     image: technologyPartnersImage,
+    href: "/#collaborative-pillar",
     details: ["Digitalisation, IoT, traceability and data-driven value chain management"]
   }
 ];

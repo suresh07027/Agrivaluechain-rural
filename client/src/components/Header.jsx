@@ -10,7 +10,7 @@ export default function Header({ children }) {
           Agrivaluechain
         </Link>
         <nav className="navlinks">
-          <Link className="nav-home" to="/#intro">
+          <Link className="nav-home" to="/#agrivaluechain-intro">
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="m3 10 9-7 9 7" />
               <path d="M5 9v12h14V9M9 21v-7h6v7" />

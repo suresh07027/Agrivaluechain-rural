@@ -4,6 +4,10 @@ import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
 import collaborativeHeroBg from "../assets/collabrative/collab-hero-bg.jpeg";
+import collaborativeScientificImage from "../assets/collabrative/Scientific.jpeg";
+import collaborativeControlImage from "../assets/collabrative/control.jpeg";
+import collaborativeTrainingImage from "../assets/collabrative/Training.jpeg";
+import collaborativeInnovativeImage from "../assets/collabrative/Innovative.jpeg";
 import exportMarketImage from "../assets/capacity/Export.jpeg";
 import postHarvestImage from "../assets/capacity/Post-harvest.jpeg";
 import qualityImage from "../assets/capacity/Quality.jpeg";
@@ -12,7 +16,6 @@ import developmentFarmImage from "../assets/Linking-farmers/development-farm.jpe
 import largerFarmersGroupImage from "../assets/larger-farmers-group.png";
 import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.png";
 import smallFarmersGroupImage from "../assets/small-farmers-group.png";
-import solarPanelsHoverImage from "../assets/solar.png";
 import sustainableSolarImage from "../assets/Linking-farmers/sustainable-solar.svg";
 import sustainableCoolingImage from "../assets/Linking-farmers/sustainable-cooling.svg";
 import sustainableEthyleneImage from "../assets/Linking-farmers/sustainable-ethylene.svg";
@@ -26,12 +29,18 @@ const collaborativeOfferTitles = [
   "Innovative quality measurement"
 ];
 
+const collaborativeOfferImages = [
+  collaborativeScientificImage,
+  collaborativeControlImage,
+  collaborativeTrainingImage,
+  collaborativeInnovativeImage
+];
+
 const linkingSustainableCards = [
   {
     title: "Integration of solar panels system",
     description: "Harnessing clean energy for efficient and cost-effective operations.",
     image: sustainableSolarImage,
-    hoverImage: solarPanelsHoverImage,
     accent: "green",
   },
   {
@@ -322,7 +331,20 @@ export default function ServicePage() {
                 )}
                 {isCollaborative ? (
                   <div className="collaborative-offer-grid">
-                    {option.offerings.map((item, i) => <article className={`collaborative-offer-card accent-${i}`} key={item}><div className="collaborative-offer-icon"><CollaborativeOfferIcon index={i} /></div><div className="collaborative-offer-divider" /><div className="collaborative-offer-copy"><h3>{collaborativeOfferTitles[i]}</h3><p>{item}</p></div><div className="collaborative-offer-watermark"><LeafWatermark /></div></article>)}
+                    {option.offerings.map((item, i) => (
+                      <article className={`collaborative-offer-card accent-${i}`} key={item}>
+                        <div className="collaborative-offer-photo">
+                          <img src={collaborativeOfferImages[i]} alt={collaborativeOfferTitles[i]} />
+                        </div>
+                        <div className="collaborative-offer-icon"><CollaborativeOfferIcon index={i} /></div>
+                        <div className="collaborative-offer-divider" />
+                        <div className="collaborative-offer-copy">
+                          <h3>{collaborativeOfferTitles[i]}</h3>
+                          <p>{item}</p>
+                        </div>
+                        <div className="collaborative-offer-watermark"><LeafWatermark /></div>
+                      </article>
+                    ))}
                   </div>
                 ) : <ul className="bullets">{option.offerings.map((item, i) => <li key={i}>{item}</li>)}</ul>}
               </div>
