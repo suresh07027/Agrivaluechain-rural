@@ -338,7 +338,7 @@ export default function ProjectDetailPage() {
                     {slug === "lemon-value-chain" ? (
                       <ul style={{ margin: 0, padding: 0, listStyle: "none", color: "rgba(255,255,255,0.88)" }}>
                         <li>* {project.impactText}</li>
-                        
+
                       </ul>
                     ) : (
                       <p style={{ margin: 0, color: "rgba(255,255,255,0.88)" }}>{project.impactText}</p>
@@ -360,7 +360,7 @@ export default function ProjectDetailPage() {
                 <h2>Project Highlights</h2>
                 {slug === "lemon-value-chain" && (
                   <>
-                  
+
                     <p style={{ margin: "0 0 20px" }}>
                       Research Project with a objective to understand the optimum shelf life of lemons in the controlled environmental condition.
                     </p>
