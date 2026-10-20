@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Link } from "react-router-dom";
 import stakeholderImage from "../assets/Stakeholder/Stakeholder.jpeg";
 import financialImage from "../assets/Stakeholder/Financial.jpeg";
 import fpoImage from "../assets/Stakeholder/Fpo.jpeg";
@@ -16,24 +17,28 @@ const stakeholders = [
     label: "Farmers / FPOs",
     color: "#f0eeec",
     image: fpoImage,
+    href: "/#linking-farmers",
     details: ["Productivity", "Post-Harvest Management access", "Aggregation"]
   },
   {
     label: "Traders / Aggregators",
     color: "#f0eeec",
     image: tradersImage,
+    href: "/#linking-farmers",
     details: ["Efficient sourcing, handling, logistics and market linkages"]
   },
   {
     label: "Processors",
     color: "#f0eeec",
     image: processorImage,
+    href: "/#linking-farmers",
     details: ["Raw-material supply, processing efficiency and market development"]
   },
   {
     label: "Distributional Markets / Retailers",
     color: "#f0eeec",
     image: marketImage,
+    href: "/#linking-farmers",
     details: ["Quality, traceability, reliable supply and cold-chain solutions"]
   },
   {
@@ -178,19 +183,29 @@ export default function Stakeholders() {
                   >
                     <div
                       className={`stk-node${s.details ? " stk-node-with-details" : ""}`}
-                      tabIndex={s.details ? 0 : undefined}
-                      aria-describedby={s.details ? tooltipId : undefined}
-                      aria-label={s.image ? s.label : undefined}
+                      tabIndex={s.details && !s.href ? 0 : undefined}
+                      aria-describedby={s.details && !s.href ? tooltipId : undefined}
+                      aria-label={s.image && !s.href ? s.label : undefined}
                       style={{
                         background: s.image ? "transparent" : s.color,
                         "--glow": s.color,
                         animationDelay: `${i * 0.45}s`
                       }}
                     >
-                      {s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>}
+                      {s.href ? (
+                        <Link className="stk-node-link" to={s.href} aria-label={s.label} aria-describedby={tooltipId}>
+                          {s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>}
+                        </Link>
+                      ) : (
+                        s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>
+                      )}
                     </div>
                   </motion.div>
-                  {s.image && <h3 className="stk-node-caption">{s.label}</h3>}
+                  {s.image && (
+                    s.href
+                      ? <Link className="stk-node-caption" to={s.href}>{s.label}</Link>
+                      : <h3 className="stk-node-caption">{s.label}</h3>
+                  )}
                   {s.details && (
                     <div className="stk-node-popup" id={tooltipId} role="tooltip">
                       {s.details.map((detail) => <span key={detail}>{detail}</span>)}
