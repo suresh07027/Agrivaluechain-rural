@@ -1,0 +1,399 @@
+/* =====================================================================
+   polish.css  —  put in client/src/styles/ and import AFTER style.css
+   1) Home page: one continuous background, no visible section seams,
+      readable text
+   2) Linking Farmers › MIDH guidelines: layered animated background
+   3) Pop-ups (stakeholder hover card + capacity highlight card):
+      new "leaf card" design with readable text
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1) HOME PAGE — merge all sections into one flowing background
+   --------------------------------------------------------------------- */
+
+#page-home{
+  --home-gap:72px;
+  position:relative;
+  /* Keep the page photo visible beneath a light wash. */
+  background:
+    linear-gradient(180deg,
+      rgba(255,249,232,.16) 0%,
+      rgba(236,245,230,.20) 28%,
+      rgba(247,240,220,.24) 60%,
+      rgba(246,247,243,.34) 100%),
+    url("../assets/Home.jpeg") center top / cover no-repeat fixed;
+}
+/* iOS / touch devices ignore "fixed" backgrounds, so scroll normally there */
+@media (hover:none), (max-width:820px){
+  #page-home{ background-attachment:scroll, scroll; }
+}
+
+/* Intro + Stakeholders no longer paint their own photo -> no hard edges.
+   NOTE: the "Rural livelihood development" section (.options) and the
+   contact strip (.cta-strip) are intentionally NOT touched here. */
+#page-home .avc-intro,
+#page-home .stk{
+  background:none;
+  animation:none;
+}
+#page-home .avc-intro::after,
+#page-home .stk::before,
+#page-home .stk::after{
+  display:none;
+}
+
+/* Hero photo: feather the top and bottom so it melts into the page */
+#page-home .hero-intro-wrap{ min-height:0; }
+#page-home .hero-bg{
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0, #000 16%, #000 84%, transparent 100%);
+}
+#page-home .hero::after{
+  background:linear-gradient(180deg, transparent 0%, rgba(8,32,27,.12) 55%, rgba(8,32,27,.22) 100%);
+}
+
+/* ---- Readability: clean text instead of the muddy glow ---- */
+#page-home .avc-intro-title,
+#page-home .stk-title,
+#page-home .showcase-heading,
+#page-home .avc-intro-body p,
+#page-home .feature-text,
+#page-home .audience-item,
+#page-home .stk-node-caption{
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
+}
+#page-home .showcase-goal .feature-text{ text-shadow:none; }
+
+/* Intro paragraphs sit on a frosted panel, left-aligned for easy reading */
+#page-home .avc-intro-body{
+  max-width:860px;
+  padding:40px 46px;
+  border-radius:22px;
+  background:rgba(15,42,35,.42);
+  -webkit-backdrop-filter:blur(14px) saturate(1.15);
+          backdrop-filter:blur(14px) saturate(1.15);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.12);
+}
+#page-home .avc-intro-body p{
+  color:#f8fbf8;
+  font-size:1.08rem;
+  line-height:1.85;
+  text-align:left;
+  text-shadow:none;
+}
+#page-home .avc-intro-body .avc-intro-tagline{
+  text-align:center;
+  color:#ffe08a;
+  text-shadow:none;
+}
+
+/* Stakeholder labels get a small pill so they never fight the background */
+#page-home .stk-node-caption{
+  padding:5px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.26);
+  -webkit-backdrop-filter:blur(8px);
+          backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.26);
+  text-shadow:none;
+}
+
+/* Hero feature list: slightly stronger panel + larger text */
+#page-home .feature-panel{
+  background:rgba(7,28,24,.42);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  -webkit-backdrop-filter:blur(12px);
+          backdrop-filter:blur(12px);
+}
+#page-home .feature-text{ font-size:1.02rem; line-height:1.7; color:#f9fbf8; }
+#page-home .feature-text strong{ color:#ffd166; }
+#page-home .showcase-goal .feature-text,
+#page-home .showcase-goal .feature-text strong,
+#page-home .showcase-goal .goal-label,
+#page-home .showcase-goal .feature-icon{
+  color:#123c32;
+  text-shadow:none;
+}
+#page-home .showcase-heading{
+  color:#fffaf0;
+  text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 18px rgba(0,0,0,.55);
+}
+#page-home .options-head h2,
+#page-home .options-head p{
+  color:#fffaf0;
+  text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 18px rgba(0,0,0,.55);
+}
+
+/* Let the section photo and shared page background show through. */
+#page-home .options::before{
+  background-image:
+    linear-gradient(180deg,
+      rgba(7,28,24,.12) 0%,
+      rgba(7,28,24,.10) 14%,
+      rgba(14,44,38,.16) 50%,
+      rgba(11,41,36,.28) 100%),
+    url("../assets/hero1.jpeg");
+}
+#page-home .cta-strip{
+  background:linear-gradient(180deg, rgba(233,246,234,.68) 0%, rgba(245,239,221,.74) 100%);
+}
+
+#page-home .stk-title{
+  color:#fffaf0;
+  text-shadow:0 2px 4px rgba(0,0,0,.9),0 0 18px rgba(0,0,0,.72);
+}
+#page-home .stk-node-caption{
+  color:#173d32;
+  background:rgba(255,253,245,.94);
+  border-color:rgba(23,61,50,.18);
+  box-shadow:0 4px 12px rgba(0,0,0,.24);
+  text-shadow:none;
+}
+
+#page-home .showcase-goal .feature-text strong{
+  color:#b94f39;
+}
+#page-home .showcase-goal .goal-label{
+  color:#0f766e;
+}
+#page-home .feature-panel .feature-text strong{
+  color:#ffd166;
+  text-shadow:0 1px 3px rgba(0,0,0,.65);
+}
+#page-home .audience-badge{
+  background:rgba(7,28,24,.78);
+  border-color:rgba(255,255,255,.42);
+  box-shadow:0 8px 24px rgba(0,0,0,.24);
+}
+#page-home .audience-item{
+  color:#fffdf5;
+  text-shadow:0 1px 3px rgba(0,0,0,.9);
+}
+
+#page-home .options-head h2,
+#page-home .options-head p{
+  color:#fffdf5;
+  text-shadow:0 2px 4px rgba(0,0,0,.95),0 0 16px rgba(0,0,0,.78);
+}
+#page-home .options-head h2::after{
+  background:linear-gradient(90deg,#ffd166,#f26b4f);
+}
+#page-home .option-card h3,
+#page-home .option-card .desc,
+#page-home .option-card .go{
+  text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 10px rgba(0,0,0,.55);
+}
+#page-home .option-card .desc{color:#fffdf5;}
+#page-home .option-card .go{
+  color:#ffe08a;
+  background:rgba(7,28,24,.62);
+}
+
+#page-home .cta-strip h2,
+#page-home .cta-strip .contact-line,
+#page-home .cta-strip a,
+#page-home .cta-strip .contact-icon{
+  color:#173d32;
+  text-shadow:none;
+}
+#page-home .cta-strip .contact-method{
+  background:rgba(255,253,245,.9);
+  border-color:rgba(23,61,50,.16);
+  box-shadow:0 6px 18px rgba(15,54,44,.1);
+}
+#page-home .cta-strip a:hover{color:#b94f39;}
+
+/* Dark green halo gives all homepage headings clearer separation. */
+#page-home .avc-intro-title,
+#page-home .stk-title,
+#page-home .showcase-heading,
+#page-home .options-head h2,
+#page-home .option-card h3,
+#page-home .cta-strip h2{
+  text-shadow:
+    0 1px 2px rgba(4,35,25,.95),
+    0 0 8px rgba(4,45,30,.78),
+    0 0 16px rgba(4,45,30,.48);
+}
+#page-home .avc-intro-title{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(2.8rem,7vw,5rem);
+  font-weight:700;
+  letter-spacing:-.035em;
+  line-height:1.05;
+}
+#page-home .avc-intro-heading-text{
+  font-family:'Bodoni Moda',serif;
+  font-size:inherit;
+}
+#page-home .avc-intro-heading-accent{
+  color:#ffd166;
+}
+
+@media (max-width:640px){
+  #page-home .avc-intro-body{ padding:26px 22px; border-radius:18px; }
+  #page-home .avc-intro-title{font-size:clamp(2.45rem,11vw,3.4rem);}
+  #page-home .avc-intro-body p{ font-size:1rem; line-height:1.75; }
+}
+
+
+/* ---------------------------------------------------------------------
+   2) LINKING FARMERS › MIDH GUIDELINES — layered background effect
+      (soft colour glows + drifting light + dot grid + leaf pattern)
+   --------------------------------------------------------------------- */
+
+#page-option3 .section-midh{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(900px 520px at 6% 6%,   rgba(61,155,105,.30), transparent 70%),
+    radial-gradient(780px 520px at 98% 42%, rgba(231,164,43,.26), transparent 70%),
+    radial-gradient(700px 480px at 28% 100%, rgba(28,167,160,.22), transparent 70%),
+    linear-gradient(160deg, #e2f3e7 0%, #f7f1df 50%, #e1f0ee 100%);
+}
+
+/* dot grid + faint leaf outlines */
+#page-option3 .section-midh::before{
+  content:"";
+  position:absolute; inset:0;
+  pointer-events:none;
+  opacity:1;
+  background:
+    radial-gradient(rgba(36,67,63,.15) 1.2px, transparent 1.7px) 0 0 / 26px 26px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170' viewBox='0 0 170 170' fill='none' stroke='%2324433f' stroke-opacity='.11' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M118 22C78 22 52 46 52 82c0 22 16 38 38 38 38 0 56-38 56-98-10 0-20 0-28 0Z'/%3E%3Cpath d='M46 150c20-26 42-44 70-62'/%3E%3C/svg%3E")
+      0 0 / 170px 170px;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+/* slowly drifting soft light blobs */
+#page-option3 .section-midh::after{
+  content:"";
+  position:absolute; inset:-20%;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(97,184,121,.30) 0, transparent 22%),
+    radial-gradient(circle at 80% 20%, rgba(231,164,43,.26) 0, transparent 20%),
+    radial-gradient(circle at 70% 80%, rgba(28,167,160,.24) 0, transparent 24%);
+  filter:blur(30px);
+  animation:midhDrift 22s ease-in-out infinite alternate;
+}
+@keyframes midhDrift{
+  from{ transform:translate3d(-3%, 2%, 0) scale(1); }
+  to  { transform:translate3d(4%, -3%, 0) scale(1.1); }
+}
+/* keep the content above the effects */
+#page-option3 .section-midh > .wrap{ position:relative; z-index:1; }
+
+@media (prefers-reduced-motion:reduce){
+  #page-option3 .section-midh::after{ animation:none; }
+}
+
+
+/* ---------------------------------------------------------------------
+   3) POP-UPS — new "leaf card" look: cream card, colour top bar,
+      big dark text, bullet markers, soft entrance animation
+   --------------------------------------------------------------------- */
+
+/* 3a) Stakeholder hover card */
+.stk-node-popup{
+  top:50%;
+  transform:translateY(-50%);
+  gap:9px;
+  max-width:min(270px, calc(100vw - 32px));
+  padding:18px 18px 16px;
+  border:1px solid rgba(36,67,63,.12);
+  border-radius:16px;
+  background:#fffdf5;
+  color:#16352e;
+  font-family:'DM Sans', sans-serif;
+  font-size:.92rem;
+  font-weight:600;
+  line-height:1.5;
+  text-align:left;
+  text-shadow:none;
+  box-shadow:0 22px 44px -18px rgba(0,0,0,.5), 0 2px 0 rgba(255,255,255,.7) inset;
+  overflow:hidden;
+  animation:popCardIn .2s ease both;
+}
+.stk-node-popup::before{
+  content:"";
+  position:absolute; left:0; right:0; top:0; height:5px;
+  background:linear-gradient(90deg, #3d9b69, #e7a42b, #f26b4f);
+}
+.stk-node-popup span{
+  position:relative;
+  display:block;
+  padding-left:20px;
+}
+.stk-node-popup span::before{
+  content:"";
+  position:absolute; left:0; top:.5em;
+  width:9px; height:9px;
+  border-radius:70% 30% 70% 30%;
+  background:linear-gradient(135deg, #267b5b, #61b879);
+}
+@keyframes popCardIn{
+  from{ opacity:0; transform:translateY(-46%) scale(.96); }
+  to  { opacity:1; transform:translateY(-50%) scale(1); }
+}
+@media (max-width:640px){
+  .stk-node-popup{
+    max-width:min(220px, calc(100vw - 32px));
+    padding:15px 14px 13px;
+    font-size:.84rem;
+  }
+}
+
+/* 3b) Capacity-development highlight card */
+.capacity-highlight-image-popout{
+  position:absolute;
+  padding:26px 22px 20px;
+  background:#fffdf5;
+  border:1px solid rgba(36,67,63,.12);
+  border-radius:18px;
+  box-shadow:0 30px 60px -24px rgba(8,40,34,.55);
+  overflow:hidden;
+}
+.capacity-highlight-image-popout::before{
+  content:"";
+  position:absolute; left:0; right:0; top:0; height:5px;
+  background:linear-gradient(90deg, #3d9b69, #e7a42b, #f26b4f);
+}
+.capacity-highlight-image-popout h3{
+  margin:0 0 10px;
+  color:#0f2f28;
+  font-family:'Bodoni Moda', serif;
+  font-size:1.2rem;
+  line-height:1.3;
+}
+.capacity-highlight-image-popout p{
+  margin:0 0 14px;
+  color:#1f3b34;
+  font-family:'DM Sans', sans-serif;
+  font-size:.98rem;
+  line-height:1.7;
+}
+.capacity-highlight-image-popout img{
+  border-radius:12px;
+  border:1px solid rgba(36,67,63,.1);
+}
+
+@media (prefers-reduced-motion:reduce){
+  .stk-node-popup{ animation:none; }
+}
+
+/* Hide horizontal separators between sections across all pages. */
+section,
+.section,
+.scope-section{
+  border-top-color:transparent !important;
+  border-bottom-color:transparent !important;
+}
+hr{
+  visibility:hidden;
+}

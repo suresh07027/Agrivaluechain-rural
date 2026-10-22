@@ -16,10 +16,10 @@ import developmentFarmImage from "../assets/Linking-farmers/development-farm.jpe
 import largerFarmersGroupImage from "../assets/larger-farmers-group.png";
 import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.png";
 import smallFarmersGroupImage from "../assets/small-farmers-group.png";
-import sustainableSolarImage from "../assets/Linking-farmers/sustainable-solar.svg";
-import sustainableCoolingImage from "../assets/Linking-farmers/sustainable-cooling.svg";
-import sustainableEthyleneImage from "../assets/Linking-farmers/sustainable-ethylene.svg";
-import sustainableRefrigerantImage from "../assets/Linking-farmers/sustainable-refrigerants.svg";
+import sustainableSolarImage from "../assets/Linking-farmers/solar.jpeg";
+import sustainableCoolingImage from "../assets/Linking-farmers/cooling.jpeg";
+import sustainableEthyleneImage from "../assets/Linking-farmers/carbon.jpeg";
+import sustainableRefrigerantImage from "../assets/Linking-farmers/refrigerants.jpeg";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
 
 const collaborativeOfferTitles = [

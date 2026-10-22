@@ -131,7 +131,15 @@ export default function Home() {
     <div className="page active" id="page-home">
       <section className="avc-intro" id="agrivaluechain-intro">
         <div className="wrap">
-          <h2 className="avc-intro-title">Agrivalue Chain</h2>
+          <h2 className="avc-intro-title">
+            <svg className="avc-intro-leaf" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M26.5 5.5C15 5.5 7 9.5 7 18.5c0 4 2.8 7 6.8 7 8.7 0 12.7-8.5 12.7-20Z" />
+              <path d="M5 27c4.5-7 9.5-11.5 17-16" />
+            </svg>
+            <span className="avc-intro-heading-text">
+              <span>Agrivalue</span> <span className="avc-intro-heading-accent">Chain</span>
+            </span>
+          </h2>
           <div className="avc-intro-body">
             <p>
               Agri value chain Services adopts a holistic, end-to-end value-chain approach, working
@@ -148,6 +156,14 @@ export default function Home() {
             <p className="avc-intro-tagline">
               &ldquo;Connecting stakeholders. Strengthening value chains. Creating sustainable impact.&rdquo;
             </p>
+            <div className="avc-intro-divider" aria-hidden="true">
+              <span />
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M26.5 5.5C15 5.5 7 9.5 7 18.5c0 4 2.8 7 6.8 7 8.7 0 12.7-8.5 12.7-20Z" />
+                <path d="M5 27c4.5-7 9.5-11.5 17-16" />
+              </svg>
+              <span />
+            </div>
           </div>
         </div>
       </section>

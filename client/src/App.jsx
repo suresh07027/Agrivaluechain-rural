@@ -8,6 +8,7 @@ import TechnicalPage from "./pages/TechnicalPage";
 import AudiencePage from "./pages/AudiencePage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import "./styles/style.css";
+import "./styles/polish.css";
 
 function ScrollToTop() {
   const { pathname, hash, state } = useLocation();

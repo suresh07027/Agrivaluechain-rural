@@ -71,9 +71,9 @@ const stakeholders = [
   }
 ];
 
-const RADIUS = 37; // % of stage width, centre -> node centre
-const ARROW_RADIUS = 22; // % of stage width, centre -> arrow
-const NODE_SIZE = 26; // % of stage width
+const RADIUS = 40; // % of stage width, centre -> node centre
+const ARROW_RADIUS = 24; // % of stage width, centre -> arrow
+const NODE_SIZE = 23; // % of stage width
 
 function useIsMobile() {
   const [mobile, setMobile] = useState(false);
