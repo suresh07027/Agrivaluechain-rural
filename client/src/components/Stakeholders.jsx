@@ -1,72 +1,67 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import stakeholderImage from "../assets/Stakeholder/Stakeholder.jpeg";
-import financialImage from "../assets/Stakeholder/Financial.jpeg";
-import fpoImage from "../assets/Stakeholder/Fpo.jpeg";
-import governmentImage from "../assets/Stakeholder/Government.jpeg";
-import logisticsImage from "../assets/Stakeholder/Logistic.jpeg";
-import marketImage from "../assets/Stakeholder/Market.jpeg";
-import processorImage from "../assets/Stakeholder/Processor.jpeg";
-import technologyPartnersImage from "../assets/Stakeholder/Tech-partners.jpeg";
-import tradersImage from "../assets/Stakeholder/Traders.jpeg";
+import stakeholderImage from "../assets/logo.webp";
+import financialImage from "../assets/Stakeholder/Financial.webp";
+import fpoImage from "../assets/Stakeholder/Fpo.webp";
+import governmentImage from "../assets/Stakeholder/Government.webp";
+import marketImage from "../assets/Stakeholder/Market.webp";
+import processorImage from "../assets/Stakeholder/Processor.webp";
+import academicImage from "../assets/Stakeholder/Tech-partners.webp";
+import tradersImage from "../assets/Stakeholder/Traders.webp";
+import { stakeholderPaths } from "../data/StakeholderPaths";
+
+const DARK_ARROW = "#2b2d2d";
 
 // Order follows the reference diagram, clockwise from the top.
 const stakeholders = [
   {
     label: "Farmers / FPOs",
-    color: "#f0eeec",
+    color: DARK_ARROW,
     image: fpoImage,
-    href: "/#linking-farmers",
+    slug: "farmers-fpos",
     details: ["Productivity", "Post-Harvest Management access", "Aggregation"]
   },
   {
     label: "Traders / Aggregators",
-    color: "#f0eeec",
+    color: DARK_ARROW,
     image: tradersImage,
-    href: "/#linking-farmers",
+    slug: "traders-aggregators",
     details: ["Efficient sourcing, handling, logistics and market linkages"]
   },
   {
     label: "Processors",
-    color: "#f0eeec",
+    color: DARK_ARROW,
     image: processorImage,
-    href: "/#linking-farmers",
+    slug: "processors",
     details: ["Raw-material supply, processing efficiency and market development"]
   },
   {
-    label: "Distributional Markets / Retailers",
-    color: "#f0eeec",
+    label: "Supermarkets / Retailers",
+    color: DARK_ARROW,
     image: marketImage,
-    href: "/#linking-farmers",
+    slug: "retailers",
     details: ["Quality, traceability, reliable supply and cold-chain solutions"]
   },
   {
-    label: "Government",
-    color: "#f0eeec",
+    label: "Government Institutions",
+    color: DARK_ARROW,
     image: governmentImage,
-    href: "/#technical-support-pillar",
+    slug: "government",
     details: ["Programme design, implementation, infrastructure and policy support"]
   },
   {
     label: "Financial institutions",
-    color: "#f0eeec",
+    color: DARK_ARROW,
     image: financialImage,
-    href: "/#technical-support-pillar",
+    slug: "financial-institutions",
     details: ["Bankable projects, investment appraisal and financing structures"]
   },
   {
-    label: "Logistics / Cold-chain providers",
-    color: "#f0eeec",
-    image: logisticsImage,
-    href: "/#linking-farmers",
-    details: ["Infrastructure planning, technology selection and operational optimisation"]
-  },
-  {
-    label: "Technology partners",
-    color: "#f0eeec",
-    image: technologyPartnersImage,
-    href: "/#collaborative-pillar",
+    label: "Academic institutions",
+    color: DARK_ARROW,
+    image: academicImage,
+    slug: "academic-institutions",
     details: ["Digitalisation, IoT, traceability and data-driven value chain management"]
   }
 ];
@@ -91,6 +86,26 @@ export default function Stakeholders() {
   const reduce = useReducedMotion();
   const isMobile = useIsMobile();
   const count = stakeholders.length;
+  const [openIndex, setOpenIndex] = useState(null);
+
+  // Close the destination card on Escape or when clicking outside the open node.
+  useEffect(() => {
+    if (openIndex === null) return undefined;
+    const onPointerDown = (e) => {
+      if (!e.target.closest?.(".stk-node-pos.is-open")) setOpenIndex(null);
+    };
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setOpenIndex(null);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [openIndex]);
+
+  const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
     <section className="stk" id="stakeholders">
@@ -121,6 +136,9 @@ export default function Stakeholders() {
             const sin = Math.sin(rad);
             const travel = (RADIUS / NODE_SIZE) * 100; // % of the node's own size
             const tooltipId = `stk-tooltip-${i}`;
+            const pathsId = `stk-paths-${i}`;
+            const isOpen = openIndex === i;
+            const paths = stakeholderPaths[s.slug] || [];
             const tooltipSide = isMobile
               ? i === count - 1 || i % 2 === 0 ? "right" : "left"
               : cos > 0.3 || (Math.abs(cos) <= 0.3 && sin < 0) ? "right" : "left";
@@ -152,7 +170,7 @@ export default function Stakeholders() {
                 )}
 
                 <div
-                  className={`stk-node-pos${s.image ? " stk-node-pos-has-image" : ""}${s.details ? ` stk-node-popup-${tooltipSide}` : ""}`}
+                  className={`stk-node-pos${isOpen ? " is-open" : ""}${s.image ? " stk-node-pos-has-image" : ""}${s.details ? ` stk-node-popup-${tooltipSide}` : ""}`}
                   style={
                     isMobile
                       ? undefined
@@ -187,32 +205,67 @@ export default function Stakeholders() {
                   >
                     <div
                       className={`stk-node${s.details ? " stk-node-with-details" : ""}`}
-                      tabIndex={s.details && !s.href ? 0 : undefined}
-                      aria-describedby={s.details && !s.href ? tooltipId : undefined}
-                      aria-label={s.image && !s.href ? s.label : undefined}
                       style={{
                         background: s.image ? "transparent" : s.color,
                         "--glow": s.color,
                         animationDelay: `${i * 0.45}s`
                       }}
                     >
-                      {s.href ? (
-                        <Link className="stk-node-link" to={s.href} aria-label={s.label} aria-describedby={tooltipId}>
-                          {s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>}
-                        </Link>
-                      ) : (
-                        s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>
-                      )}
+                      <button
+                        type="button"
+                        className="stk-node-link"
+                        aria-label={`${s.label} — see how we can help`}
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                        aria-controls={isOpen ? pathsId : undefined}
+                        aria-describedby={s.details ? tooltipId : undefined}
+                        onClick={() => toggle(i)}
+                      >
+                        {s.image ? <img className="stk-node-image" src={s.image} alt="" /> : <span>{s.label}</span>}
+                      </button>
                     </div>
                   </motion.div>
                   {s.image && (
-                    s.href
-                      ? <Link className="stk-node-caption" to={s.href}>{s.label}</Link>
-                      : <h3 className="stk-node-caption">{s.label}</h3>
+                    <button type="button" className="stk-node-caption" onClick={() => toggle(i)} tabIndex={-1} aria-hidden="true">
+                      {s.label}
+                    </button>
                   )}
                   {s.details && (
                     <div className="stk-node-popup" id={tooltipId} role="tooltip">
                       {s.details.map((detail) => <span key={detail}>{detail}</span>)}
+                    </div>
+                  )}
+                  {isOpen && paths.length > 0 && (
+                    <div className="stk-node-popup stk-paths" id={pathsId} role="dialog" aria-label={`${s.label}: where to go`}>
+                      <button type="button" className="stk-paths-close" aria-label="Close" onClick={() => setOpenIndex(null)}>
+                        &times;
+                      </button>
+                      <div className="stk-paths-head">
+                        <div>
+                          <p className="stk-paths-hint">How we can help</p>
+                          <p className="stk-paths-title">{s.label}</p>
+                        </div>
+                      </div>
+                      <ul className="stk-paths-list">
+                        {paths.map((path, idx) => (
+                          <li key={path.to} style={{ "--i": idx }}>
+                            <Link to={path.to} className="stk-path-link">
+                              <span className="stk-path-no">{idx + 1}</span>
+                              <span className="stk-path-label">{path.label}</span>
+                              <span className="stk-path-go" aria-hidden="true">&rarr;</span>
+                            </Link>
+                            {path.children && (
+                              <ul className="stk-path-sub">
+                                {path.children.map((child) => (
+                                  <li key={child.to}>
+                                    <Link to={child.to}>{child.label}</Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </div>

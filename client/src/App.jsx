@@ -9,9 +9,11 @@ import AudiencePage from "./pages/AudiencePage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import "./styles/style.css";
 import "./styles/polish.css";
+import EcoPackagingPage from "./pages/EcoPackaging";
+import DisplayCabinetsPage from "./pages/DisplayCabinetsPage";
 
 function ScrollToTop() {
-  const { pathname, hash, state } = useLocation();
+  const { pathname, hash, state, key } = useLocation();
   const navigationType = useNavigationType();
 
   useEffect(() => {
@@ -32,7 +34,7 @@ function ScrollToTop() {
     if (navigationType === "POP") return;
 
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname, hash, state, navigationType]);
+  }, [pathname, hash, state, key, navigationType]);
 
   return null;
 }
@@ -87,7 +89,10 @@ export default function App() {
         <Route path="/option1/:audienceId" element={<AudiencePage />} />
         <Route path="/option1" element={<TechnicalPage />} />
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+        <Route path="/eco-packaging" element={<EcoPackagingPage />} />
+        <Route path="/display-cabinets" element={<DisplayCabinetsPage />} />
         <Route path="/:optionId" element={<ServicePage />} />
+
       </Routes>
       <Footer />
     </>

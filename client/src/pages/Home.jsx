@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { heroShowcase, options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import Stakeholders from "../components/Stakeholders";
+import ProjectScope from "../components/scope/ProjectScope";
 import useReveal from "../hooks/useReveal";
 import useTilt from "../hooks/useTilt";
-import option1Photo from "../assets/option1-photo.jpg";
-import option2Photo from "../assets/option2-photo.jpeg";
-import option3Photo from "../assets/option3-photo.jpeg";
-import option4Photo from "../assets/option4-photo.jpeg";
-import heroShowcasePhoto from "../assets/hero-showcase.jpg";
+import option1Photo from "../assets/option1-photo.webp";
+import option2Photo from "../assets/option2-photo.webp";
+import option3Photo from "../assets/option3-photo.webp";
+import option4Photo from "../assets/option4-photo.webp";
+import heroShowcasePhoto from "../assets/hero-showcase.webp";
 
 const optionPhotos = {
   option1: option1Photo,
@@ -137,10 +138,15 @@ export default function Home() {
               <path d="M5 27c4.5-7 9.5-11.5 17-16" />
             </svg>
             <span className="avc-intro-heading-text">
-              <span>Agrivalue</span> <span className="avc-intro-heading-accent">Chain</span>
+              <span>Who is</span> <span className="avc-intro-heading-accent">Agrivaluechain?</span>
             </span>
           </h2>
           <div className="avc-intro-body">
+            <p className="avc-intro-lead">
+              Agrivaluechain are <strong>integrators</strong>. We bring every link of the agricultural
+              value chain together — from the farm gate to the final market — so that farmers,
+              businesses and institutions work as one connected system instead of separate steps.
+            </p>
             <p>
               Agri value chain Services adopts a holistic, end-to-end value-chain approach, working
               collaboratively with all key stakeholders — farmers, traders, processors, retailers and
@@ -165,6 +171,12 @@ export default function Home() {
               <span />
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="home-scope" id="project-scope">
+        <div className="wrap">
+          <ProjectScope />
         </div>
       </section>
 

@@ -2,8 +2,8 @@ import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import governmentPhoto from "../assets/Technical/government.jpeg";
-import companiesPhoto from "../assets/Technical/companies.jpeg";
+import governmentPhoto from "../assets/Technical/government.webp";
+import companiesPhoto from "../assets/Technical/companies.webp";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
 
 const photos = {
@@ -57,16 +57,6 @@ function BotanicalCluster({ className }) {
   );
 }
 
-// Must stay in sync with SLUG_TO_PROJECT_NUM in ProjectDetailPage.jsx —
-// used here to filter ProjectCarousel's PROJECTS down to this audience's
-// related projects (matched by slug).
-const PROJECT_NUM_TO_SLUG = {
-  "01": "tamil-nadu-warehousing-corporation",
-  "03": "lemon-value-chain",
-  "05": "agro-food-supply",
-  "06": "carrot-value-chain"
-};
-
 const option = options.find((o) => o.id === "option1");
 
 export default function AudiencePage() {
@@ -81,7 +71,7 @@ export default function AudiencePage() {
   const photo = photos[page.photo];
 
   const relatedSlugs = (page.relatedProjectNums || []).map(
-    (num) => PROJECT_NUM_TO_SLUG[num]
+    (num) => option.projects.find((p) => p.num === num)?.slug
   );
   const carouselItems = PROJECTS.filter((p) => relatedSlugs.includes(p.slug));
 

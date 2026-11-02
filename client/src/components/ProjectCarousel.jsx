@@ -12,36 +12,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { options } from "../data/content";
 
 // ---------------------------------------------------------------------------
 // 1. PROJECT DATA — titles pulled from the Technical Consultancy PDF.
 // ---------------------------------------------------------------------------
-export const PROJECTS = [
-    {
-        slug: "tamil-nadu-warehousing-corporation",
-        label: "Tamil Nadu Warehousing Corporation",
-        image: "/images/projects/logos/tnwc-logo.jpeg",
-        buttonImage: "/images/projects/logos/tnwc-logo.jpeg",
-    },
-    {
-        slug: "lemon-value-chain",
-        label: "Lemon Value Chain",
-        image: "/images/projects/logos/lemon-value-chain-logo.png",
-        buttonImage: "/images/projects/logos/lemon-value-chain-logo.png",
-    },
-    {
-        slug: "agro-food-supply",
-        label: "Agro Food Supply",
-        image: "/images/projects/logos/agro-food-supply-logo.png",
-        buttonImage: "/images/projects/logos/agro-food-supply-logo.png",
-    },
-    {
-        slug: "carrot-value-chain",
-        label: "Carrot Value Chain",
-        image: "/images/projects/logos/carrot-value-chain-logo.png",
-        buttonImage: "/images/projects/logos/carrot-value-chain-logo.png",
-    },
-];
+export const PROJECTS = (options.find((o) => o.id === "option1")?.projects || [])
+    .filter((p) => p.slug)
+    .map((p) => ({
+        slug: p.slug,
+        label: p.label || p.title,
+        image: p.logo,
+        buttonImage: p.logo,
+    }));
 
 const srcOf = (v) => (typeof v === "string" ? v : v?.src || "");
 

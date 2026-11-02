@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import technicalBg from "../assets/Technical/technical-hero-bg.jpeg";
-import offerProduceImage from "../assets/option1-photo.jpg";
-import offerFacilityImage from "../assets/Linking-farmers/integrated-packhouse-layout.jpeg";
+import technicalBg from "../assets/Technical/technical-hero-bg.webp";
+import offerProduceImage from "../assets/option1-photo.webp";
+import offerFacilityImage from "../assets/Linking-farmers/integrated-packhouse-layout.webp";
 
 // 3D Scope of Deliverables component
 import ScopeOfDeliverables from "../components/scope/ScopeOfDeliverables";
@@ -176,10 +176,7 @@ export default function TechnicalPage() {
   useReveal([]);
 
   return (
-    <div
-      className="page active page-technical"
-      id="page-option1"
-    >
+    <div className="page active page-technical" id="page-option1">
       {/* =====================================================
           HERO
       ===================================================== */}
@@ -207,15 +204,13 @@ export default function TechnicalPage() {
       <section className="section who-serve section-serve">
         <div className="wrap serve-wrap">
           <div className="serve-heading">
-            <div className="section-eyebrow">
-              Our Clients
-            </div>
+            <div className="section-eyebrow">Our Clients</div>
 
             <h2>Whom we serve</h2>
 
             <p className="section-lede">
-              We partner with organizations across sectors to
-              deliver meaningful and measurable impact.
+              We partner with organizations across sectors to deliver meaningful
+              and measurable impact.
             </p>
           </div>
 
@@ -229,29 +224,17 @@ export default function TechnicalPage() {
                   to={`/technical-support/${seg.slug}`}
                   key={seg.slug}
                 >
-                  <span
-                    className="audience-card-orbit"
-                    aria-hidden="true"
-                  />
+                  <span className="audience-card-orbit" aria-hidden="true" />
 
-                  <span className="audience-card-icon">
-                    {Icon && <Icon />}
-                  </span>
+                  <span className="audience-card-icon">{Icon && <Icon />}</span>
 
-                  <span className="audience-card-name">
-                    {seg.name}
-                  </span>
+                  <span className="audience-card-name">{seg.name}</span>
 
                   {seg.teaser && (
-                    <p className="audience-card-desc">
-                      {seg.teaser}
-                    </p>
+                    <p className="audience-card-desc">{seg.teaser}</p>
                   )}
 
-                  <span
-                    className="audience-card-arrow"
-                    aria-hidden="true"
-                  >
+                  <span className="audience-card-arrow" aria-hidden="true">
                     <IconArrowRight />
                   </span>
                 </Link>
@@ -269,9 +252,7 @@ export default function TechnicalPage() {
         <div className="wrap">
           <div className="offer-heading-row">
             <div className="offer-heading-copy">
-              <div className="section-eyebrow">
-                Our Services
-              </div>
+              <div className="section-eyebrow">Our Services</div>
 
               <h2>What we offer</h2>
               <span className="offer-heading-rule" aria-hidden="true" />
@@ -292,9 +273,7 @@ export default function TechnicalPage() {
 
           <div className="offer-cards">
             {option.offerings.map((item, i) => {
-              const Icon =
-                offerIcons[i] ||
-                offerIcons[offerIcons.length - 1];
+              const Icon = offerIcons[i] || offerIcons[offerIcons.length - 1];
 
               return (
                 <div className="offer-card" key={i}>
@@ -305,9 +284,7 @@ export default function TechnicalPage() {
                     />
                   </div>
 
-                  <span className="offer-card-icon">
-                    {Icon && <Icon />}
-                  </span>
+                  <span className="offer-card-icon">{Icon && <Icon />}</span>
 
                   <p>{item}</p>
                 </div>
@@ -327,10 +304,6 @@ export default function TechnicalPage() {
       ===================================================== */}
 
       <ScopeOfDeliverables />
-
-      {/* =====================================================
-          CTA
-      ===================================================== */}
 
       <CtaStrip contact={contact} />
     </div>

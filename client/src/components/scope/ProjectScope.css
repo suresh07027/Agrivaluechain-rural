@@ -1,0 +1,147 @@
+/* Project scope and adaptations — now rendered on the Home page. Colours
+   use the --scope-* tokens with fallbacks, so it works without scopeStyles.css. */
+
+.project-scope {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 56px;
+}
+
+.project-scope-heading,
+.deliverables-heading {
+  margin: 0 0 20px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: clamp(20px, 2.4vw, 24px);
+  line-height: 1.25;
+  color: var(--scope-forest, #0b2924);
+}
+
+.deliverables-heading {
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================= Journey layout ======================= */
+.ps-journey{ --ps-lime:#b7e07a; --ps-teal:#59d0c2; --ps-gold:#ffd166; max-width:1040px; margin:0 auto; }
+.ps-eyebrow{
+  margin:0 0 6px; text-align:center; font-size:.78rem; font-weight:700;
+  letter-spacing:.28em; text-transform:uppercase; color:var(--ps-gold);
+  text-shadow:0 1px 6px rgba(0,0,0,.7);
+}
+
+/* Track: 3 equal columns, line runs centre-to-centre */
+.ps-track{ position:relative; display:grid; grid-template-columns:repeat(3,1fr); margin:8px 0 26px; }
+.ps-line{
+  position:absolute; top:43px; left:16.666%; right:16.666%; height:4px; border-radius:4px;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.38) 0 8px, transparent 8px 16px);
+}
+.ps-line-fill{
+  position:absolute; left:0; top:0; height:100%; border-radius:4px;
+  background:linear-gradient(90deg, var(--ps-teal), var(--ps-lime));
+  box-shadow:0 0 14px rgba(183,224,122,.75);
+}
+.ps-line-dot{
+  position:absolute; top:50%; width:14px; height:14px; margin:-7px 0 0 -7px; border-radius:50%;
+  background:#fff; box-shadow:0 0 0 5px rgba(183,224,122,.35), 0 0 18px 4px rgba(183,224,122,.9);
+}
+
+.ps-node{
+  position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:6px;
+  padding:0 8px; border:0; background:none; cursor:pointer; color:#fff; font:inherit; text-align:center;
+}
+.ps-orb{
+  position:relative; display:grid; place-items:center; width:88px; height:88px; border-radius:50%;
+  background:rgba(8,30,26,.72); border:2px solid rgba(255,255,255,.35);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  transition:transform .3s ease, background .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.ps-orb-ring{ position:absolute; inset:-10px; border-radius:50%; border:2px solid transparent; }
+.ps-orb-icon{ width:38px; height:38px; color:#fff; transition:color .3s ease; }
+.ps-orb-icon svg{ width:100%; height:100%; display:block; }
+.ps-node:hover .ps-orb{ transform:translateY(-3px) scale(1.04); border-color:var(--ps-lime); }
+.ps-node:focus-visible .ps-orb{ outline:3px solid var(--ps-gold); outline-offset:6px; }
+
+.ps-node.is-done .ps-orb{ background:rgba(31,133,119,.85); border-color:var(--ps-teal); }
+.ps-node.is-active .ps-orb{
+  transform:scale(1.12); border-color:#fff;
+  background:radial-gradient(circle at 30% 25%, #7fd6a0, #1f8577 70%);
+  box-shadow:0 0 0 6px rgba(183,224,122,.18), 0 12px 30px -8px rgba(0,0,0,.7), 0 0 34px rgba(183,224,122,.55);
+}
+.ps-node.is-active .ps-orb-ring{ border-color:rgba(183,224,122,.7); animation:psPulse 2.2s ease-out infinite; }
+@keyframes psPulse{ 0%{ transform:scale(.92); opacity:.95 } 100%{ transform:scale(1.35); opacity:0 } }
+
+.ps-node-tag{
+  margin-top:8px; font-size:.7rem; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ps-lime); text-shadow:0 1px 4px rgba(0,0,0,.8);
+}
+.ps-node-label{
+  font-size:1rem; font-weight:700; line-height:1.25; color:#fffaf0; text-shadow:0 1px 6px rgba(0,0,0,.85);
+  opacity:.82; transition:opacity .3s ease;
+}
+.ps-node.is-active .ps-node-label,
+.ps-node:hover .ps-node-label{ opacity:1; }
+
+/* Stage panel */
+.ps-stage{
+  position:relative; overflow:hidden; padding:34px 38px 22px; border-radius:26px;
+  background:linear-gradient(145deg, rgba(7,30,26,.78), rgba(9,40,34,.62));
+  border:1px solid rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2); backdrop-filter:blur(16px) saturate(1.2);
+  box-shadow:0 30px 70px -34px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.14);
+}
+.ps-stage-body{ position:relative; z-index:1; }
+.ps-count{
+  display:inline-block; margin-bottom:10px; padding:4px 12px; border-radius:999px; font-size:.75rem;
+  font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#0b2924; background:var(--ps-lime);
+}
+.ps-stage-head h4{
+  margin:0 0 22px; max-width:640px; font-family:"Manrope",sans-serif; font-weight:800;
+  font-size:clamp(1.3rem, 2.6vw, 1.85rem); line-height:1.25; color:#fffaf0;
+}
+.ps-items{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 26px; }
+.ps-items li{
+  display:flex; align-items:flex-start; gap:12px; padding:12px 14px; border-radius:14px;
+  font-size:1rem; line-height:1.5; color:#f4faf7;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1);
+  transition:background .25s ease, transform .25s ease, border-color .25s ease;
+}
+.ps-items li:hover{ background:rgba(183,224,122,.14); border-color:rgba(183,224,122,.5); transform:translateX(4px); }
+.ps-leaf{ flex:0 0 auto; width:20px; height:20px; margin-top:2px; color:var(--ps-lime); }
+.ps-leaf svg{ width:100%; height:100%; display:block; }
+
+.ps-nav{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding-top:14px; border-top:1px solid rgba(255,255,255,.14); }
+.ps-nav button{
+  padding:8px 16px; border-radius:999px; border:1px solid rgba(255,255,255,.35); background:transparent;
+  color:#fff; font:inherit; font-size:.9rem; font-weight:600; cursor:pointer; transition:background .2s ease, opacity .2s ease;
+}
+.ps-nav button:hover:not(:disabled){ background:rgba(255,255,255,.16); }
+.ps-nav button:disabled{ opacity:.35; cursor:default; }
+.ps-dots{ display:flex; gap:8px; }
+.ps-dots i{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.35); transition:all .3s ease; }
+.ps-dots i.on{ width:26px; border-radius:6px; background:var(--ps-lime); }
+
+@media (max-width:760px){
+  .ps-line{ top:33px; }
+  .ps-orb{ width:66px; height:66px; }
+  .ps-orb-icon{ width:30px; height:30px; }
+  .ps-node-label{ font-size:.8rem; }
+  .ps-node-tag{ font-size:.62rem; }
+  .ps-stage{ padding:26px 18px 16px; border-radius:20px; }
+  .ps-items{ grid-template-columns:1fr; gap:10px; }
+  .ps-items li{ font-size:.95rem; }
+}
+@media (prefers-reduced-motion:reduce){
+  .ps-node.is-active .ps-orb-ring{ animation:none; }
+  .ps-items li, .ps-orb{ transition:none; }
+}
+
+/* Label backing so text stays readable over the busy Home photo */
+.ps-node-tag,
+.ps-node-label{
+  padding:3px 10px; border-radius:999px;
+  background:rgba(6,24,20,.62);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+}
+.ps-node-tag{ margin-top:10px; }
+.ps-node-label{ border-radius:12px; opacity:1; }

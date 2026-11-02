@@ -16,7 +16,7 @@ The app includes:
 ## Folder structure
 
 ```bash
-pern-app/
+Agrivaluechain-rural/
 ├── client/
 │   ├── public/
 │   ├── src/
@@ -78,5 +78,6 @@ This generates the production files in the `client/dist` folder.
 ## Notes
 
 - This version is intentionally frontend-only.
+- To shrink large images in place: `cd client && npm install && node scripts/optimize-images.mjs` (commit first).
 - There is no Express or database backend in the current project.
 - Any future backend integration would need to be added separately if required.

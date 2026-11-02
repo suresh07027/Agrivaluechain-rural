@@ -2,19 +2,19 @@
 // this is exactly the shape you'd fetch from GET /api/options and
 // GET /api/options/:id instead of importing it statically.
 
-import capacityDevelopmentHero from "../assets/capacity/capacity.jpeg";
-import capacityDevelopmentContentImage from "../assets/capacity/capacity-development-hero.jpg";
-import postHarvestHandbookCover from "../assets/capacity/post-harvest-handbook-cover.jpg";
-import collaborativeImage from "../assets/collabrative/collabrative.jpeg";
-import linkingFarmersHero from "../assets/Linking-farmers/linking-farmers-hero.png";
-import packhouseFlowDiagram from "../assets/packhouse-flow-diagram.png";
-import integratedPackhouseLayout from "../assets/Linking-farmers/integrated-packhouse-layout.jpeg";
-import ripeningChamberImage from "../assets/Linking-farmers/ripening-chamber.jpeg";
-import reeferTransportImage from "../assets/Linking-farmers/reefer-transport-vehicle.jpeg";
-import coldRoomSolarImage from "../assets/Linking-farmers/cold-room-solar.png";
-import coldRoomConventionalImage from "../assets/Linking-farmers/cold-room-conventional.jpeg";
-import coldRoomTechImage from "../assets/Linking-farmers/cold-room-tech.jpeg";
-import preCoolingUnitImage from "../assets/Linking-farmers/pre-cooling-unit.jpeg";
+import capacityDevelopmentHero from "../assets/capacity/capacity.webp";
+import capacityDevelopmentContentImage from "../assets/capacity/capacity-development-hero.webp";
+import postHarvestHandbookCover from "../assets/capacity/post-harvest-handbook-cover.webp";
+import collaborativeImage from "../assets/collabrative/collabrative.webp";
+import linkingFarmersHero from "../assets/Linking-farmers/linking-farmers-hero.webp";
+import packhouseFlowDiagram from "../assets/packhouse-flow-diagram.webp";
+import integratedPackhouseLayout from "../assets/Linking-farmers/integrated-packhouse-layout.webp";
+import ripeningChamberImage from "../assets/Linking-farmers/ripening-chamber.webp";
+import reeferTransportImage from "../assets/Linking-farmers/reefer-transport-vehicle.webp";
+import coldRoomSolarImage from "../assets/Linking-farmers/cold-room-solar.webp";
+import coldRoomConventionalImage from "../assets/Linking-farmers/cold-room-conventional.webp";
+import coldRoomTechImage from "../assets/Linking-farmers/cold-room-tech.webp";
+import preCoolingUnitImage from "../assets/Linking-farmers/pre-cooling-unit.webp";
 
 // Content for the two-column hero showcase panel (title + audience badge +
 // feature list + photo) that sits over the hero background image.
@@ -131,8 +131,11 @@ export const options = [
     projects: [
       {
         num: "01",
+        slug: "tamil-nadu-warehousing-corporation",
+        label: "Tamil Nadu Warehousing Corporation",
+        heroImage: "/images/projects/twc-cold-storage.webp",
         title: "Tamil Nadu Warehousing Corporation",
-        logo: "/images/projects/logos/tnwc-logo.jpeg",
+        logo: "/images/projects/logos/tnwc-logo.webp",
         subtitle: "Solar-Powered Cold Storage",
         location: "Mettupalayam, Tamil Nadu",
         text: "A solar-supported, multi-commodity cold storage facility in Mettupalayam to store fruits and vegetables, with a capacity of 500 MT. Funded entirely by own capital without term loans, and featuring a 50 kW on-grid solar system to reduce power costs. Designed with four independent temperature and humidity-controlled chambers, an ante-room, and automated material handling systems — helping local farmers cut post-harvest losses and reach better domestic and international markets.",
@@ -161,8 +164,11 @@ export const options = [
       },
       {
         num: "03",
+        slug: "lemon-value-chain",
+        label: "Lemon Value Chain",
+        heroImage: "/images/projects/lemon-value-chain.webp",
         title: "Lemon Value Chain Study",
-        logo: "/images/projects/logos/lemon-value-chain-logo.png",
+        logo: "/images/projects/logos/lemon-value-chain-logo.webp",
         text: "Field work in Avinashi, Tirupur, with laboratory analysis at Tamil Nadu Agricultural University (TNAU), studying critical pathways in the citrus value chain to extend post-harvest longevity and marketability. Controlled trials show lime shelf life extending to 40–50 days, lemon shelf life to 60–80 days under standard cold storage, and up to 55 days of high quality when Modified Atmosphere Packaging (MAP) is paired with cold storage.",
         facilityText: [
           "Post-harvest management plays a vital role in minimizing agricultural losses and maximizing commercial value. Based on work conducted in Avinashi, Tirupur and comprehensive laboratory analyses carried out at Tamil Nadu Agricultural University (TNAU),Coimbatore, this study highlights critical pathways within the citrus value chain to enhance post-harvest longevity and marketability.",
@@ -204,8 +210,11 @@ export const options = [
       },
       {
         num: "05",
+        slug: "agro-food-supply",
+        label: "Agro Food Supply",
+        heroImage: "/images/projects/agro-food-supply.webp",
         title: "Agro Food Supply",
-        logo: "/images/projects/logos/agro-food-supply-logo.png",
+        logo: "/images/projects/logos/agro-food-supply-logo.webp",
         text: "A direct trade route connecting surplus farming regions in the north — Bihar, Chhattisgarh, Jharkhand — with high-demand southern markets including Tamil Nadu, Kerala and Karnataka. Products are sorted by shelf life and temperature needs, from durable goods like maize and makhana to perishables like litchi and green peas. Backed by the Ministry of Food Processing's backward and forward linkage funding, the project connects northern farmers with South Indian processors and kitchens.",
         facilityText: [
           "Agro Food Supply Chain builds a direct trade route connecting surplus farming regions in the north—like Bihar, Chhattisgarh, and Jharkhand—with high-demand southern markets including Tamil Nadu, Kerala, and Karnataka. To keep food fresh and minimize waste, products are carefully sorted by their shelf life and temperature needs, ranging from durable goods like maize and makhana to perishable items like litchi and green peas.",
@@ -241,8 +250,11 @@ export const options = [
       },
       {
         num: "06",
+        slug: "carrot-value-chain",
+        label: "Carrot Value Chain",
+        heroImage: "/images/projects/carrot-value-chain.webp",
         title: "Carrot Value Chain",
-        logo: "/images/projects/logos/carrot-value-chain-logo.png",
+        logo: "/images/projects/logos/carrot-value-chain-logo.webp",
         text: "Addressing 20–30% post-harvest losses in major producing regions — the Nilgiris in Tamil Nadu, and Kolar and Chikkaballapur in Karnataka. Designed for a throughput of 3–5 metric tons per hour, the project establishes an end-to-end post-harvest pack house, using smart telescopic belt conveyors that cut loading and unloading time by 50–70% while reducing manual labour and injury risk.",
         facilityText: [
           "The proposed carrot value chain development project addresses the 20% to 30% post-harvest losses currently caused by inadequate handling, storage, and transportation practices in major producing regions like the Nilgiris in Tamil Nadu, Kolar, and Chickkaballapur in Karnataka.",

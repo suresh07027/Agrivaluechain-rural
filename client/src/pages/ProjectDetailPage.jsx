@@ -2,27 +2,7 @@ import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
-import agroSupplyMap from "../assets/map.jpeg";
-
-// Must stay in sync with the `slug` values used in ProjectCarousel.jsx's
-// PROJECTS array. Mapped by hand since content.js project entries don't
-// carry a slug field yet.
-const SLUG_TO_PROJECT_NUM = {
-  "tamil-nadu-warehousing-corporation": "01",
-  "lemon-value-chain": "03",
-  "agro-food-supply": "05",
-  "carrot-value-chain": "06",
-};
-
-// Reuses the exact same photos already shown in ProjectCarousel.jsx —
-// these live in the public folder, so they're referenced as plain URL
-// strings (no import needed) at /images/projects/...
-const SLUG_TO_HERO_IMAGE = {
-  "tamil-nadu-warehousing-corporation": "/images/projects/twc-cold-storage.jpeg",
-  "lemon-value-chain": "/images/projects/lemon-value-chain.jpeg",
-  "agro-food-supply": "/images/projects/agro-food-supply.jpeg",
-  "carrot-value-chain": "/images/projects/carrot-value-chain.jpeg",
-};
+import agroSupplyMap from "../assets/map.webp";
 
 // ---------------------------------------------------------------------------
 // Pull in EVERY photo under client/src/assets/projects/**  in one go.
@@ -184,7 +164,6 @@ function AgroHighlights({ project, gallery }) {
 
 export default function ProjectDetailPage() {
   const { slug } = useParams();
-  const projectNum = SLUG_TO_PROJECT_NUM[slug];
   // Always open the page scrolled to the top, showing the title/content
   // first — without this, React Router keeps whatever scroll position
   // you were at on the previous page, which made it look like the
@@ -195,9 +174,11 @@ export default function ProjectDetailPage() {
 
   // Technical Consultancy (option1) is the only option with projects for now.
   const option = options.find((o) => o.id === "option1");
-  const project = option?.projects.find((p) => p.num === projectNum);
+  const project = option?.projects.find((p) => p.slug === slug);
 
   if (!project) return <Navigate to="/technical-support" replace />;
+
+  const projectNum = project.num;
 
   const gallery = getGalleryForProjectNum(projectNum);
   const overviewSectionId = `project-overview-${slug}`;
@@ -256,7 +237,7 @@ export default function ProjectDetailPage() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage: `linear-gradient(rgba(20,20,15,0.55), rgba(20,20,15,0.55)), url(${SLUG_TO_HERO_IMAGE[slug]})`,
+            backgroundImage: `linear-gradient(rgba(20,20,15,0.55), rgba(20,20,15,0.55)), url(${project.heroImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

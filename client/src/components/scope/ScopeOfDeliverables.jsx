@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./scopeStyles.css";
-import projectGlanceImage from "../../assets/project_glance.jpeg";
+import "./ProjectScope.css"; // also styles .deliverables-heading
+import projectGlanceImage from "../../assets/project_glance.webp";
 
 import {
   GlanceIcon,
@@ -22,75 +23,67 @@ const deliverables = [
     imageAlt: "Agricultural value chain from farm to market",
     text: (
       <>
-        <strong>Project at a glance</strong> — summary, investment, key
-        outcomes
+        <strong>Project at a glance</strong> — summary, investment, key outcomes
       </>
     ),
     Icon: GlanceIcon,
   },
   {
     type: "applicant",
-    image: "/images/projects/carrot-value-chain.jpeg",
+    image: "/images/projects/carrot-value-chain.webp",
     imageAlt: "Agricultural project and crop production",
     text: <>About the applicant / promoter</>,
     Icon: ApplicantIcon,
   },
   {
     type: "feasibility",
-    image: "/images/projects/agro-food-supply.jpeg",
+    image: "/images/projects/agro-food-supply.webp",
     imageAlt: "Fresh agricultural produce supply chain",
     text: <>Technical feasibility & market potential</>,
     Icon: FeasibilityIcon,
   },
   {
     type: "infrastructure",
-    image: "/images/projects/twc-cold-storage.jpeg",
+    image: "/images/projects/twc-cold-storage.webp",
     imageAlt: "Modern agricultural cold storage facility",
     text: (
       <>
-        Post-harvest infrastructure scenario / geography of the state or
-        region
+        Post-harvest infrastructure scenario / geography of the state or region
       </>
     ),
     Icon: InfrastructureIcon,
   },
   {
     type: "flow",
-    image: "/images/projects/lemon-value-chain.jpeg",
+    image: "/images/projects/lemon-value-chain.webp",
     imageAlt: "Lemon value chain process flow",
-    text: (
-      <>
-        Process flow chart and layout / floor plan of operations
-      </>
-    ),
+    text: <>Process flow chart and layout / floor plan of operations</>,
     Icon: FlowIcon,
   },
   {
     type: "operations",
-    image: "/images/projects/agro-food-supply.jpeg",
+    image: "/images/projects/agro-food-supply.webp",
     imageAlt: "Post-harvest agricultural operations",
     text: (
       <>
-        Post-harvest operations — pre-cooling, grading, packaging, storage,
-        cold chain, ripening
+        Post-harvest operations — pre-cooling, grading, packaging, storage, cold
+        chain, ripening
       </>
     ),
     Icon: OperationsIcon,
   },
   {
     type: "standards",
-    image: "/images/projects/carrot-value-chain.jpeg",
+    image: "/images/projects/carrot-value-chain.webp",
     imageAlt: "Agricultural infrastructure and technical survey",
     text: (
-      <>
-        Technical standards for civil infrastructure and plant & machinery
-      </>
+      <>Technical standards for civil infrastructure and plant & machinery</>
     ),
     Icon: StandardsIcon,
   },
   {
     type: "financial",
-    image: "/images/projects/lemon-value-chain.jpeg",
+    image: "/images/projects/lemon-value-chain.webp",
     imageAlt: "Agricultural value chain business opportunity",
     text: (
       <>
@@ -102,19 +95,17 @@ const deliverables = [
   },
   {
     type: "implementation",
-    image: "/images/projects/carrot-value-chain.jpeg",
+    image: "/images/projects/carrot-value-chain.webp",
     imageAlt: "Agricultural project implementation",
     text: <>Implementation plan</>,
     Icon: ImplementationIcon,
   },
   {
     type: "annexures",
-    image: "/images/projects/twc-cold-storage.jpeg",
+    image: "/images/projects/twc-cold-storage.webp",
     imageAlt: "Agricultural project supporting documentation",
     text: (
-      <>
-        Annexures — data sheets, quotations, technical drawings, references
-      </>
+      <>Annexures — data sheets, quotations, technical drawings, references</>
     ),
     Icon: AnnexuresIcon,
   },
@@ -281,7 +272,7 @@ function ParticlesCanvas({ sectionRef }) {
     const ctx = canvas.getContext("2d");
 
     const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     let animationFrame;
@@ -346,16 +337,10 @@ function ParticlesCanvas({ sectionRef }) {
             particle.r,
             Math.PI / 4,
             0,
-            Math.PI * 2
+            Math.PI * 2,
           );
         } else {
-          ctx.arc(
-            particle.x,
-            particle.y,
-            particle.r,
-            0,
-            Math.PI * 2
-          );
+          ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
         }
 
         ctx.fill();
@@ -395,7 +380,7 @@ function ParticlesCanvas({ sectionRef }) {
       },
       {
         threshold: 0.05,
-      }
+      },
     );
 
     observer.observe(section);
@@ -409,13 +394,7 @@ function ParticlesCanvas({ sectionRef }) {
     };
   }, [sectionRef]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="bg-particles"
-      aria-hidden="true"
-    />
-  );
+  return <canvas ref={canvasRef} className="bg-particles" aria-hidden="true" />;
 }
 
 function DeliverableCard({ item, index }) {
@@ -443,25 +422,13 @@ function DeliverableCard({ item, index }) {
     inner.style.setProperty("--tz", "15px");
     inner.style.setProperty("--s", "1.01");
 
-    inner.style.setProperty(
-      "--lx",
-      `${(px * 100).toFixed(1)}%`
-    );
+    inner.style.setProperty("--lx", `${(px * 100).toFixed(1)}%`);
 
-    inner.style.setProperty(
-      "--ly",
-      `${(py * 100).toFixed(1)}%`
-    );
+    inner.style.setProperty("--ly", `${(py * 100).toFixed(1)}%`);
 
-    content.style.setProperty(
-      "--ctx",
-      `${((px - 0.5) * 6).toFixed(1)}px`
-    );
+    content.style.setProperty("--ctx", `${((px - 0.5) * 6).toFixed(1)}px`);
 
-    content.style.setProperty(
-      "--cty",
-      `${((py - 0.5) * 6).toFixed(1)}px`
-    );
+    content.style.setProperty("--cty", `${((py - 0.5) * 6).toFixed(1)}px`);
   };
 
   const resetCard = () => {
@@ -508,11 +475,7 @@ function DeliverableCard({ item, index }) {
           <p>{item.text}</p>
         </div>
 
-        <img
-          className="card-image"
-          src={item.image}
-          alt={item.imageAlt}
-        />
+        <img className="card-image" src={item.image} alt={item.imageAlt} />
 
         <span className="card-icon">
           <Icon />
@@ -542,7 +505,7 @@ export default function ScopeOfDeliverables() {
       },
       {
         threshold: 0.18,
-      }
+      },
     );
 
     observer.observe(section);
@@ -568,22 +531,20 @@ export default function ScopeOfDeliverables() {
             <span className="flag-bar" />
 
             <div>
-              <h2 className="scope-title">
-                Scope of deliverables
-              </h2>
+              <h2 className="scope-title">Scope of deliverables</h2>
 
               <div className="scope-rule" />
             </div>
           </div>
         </header>
 
+        <h3 className="deliverables-heading">
+          What the project report contains
+        </h3>
+
         <div className="deliverables-grid">
           {deliverables.map((item, index) => (
-            <DeliverableCard
-              key={item.type}
-              item={item}
-              index={index}
-            />
+            <DeliverableCard key={item.type} item={item} index={index} />
           ))}
         </div>
       </div>

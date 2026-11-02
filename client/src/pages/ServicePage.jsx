@@ -3,24 +3,25 @@ import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import useReveal from "../hooks/useReveal";
-import collaborativeHeroBg from "../assets/collabrative/collab-hero-bg.jpeg";
-import collaborativeScientificImage from "../assets/collabrative/Scientific.jpeg";
-import collaborativeControlImage from "../assets/collabrative/control.jpeg";
-import collaborativeTrainingImage from "../assets/collabrative/Training.jpeg";
-import collaborativeInnovativeImage from "../assets/collabrative/Innovative.jpeg";
-import exportMarketImage from "../assets/capacity/Export.jpeg";
-import postHarvestImage from "../assets/capacity/Post-harvest.jpeg";
-import qualityImage from "../assets/capacity/Quality.jpeg";
-import linkingBg from "../assets/Linking-farmers/linking-bg.jpeg";
-import developmentFarmImage from "../assets/Linking-farmers/development-farm.jpeg";
-import largerFarmersGroupImage from "../assets/larger-farmers-group.png";
-import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.png";
-import smallFarmersGroupImage from "../assets/small-farmers-group.png";
-import sustainableSolarImage from "../assets/Linking-farmers/solar.jpeg";
-import sustainableCoolingImage from "../assets/Linking-farmers/cooling.jpeg";
-import sustainableEthyleneImage from "../assets/Linking-farmers/carbon.jpeg";
-import sustainableRefrigerantImage from "../assets/Linking-farmers/refrigerants.jpeg";
+import collaborativeHeroBg from "../assets/collabrative/collab-hero-bg.webp";
+import collaborativeScientificImage from "../assets/collabrative/Scientific.webp";
+import collaborativeControlImage from "../assets/collabrative/control.webp";
+import collaborativeTrainingImage from "../assets/collabrative/Training.webp";
+import collaborativeInnovativeImage from "../assets/collabrative/Innovative.webp";
+import exportMarketImage from "../assets/capacity/Export.webp";
+import postHarvestImage from "../assets/capacity/Post-harvest.webp";
+import qualityImage from "../assets/capacity/Quality.webp";
+import linkingBg from "../assets/Linking-farmers/linking-bg.webp";
+import developmentFarmImage from "../assets/Linking-farmers/development-farm.webp";
+import largerFarmersGroupImage from "../assets/larger-farmers-group.webp";
+import smallAndMediumFarmersImage from "../assets/small-and-medium-farmers.webp";
+import smallFarmersGroupImage from "../assets/small-farmers-group.webp";
+import sustainableSolarImage from "../assets/Linking-farmers/solar.webp";
+import sustainableCoolingImage from "../assets/Linking-farmers/cooling.webp";
+import sustainableEthyleneImage from "../assets/Linking-farmers/carbon.webp";
+import sustainableRefrigerantImage from "../assets/Linking-farmers/refrigerants.webp";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
+import AvcImpact from "../components/impact/AvcImpact";
 
 const collaborativeOfferTitles = [
   "Scientific storage studies",
@@ -423,7 +424,7 @@ export default function ServicePage() {
           )}
 
           {option.capacityTiers && (
-            <section className="section section-capacity">
+            <section className="section section-capacity" id="packhouse-capacity">
               <div className="wrap">
                 <h2>{option.capacityTitle || "Capacities"}</h2>
                 {option.capacityIntro && <p className="capacity-intro">{option.capacityIntro}</p>}
@@ -472,8 +473,10 @@ export default function ServicePage() {
             </section>
           )}
 
+          {isLinking && <AvcImpact />}
+
           {option.sustainableTech && (
-            <section className="section section-tech">
+            <section className="section section-tech" id="sustainable-techniques">
               <div className="wrap">
                 <h2>{renderAccentTitle(option.sustainableTechTitle || "Sustainable technologies")}</h2>
                 {isLinking ? (
@@ -506,7 +509,7 @@ export default function ServicePage() {
 
 
           {midh && (
-            <section className="section section-midh">
+            <section className="section section-midh" id="midh-guidelines">
               <div className="wrap">
                 <div className="midh-section-heading">
                   <span className="midh-kicker">Advising on government support schemes for post-harvest management</span>
