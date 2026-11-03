@@ -801,6 +801,41 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   #page-home .cta-strip h2{ font-size:1.62rem; }
 }
 
+#page-home .home-scope .project-scope-heading,
+#page-home .stk-title,
+#page-home .options-head h2{
+  display:block;
+  width:fit-content;
+  max-width:100%;
+  margin:0 auto 28px;
+  padding:.48em .9em .52em;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  background:linear-gradient(115deg,#123f2d,#0b2924 72%);
+  box-shadow:0 9px 24px rgba(11,41,36,.2),inset 0 1px 0 rgba(255,255,255,.14);
+  color:#fffaf0;
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(1.75rem,3.7vw,2.8rem);
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.055em;
+  text-align:center;
+  text-transform:uppercase;
+  text-shadow:none;
+}
+#page-home .home-scope .project-scope-heading{
+  margin-bottom:28px;
+}
+#page-home .stk-title,
+#page-home .options-head h2{
+  margin-bottom:30px;
+  padding-bottom:.52em;
+}
+#page-home .stk-title::after,
+#page-home .options-head h2::after{
+  display:none;
+}
+
 /* Linking Farmers: a single connected canvas from process through policy. */
 #page-option3{
   --linking-forest:#1b4d3e;

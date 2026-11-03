@@ -3,6 +3,7 @@ import { heroShowcase, options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
 import Stakeholders from "../components/Stakeholders";
 import ProjectScope from "../components/scope/ProjectScope";
+import AvcImpact from "../components/impact/AvcImpact";
 import useReveal from "../hooks/useReveal";
 import useTilt from "../hooks/useTilt";
 import option1Photo from "../assets/option1-photo.webp";
@@ -179,6 +180,8 @@ export default function Home() {
           <ProjectScope />
         </div>
       </section>
+
+      <AvcImpact />
 
       <Stakeholders />
 

@@ -21,7 +21,6 @@ import sustainableCoolingImage from "../assets/Linking-farmers/cooling.webp";
 import sustainableEthyleneImage from "../assets/Linking-farmers/carbon.webp";
 import sustainableRefrigerantImage from "../assets/Linking-farmers/refrigerants.webp";
 import ProjectCarousel, { PROJECTS } from "../components/ProjectCarousel";
-import AvcImpact from "../components/impact/AvcImpact";
 
 const collaborativeOfferTitles = [
   "Scientific storage studies",
@@ -472,8 +471,6 @@ export default function ServicePage() {
               </div>
             </section>
           )}
-
-          {isLinking && <AvcImpact />}
 
           {option.sustainableTech && (
             <section className="section section-tech" id="sustainable-techniques">

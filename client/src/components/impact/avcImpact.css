@@ -233,6 +233,56 @@
   color: #39443e;
 }
 
+#page-home .avc-impact {
+  background-color: transparent;
+  background-image: none;
+}
+
+#page-home .avc-impact .avc-impact-title {
+  color: #fffaf0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .85), 0 0 18px rgba(0, 0, 0, .55);
+}
+
+#page-home .avc-impact .avc-impact-title-accent {
+  color: #fffaf0;
+}
+
+#page-home .avc-impact .avc-impact-intro > p {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .7);
+}
+
+#page-home .avc-impact .avc-impact-card {
+  border-color: rgba(255, 255, 255, .42);
+  background: rgba(12, 49, 35, .76);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, .2),
+    0 2px 6px rgba(0, 0, 0, .1),
+    inset 0 1px 0 rgba(255, 255, 255, .35);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  backdrop-filter: blur(14px) saturate(1.25);
+}
+
+#page-home .avc-impact .avc-impact-copy h3 {
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .55);
+}
+
+#page-home .avc-impact .avc-impact-copy p {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .55);
+}
+
+#page-home .avc-impact .avc-impact-card:hover {
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, .27),
+    0 3px 8px rgba(0, 0, 0, .14),
+    inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
 @media (max-width: 1100px) {
   .avc-impact-inner {
     width: min(940px, calc(100% - 48px));
