@@ -143,6 +143,9 @@ export default function Home() {
             </span>
           </h2>
           <div className="avc-intro-body">
+            <div className="avc-intro-kicker">
+              <span>From farm to market</span>
+            </div>
             <p className="avc-intro-lead">
               Agrivaluechain are <strong>integrators</strong>. We bring every link of the agricultural
               value chain together — from the farm gate to the final market — so that farmers,

@@ -27,7 +27,7 @@
 #page-home::before{
   z-index:-2;
   background:url("../assets/Home.webp") center top / cover no-repeat fixed;
-  filter:brightness(.72) saturate(.8) contrast(1.05);
+  filter:brightness(.5) saturate(.8) contrast(1.05);
 }
 #page-home::after{
   z-index:-1;
@@ -106,6 +106,85 @@
   text-align:center;
   color:#ffe08a;
   text-shadow:none;
+}
+#page-home .avc-intro-body{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  max-width:900px;
+  padding:clamp(28px,5vw,48px);
+  border:1px solid rgba(226,198,122,.5);
+  border-radius:8px 30px 8px 30px;
+  background:
+    radial-gradient(ellipse at 100% 0%,rgba(143,190,103,.2),transparent 40%),
+    linear-gradient(145deg,rgba(255,255,255,.07),transparent 42%),
+    linear-gradient(135deg,rgba(8,33,27,.94),rgba(17,58,43,.86));
+  box-shadow:0 28px 70px -34px rgba(0,0,0,.78),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -18px 36px rgba(4,23,19,.18);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+          backdrop-filter:blur(16px) saturate(1.2);
+}
+#page-home .avc-intro-body::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:12px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:4px 22px 4px 22px;
+  pointer-events:none;
+}
+#page-home .avc-intro-body::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  top:0;
+  left:0;
+  width:4px;
+  height:100%;
+  background:linear-gradient(180deg,#f3d37b,#82b96d 55%,rgba(130,185,109,0));
+}
+#page-home .avc-intro-kicker{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px 16px;
+  margin-bottom:22px;
+  color:#dcebbf;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  line-height:1.4;
+  text-transform:uppercase;
+}
+#page-home .avc-intro-kicker span{
+  color:#f3d37b;
+}
+#page-home .avc-intro-body > *{
+  position:relative;
+  z-index:2;
+}
+#page-home .avc-intro-kicker span:last-child{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+#page-home .avc-intro-kicker span:last-child::before{
+  content:"";
+  width:26px;
+  height:1px;
+  background:rgba(220,235,191,.58);
+}
+#page-home .avc-intro-body .avc-intro-lead{
+  padding-left:20px;
+  border-left:2px solid rgba(243,211,123,.72);
+}
+#page-home .avc-intro-body .avc-intro-tagline{
+  padding:22px 18px 0;
+  border-top:1px solid rgba(255,255,255,.17);
+}
+@media (max-width:640px){
+  #page-home .avc-intro-body{ padding:26px 22px; }
+  #page-home .avc-intro-kicker{ font-size:.64rem; letter-spacing:.1em; }
+  #page-home .avc-intro-body .avc-intro-lead{ padding-left:14px; }
 }
 
 /* Stakeholder labels get a small pill so they never fight the background */
