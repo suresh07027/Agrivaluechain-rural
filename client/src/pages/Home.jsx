@@ -131,6 +131,8 @@ export default function Home() {
 
   return (
     <div className="page active" id="page-home">
+      <div className="home-intro-stakeholders">
+
       <section className="avc-intro" id="agrivaluechain-intro">
         <div className="wrap">
           <h2 className="avc-intro-title">
@@ -139,28 +141,24 @@ export default function Home() {
               <path d="M5 27c4.5-7 9.5-11.5 17-16" />
             </svg>
             <span className="avc-intro-heading-text">
-              <span>Who is</span> <span className="avc-intro-heading-accent">Agrivaluechain?</span>
+               <span className="avc-intro-heading-accent">Agrivaluechain</span>
             </span>
           </h2>
           <div className="avc-intro-body">
             <div className="avc-intro-kicker">
               <span>From farm to market</span>
             </div>
-            <p className="avc-intro-lead">
-              Agrivaluechain are <strong>integrators</strong>. We bring every link of the agricultural
-              value chain together — from the farm gate to the final market — so that farmers,
-              businesses and institutions work as one connected system instead of separate steps.
-            </p>
+      
             <p>
-              Agri value chain Services adopts a holistic, end-to-end value-chain approach, working
+              Agri value chain Services adopts a holistic, end-to-end value-chain approach,as <strong>integrators</strong> working
               collaboratively with all key stakeholders — farmers, traders, processors, retailers and
               supermarkets, government institutions, financial institutions, logistics providers and
               technology partners — to develop sustainable, efficient and commercially viable
               agricultural value chains.
             </p>
             <p>
-              Agri value chain work across the entire agricultural value chain — from production and
-              post-harvest management to processing, cold-chain logistics, markets and finance — to
+              Agri value chain work across the entire agricultural value chain — to
+              post-harvest management for processing, cold-chain logistics,connecting to markets and finance — to
               create efficient, sustainable and commercially viable value chains.
             </p>
             <p className="avc-intro-tagline">
@@ -178,6 +176,9 @@ export default function Home() {
         </div>
       </section>
 
+        <Stakeholders />
+      </div>
+
       <section className="home-scope" id="project-scope">
         <div className="wrap">
           <ProjectScope />
@@ -185,8 +186,6 @@ export default function Home() {
       </section>
 
       <AvcImpact />
-
-      <Stakeholders />
 
       <div className="hero-intro-wrap" id="intro">
         <div className="hero-bg"></div>

@@ -25,16 +25,6 @@ const impacts = [
     ),
   },
   {
-    title: "Thermal building envelope",
-    text: "High-quality insulation materials and automatic doors reduce the energy the building consumes.",
-    icon: (
-      <>
-        <path d="m4 10 8-5 8 5v9H4v-9Zm3 9v-6h5v6m2-6h3m-3 3h3" />
-        <path d="M16.5 4c2.2 0 3.5 1.2 3.5 3.4-2.2 0-3.5-1.2-3.5-3.4Zm-1 4.9c.3-2 1.6-3 3.7-2.9-.3 2-1.6 3-3.7 2.9Z" />
-      </>
-    ),
-  },
-  {
     title: "Sustainable cooling",
     text: "Solar energy, biomass and passive cooling are integrated into pre-cooling and cold rooms.",
     icon: (

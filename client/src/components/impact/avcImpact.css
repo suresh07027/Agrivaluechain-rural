@@ -91,7 +91,7 @@
 
 .avc-impact-list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(13px, 1.5vw, 20px);
   margin: 0;
   padding: 0 0 10px;
@@ -125,10 +125,6 @@
   height: 4px;
   background: linear-gradient(90deg, #a5cf43, #d7ec69);
   content: "";
-}
-
-.avc-impact-card:nth-child(5) {
-  grid-column: 2;
 }
 
 .avc-impact.is-visible .avc-impact-card {
@@ -289,17 +285,7 @@
   }
 
   .avc-impact-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .avc-impact-card:nth-child(5) {
-    grid-column: auto;
-  }
-
-  .avc-impact-card:last-child {
-    grid-column: 1 / -1;
-    max-width: calc(50% - 7px);
-    justify-self: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
