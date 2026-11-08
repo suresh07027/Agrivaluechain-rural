@@ -1,0 +1,516 @@
+/* =====================================================================
+   PREMIUM LAYER — loaded last, after style.css and polish.css.
+   Scope: heading typography, list markers (no numbering) and the
+   structure of text boxes. It does not touch copy, background images,
+   transforms, transitions, keyframes or any animation.
+   ===================================================================== */
+
+:root{
+  /* Type families: one display serif for headings, one sans for body */
+  --pm-display:'Fraunces', Georgia, 'Times New Roman', serif;
+  --pm-body:'DM Sans', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Type scale — fluid, one step per heading level */
+  --pm-h1-brand:clamp(2.9rem, 1.7rem + 4.6vw, 4.6rem);   /* home wordmark        */
+  --pm-h1:clamp(2.2rem, 1.35rem + 3.1vw, 3.5rem);        /* page hero            */
+  --pm-h2:clamp(1.65rem, 1.25rem + 1.45vw, 2.3rem);      /* section heading      */
+  --pm-h3:clamp(1.22rem, 1.06rem + 0.55vw, 1.5rem);      /* sub-section / card   */
+  --pm-h4:1.02rem;                                       /* card label / panel   */
+
+  /* Box structure */
+  --pm-radius:12px;
+  --pm-radius-sm:8px;
+  --pm-rule:rgba(11,41,36,.15);
+  --pm-spine:var(--forest, #0F766E);
+  --pm-surface:#ffffff;
+  --pm-ink:#0b2924;
+}
+
+/* ---------------------------------------------------------------------
+   1. HEADING TYPOGRAPHY
+   Only face, size, weight, leading, tracking and case are set here.
+   Colours stay as designed so headings keep their contrast on every
+   background. !important is used because the legacy sheets carry many
+   id-scoped heading rules.
+   --------------------------------------------------------------------- */
+#root h1,
+#root h2:not(.fin-eyebrow),
+#root h3,
+#root h4{
+  font-family:var(--pm-display) !important;
+  font-optical-sizing:auto;
+  font-style:normal !important;
+  text-transform:none !important;
+  text-wrap:balance;
+  margin-top:0;
+}
+
+/* Page title (hero) */
+#root h1{
+  font-size:var(--pm-h1) !important;
+  font-weight:600 !important;
+  line-height:1.1 !important;
+  letter-spacing:-0.022em !important;
+}
+/* Home wordmark */
+#root h1.showcase-heading{
+  font-size:var(--pm-h1-brand) !important;
+  font-weight:700 !important;
+  line-height:1.04 !important;
+  letter-spacing:-0.028em !important;
+}
+
+/* Section heading */
+#root h2:not(.fin-eyebrow){
+  font-size:var(--pm-h2) !important;
+  font-weight:600 !important;
+  line-height:1.2 !important;
+  letter-spacing:-0.014em !important;
+}
+
+/* Sub-section / card title */
+#root h3{
+  font-size:var(--pm-h3) !important;
+  font-weight:600 !important;
+  line-height:1.28 !important;
+  letter-spacing:-0.008em !important;
+}
+
+/* Card label / panel title */
+#root h4,
+#root .fin-card h3{
+  font-family:var(--pm-body) !important;
+  font-size:var(--pm-h4) !important;
+  font-weight:700 !important;
+  line-height:1.35 !important;
+  letter-spacing:0 !important;
+}
+
+/* Footer headline sits at sub-section level */
+#root footer h2{
+  font-size:var(--pm-h3) !important;
+  line-height:1.28 !important;
+}
+
+/* Home: the section titles that sit in dark pills keep their pill, but get
+   the same size and case as every other section heading */
+#root #page-home .options-head h2,
+#root #page-home .scope-title,
+#root #page-home .avc-impact-title,
+#root #page-home .stk-title,
+#root #page-home .cta-strip h2{
+  font-size:var(--pm-h2) !important;
+  letter-spacing:-0.014em !important;
+}
+
+/* Narrow screens: scale steps down together, never below readable */
+@media (max-width:560px){
+  #root h1{ line-height:1.12 !important; }
+  #root h2:not(.fin-eyebrow){ line-height:1.22 !important; }
+}
+
+/* ---------------------------------------------------------------------
+   2. NO NUMBERING
+   Numbers are removed from the markup; this removes the counters that the
+   legacy CSS generated and hides any number badge that is left over.
+   Lists use a small square marker instead.
+   --------------------------------------------------------------------- */
+#root .num,
+#root .course-num,
+#root .tech-num,
+#root .linking-tech-badge,
+#root .linking-card-step,
+#root .midh-item-number,
+#root .chapter-count,
+#root .fin-card-no,
+#root .fin-bill-no,
+#root .linking-process-number,
+#root .linking-scope-number,
+#root .stk-path-no,
+#root .stk-panel-no{
+  display:none !important;
+}
+
+/* Shared square marker */
+#root .chapter-list li,
+#root #page-option4 .course-modules li,
+#root .whom-list li{
+  position:relative;
+  padding-left:22px !important;
+}
+#root .chapter-list li::before,
+#root #page-option4 .course-modules li::before,
+#root .whom-list li::before{
+  content:"" !important;
+  position:absolute !important;
+  left:2px !important;
+  top:calc(50% - 4px) !important;
+  width:8px !important;
+  height:8px !important;
+  border-radius:2px !important;
+  background:var(--pm-spine) !important;
+  color:transparent !important;
+  font-size:0 !important;
+  box-shadow:none !important;
+}
+#root .chapter-list li::before{ top:1.05em !important; }
+
+/* ---------------------------------------------------------------------
+   3. BOX STRUCTURE
+   Text boxes become ledger panels: one outer frame, a spine on the left,
+   hairline-separated rows inside. Image cards are left alone.
+   --------------------------------------------------------------------- */
+
+/* 3a. Outer frames */
+#root .course-card,
+#root .fin-card,
+#root .linking-field-card,
+#root .audience-block,
+#root .collaborative-offer-card,
+#root .mou-box{
+  background:var(--pm-surface) !important;
+  border:1px solid var(--pm-rule) !important;
+  border-left:4px solid var(--pm-spine) !important;
+  border-radius:var(--pm-radius) !important;
+  box-shadow:0 1px 2px rgba(11,41,36,.05) !important;
+}
+#root .course-card{ overflow:hidden; }
+
+/* Sub-panels inside a frame: flat, no second frame */
+#root .chapter-panel{
+  background:transparent !important;
+  border:0 !important;
+  border-top:1px solid var(--pm-rule) !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#root .course-meta-card,
+#root .capacity-highlight-block,
+#root .stk-panel-card{
+  border-radius:var(--pm-radius-sm) !important;
+  box-shadow:none !important;
+}
+#root .course-meta-card{
+  background:transparent !important;
+  border:0 !important;
+  border-top:1px solid var(--pm-rule) !important;
+  border-radius:0 !important;
+  padding-left:2px !important;
+  padding-right:2px !important;
+}
+
+/* 3b. Option 3 MIDH guideline items — one frame each, header ruled off */
+#root #page-option3 .midh-item + .midh-item,
+#root #page-option3 .midh-item{
+  background:var(--pm-surface) !important;
+  border:1px solid var(--pm-rule) !important;
+  border-left:4px solid var(--pm-spine) !important;
+  border-radius:var(--pm-radius) !important;
+  box-shadow:0 1px 2px rgba(11,41,36,.05) !important;
+}
+#root #page-option3 .midh-item-head{
+  padding-bottom:16px !important;
+  margin-bottom:20px !important;
+  border-bottom:1px solid var(--pm-rule) !important;
+}
+#root #page-option3 .midh-item-head h3{
+  color:var(--pm-ink) !important;
+}
+
+/* 3c. Scope-of-deliverables bullets (options 2, 3, 4): rows with a spine
+   instead of numbered round cards */
+#root .section-scope .bullets li{
+  background:var(--pm-surface) !important;
+  border:1px solid var(--pm-rule) !important;
+  border-left:4px solid var(--pm-spine) !important;
+  border-radius:var(--pm-radius-sm) var(--pm-radius) var(--pm-radius) var(--pm-radius-sm) !important;
+  box-shadow:0 1px 2px rgba(11,41,36,.05) !important;
+  padding:20px 22px !important;
+}
+#root .section-scope .bullets li::before{ display:none !important; content:none !important; }
+
+/* 3d. Tech list cards (text only) */
+#root .tech-card{
+  background:var(--pm-surface);
+  border:1px solid var(--pm-rule);
+  border-left:4px solid var(--pm-spine);
+  border-radius:var(--pm-radius-sm) var(--pm-radius) var(--pm-radius) var(--pm-radius-sm);
+}
+
+/* 3e. Audience pages: the list becomes a ruled ledger, not a set of chips */
+#root .whom-list{
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap:0 32px !important;
+}
+#root .whom-list li{
+  background:transparent !important;
+  border:0 !important;
+  border-bottom:1px solid var(--pm-rule) !important;
+  border-radius:0 !important;
+  padding-top:13px !important;
+  padding-bottom:13px !important;
+  font-weight:500 !important;
+  line-height:1.5;
+}
+
+/* 3f. Course modules and chapters: ruled rows */
+#root #page-option4 .course-modules li,
+#root .chapter-list li{
+  border-bottom:1px solid var(--pm-rule) !important;
+}
+#root #page-option4 .course-card-banner{
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+/* 3g. Home — scope deliverables: flat rows on the dark stage */
+#root #page-home .home-scope .ps-items li{
+  border-radius:var(--pm-radius-sm) !important;
+}
+
+/* 3h. Home — stakeholder link rows lose the indent that held the number */
+#root #page-home .stk-panel-sub{ margin-left:0 !important; }
+#root .stk-panel-link{ padding-left:16px !important; }
+
+/* 3i. Finance cards: label stays a card title, spine replaces the badge */
+#root .fin-card{ padding:24px 28px 26px !important; }
+#root .fin-card h3{ margin:0 0 8px !important; color:var(--accent, var(--pm-spine)); }
+#root .fin-bill summary{ gap:14px; }
+
+/* Keep keyboard focus visible on every interactive box */
+#root a:focus-visible,
+#root button:focus-visible,
+#root summary:focus-visible{ outline:3px solid #ffd166; outline-offset:2px; }
+
+/* Supporting copy on light surfaces uses stronger contrast and a slightly
+   larger size; dark hero and overlay text retain their light colors. */
+#root .page .section-intro,
+#root .page .section-lede,
+#root .page .section-intro-block p,
+#root .page .section-eyebrow-note,
+#root .page .capacity-intro,
+#root .page .linking-tech-intro,
+#root .page .midh-section-heading > p,
+#root .page .audience-card-desc,
+#root .page .linking-field-text,
+#root .page .collaborative-offer-copy p,
+#root .fin-page .fin-figure-cap,
+#root .eco-page .eco-aside p,
+#root .eco-page .cab-copy > p,
+#root .eco-page .eco-next p{
+  color:#101814;
+  font-size:1.05rem;
+}
+
+/* ---------------------------------------------------------------------
+   4. USING THE BLANK SPACE ON THE FOUR PILLAR PAGES
+   (Technical support, Collaborative research, Linking farmers,
+   Capacity development). Layout only: copy, photos, background art and
+   motion are untouched.
+   --------------------------------------------------------------------- */
+
+/* 4a. One shared content width so every section lines up and fills the page */
+#root #page-option1 .section .wrap,
+#root #page-option1 .cta-strip .wrap,
+#root #page-option2 .section .wrap,
+#root #page-option2 .cta-strip .wrap,
+#root #page-option3 .section .wrap,
+#root #page-option3 .cta-strip .wrap,
+#root #page-option4 .section .wrap,
+#root #page-option4 .cta-strip .wrap{
+  width:min(100% - 64px, 1240px) !important;
+  max-width:1240px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* 4b. Tighter vertical rhythm: less empty band between sections */
+#root #page-option1 > .section,
+#root #page-option2 > .section,
+#root #page-option3 > .section,
+#root #page-option4 > .section{
+  padding-top:clamp(48px, 5.5vw, 80px) !important;
+  padding-bottom:clamp(48px, 5.5vw, 80px) !important;
+  min-height:0 !important;
+}
+
+/* 4c. Section intros: heading on the left, lead paragraph on the right,
+   instead of a narrow column with the rest of the row empty */
+#root .page .serve-heading,
+#root #page-option1 .offer-heading-row{
+  max-width:none !important;
+  margin:0 0 40px !important;
+  text-align:left !important;
+}
+#root .page .serve-heading{
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1.05fr);
+  column-gap:56px;
+  align-items:end;
+}
+#root .page .serve-heading .section-eyebrow{ grid-column:1; justify-self:start; }
+#root .page .serve-heading h2{ grid-column:1; margin:6px 0 0 !important; }
+#root .page .serve-heading .section-lede{
+  grid-column:2; grid-row:1 / span 2; align-self:end;
+  margin:0 !important;
+  max-width:52ch !important;
+  text-align:left !important;
+  font-size:1.08rem;
+  padding-left:22px;
+  border-left:3px solid rgba(15,118,110,.35);
+}
+#root .page .section-lede,
+#root .page .section-intro-block p{ text-align:left; }
+
+/* 4d. Whom we serve — wide ledger cards that span the row */
+#root #page-option1 .audience-cards{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:28px !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+}
+#root #page-option1 .audience-card{
+  display:grid !important;
+  grid-template-columns:88px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon name arrow"
+    "icon desc desc";
+  column-gap:22px;
+  row-gap:8px;
+  align-items:start;
+  text-align:left !important;
+  width:auto !important;
+  max-width:none !important;
+  padding:30px 32px !important;
+  background:var(--pm-surface) !important;
+  border:1px solid var(--pm-rule) !important;
+  border-left:4px solid var(--pm-spine) !important;
+  border-top-width:1px !important;
+  border-radius:var(--pm-radius) !important;
+  box-shadow:0 1px 2px rgba(11,41,36,.05) !important;
+}
+#root #page-option1 .audience-card.accent-rust{ border-left-color:var(--rust) !important; }
+#root #page-option1 .audience-card.accent-steel{ border-left-color:var(--steel) !important; }
+#root #page-option1 .audience-card-icon{ grid-area:icon; margin:0 !important; width:76px !important; height:76px !important; justify-self:start; }
+#root #page-option1 .audience-card-name{ grid-area:name; margin:4px 0 0 !important; text-align:left !important;
+  font-family:var(--pm-display) !important; font-size:var(--pm-h3) !important; font-weight:600 !important; }
+#root #page-option1 .audience-card-desc{ grid-area:desc; margin:0 !important; text-align:left !important; max-width:none !important; }
+#root #page-option1 .audience-card-arrow{ grid-area:arrow; margin:6px 0 0 !important; align-self:start; }
+#root #page-option1 .audience-card-orbit{ display:none !important; }
+#root #page-option1 .audience-cards::before,
+#root #page-option1 .audience-cards::after{ display:none !important; }
+
+/* 4e. What we offer — both cards share the row evenly */
+#root #page-option1 .offer-heading-row{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:32px;
+}
+#root #page-option1 .offer-cards{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:28px !important;
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+}
+#root #page-option1 .offer-card{
+  min-height:280px;
+  width:auto !important;
+  max-width:none !important;
+}
+#root #page-option1 .offer-card .offer-card-visual{ width:42% !important; }
+#root #page-option1 .offer-card p{ text-align:left !important; max-width:54% !important; }
+
+/* 4f. Narrow screens: single column, intros stack */
+@media (max-width:900px){
+  #root .page .serve-heading{ grid-template-columns:1fr; row-gap:14px; }
+  #root .page .serve-heading .section-lede{ grid-column:1; grid-row:auto; padding-left:16px; }
+  #root #page-option1 .audience-cards,
+  #root #page-option1 .offer-cards{ grid-template-columns:1fr !important; }
+  #root #page-option1 .audience-card{ grid-template-columns:56px minmax(0,1fr); grid-template-areas:"icon name" "desc desc" "arrow arrow"; padding:22px 20px !important; }
+  #root #page-option1 .offer-card p{ max-width:100% !important; }
+}
+
+/* 4g. Pillar 2, 3: section intro = heading left, lead text right */
+#root #page-option2 .section-offer .wrap,
+#root #page-option3 .section-capacity .wrap,
+#root #page-option3 .section-tech .wrap{
+  display:grid !important;
+  grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+  column-gap:56px;
+  align-items:end;
+}
+#root #page-option2 .section-offer .wrap > *,
+#root #page-option3 .section-capacity .wrap > *,
+#root #page-option3 .section-tech .wrap > *{ grid-column:1 / -1; }
+#root #page-option2 .section-offer .wrap > h2,
+#root #page-option3 .section-capacity .wrap > h2,
+#root #page-option3 .section-tech .wrap > h2{ grid-column:1; }
+#root #page-option2 .section-offer .wrap > .section-intro,
+#root #page-option3 .section-capacity .wrap > .capacity-intro,
+#root #page-option3 .section-tech .wrap > .linking-tech-intro{
+  grid-column:2;
+  grid-row:1;
+  margin:0 0 6px !important;
+  max-width:54ch !important;
+  text-align:left !important;
+  padding-left:22px;
+  border-left:3px solid rgba(15,118,110,.35);
+}
+#root #page-option2 .section-offer .wrap > h2,
+#root #page-option3 .section-capacity .wrap > h2,
+#root #page-option3 .section-tech .wrap > h2{ grid-row:1; margin-bottom:6px; }
+#root #page-option2 .section-offer .wrap > :not(h2):not(.section-intro),
+#root #page-option3 .section-capacity .wrap > :not(h2):not(.capacity-intro),
+#root #page-option3 .section-tech .wrap > :not(h2):not(.linking-tech-intro){ margin-top:36px; }
+
+/* 4h. Pillar 3: the "Our solution" card centres its diagram instead of
+   leaving the lower half empty */
+#root #page-option3 .linking-field-solution{ align-items:stretch; }
+#root #page-option3 .linking-solution-card{ display:flex; flex-direction:column; }
+#root #page-option3 .linking-solution-card .linking-solution-figure{
+  flex:1; display:flex; align-items:center; justify-content:center; margin:0;
+}
+
+/* 4i. Pillar 4: the three courses sit side by side, each card stacked inside */
+#root #page-option4 .course-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:24px !important;
+  align-items:stretch;
+}
+#root #page-option4 .course-card{ display:flex; flex-direction:column; }
+#root #page-option4 .course-card-banner{ min-height:150px; }
+#root #page-option4 .course-card-body{
+  flex:1;
+  grid-template-columns:1fr !important;
+  gap:20px !important;
+  padding:24px 24px 26px !important;
+  align-content:start;
+}
+@media (max-width:1100px){
+  #root #page-option4 .course-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width:760px){
+  #root #page-option4 .course-grid{ grid-template-columns:1fr; }
+}
+
+/* 4j. Narrow screens: pillar intros stack */
+@media (max-width:900px){
+  #root #page-option2 .section-offer .wrap,
+  #root #page-option3 .section-capacity .wrap,
+  #root #page-option3 .section-tech .wrap{ grid-template-columns:1fr; row-gap:14px; }
+  #root #page-option2 .section-offer .wrap > .section-intro,
+  #root #page-option3 .section-capacity .wrap > .capacity-intro,
+  #root #page-option3 .section-tech .wrap > .linking-tech-intro{ grid-column:1; grid-row:auto; padding-left:16px; }
+}
+
+/* 4k. Equal course banners; card titles step down one size in the narrower cards */
+#root #page-option4 .course-card-banner{ min-height:200px !important; align-items:center; }
+#root #page-option4 .course-card-banner h3{ font-size:clamp(1.08rem, .95rem + .4vw, 1.3rem) !important; line-height:1.3 !important; }
+#root #page-option3 .linking-solution-card{ display:flex !important; flex-direction:column !important; }
+#root #page-option3 .linking-solution-card .linking-solution-figure{ flex:1 1 auto !important; display:flex !important; align-items:center !important; justify-content:center !important; }
+#root #page-option4 .course-card-banner{ min-height:220px !important; padding:22px 22px !important; gap:14px !important; }
+#root #page-option4 .course-card-banner h3{ font-size:1.04rem !important; }
+#root #page-option2 .section-offer .wrap{ grid-template-columns:minmax(0, 1.4fr) minmax(0, 1fr); }
+@media (max-width:900px){ #root #page-option2 .section-offer .wrap{ grid-template-columns:1fr; } }

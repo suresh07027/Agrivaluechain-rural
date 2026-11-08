@@ -383,27 +383,36 @@ export default function ServicePage() {
                       <p className="section-eyebrow-note">{option.solutionBlock.subtitle}</p>
                     )}
 
-                    <div className="linking-solution-layout">
-                      <div className="linking-process-panel">
-                        <div className="linking-process-gallery">
-                          <figure className="linking-process-figure">
-                            <img
-                              className="linking-process-image"
-                              src={developmentFarmImage}
-                              alt="Development of farm-level post-harvest management infrastructure facilities"
-                            />
-                          </figure>
-                          <figure className="linking-process-figure">
-                            <img
-                              className="linking-process-image"
-                              src={option.heroImage}
-                              alt={option.heroImageAlt || "Farmers meeting in Tindivanam"}
-                            />
-                            <figcaption className="linking-grower-caption">Meeting Tindivanam Vegetable Growers</figcaption>
-                          </figure>
-                        </div>
-                      </div>
+                    <div className="linking-field-solution">
+                      <article className="linking-field-card">
+                        <header className="linking-card-head">
+                          <span className="linking-card-label">Field Insight</span>
+                        </header>
+                        <p className="linking-field-text">
+                          Discussion with farmer group from different region of the country to understand specific farm level issues to improve the post harvest quality.
+                        </p>
+                        <figure className="linking-field-figure">
+                          <img
+                            src={option.heroImage}
+                            alt={option.heroImageAlt || "Farmers meeting in Tindivanam"}
+                          />
+                          <figcaption className="linking-grower-caption">Meeting Tindivanam Vegetable Growers</figcaption>
+                        </figure>
+                      </article>
 
+                      <span className="linking-field-connector" aria-hidden="true">&rarr;</span>
+
+                      <article className="linking-field-card linking-solution-card">
+                        <header className="linking-card-head">
+                          <span className="linking-card-label">Our Solution</span>
+                        </header>
+                        <figure className="linking-solution-figure">
+                          <img
+                            src={developmentFarmImage}
+                            alt="Development of farm-level post-harvest management infrastructure facilities"
+                          />
+                        </figure>
+                      </article>
                     </div>
                   </>
                 ) : (
@@ -485,7 +494,7 @@ export default function ServicePage() {
                       <div className="linking-tech-image-wrap">
                         <img src={card.image} alt="" />
                         {card.hoverImage && <img className="linking-tech-hover-image" src={card.hoverImage} alt="" /> }
-                        <span className="linking-tech-badge">{String(i + 1).padStart(2, "0")}</span>
+                        
                       </div>
                       <div className="linking-tech-icon"><SustainableTechIcon index={i} /></div>
                       <h3>{card.title}</h3>
@@ -495,7 +504,7 @@ export default function ServicePage() {
                     </article>
                   )) : option.sustainableTech.map((item, i) => (
                     <div className="tech-card" key={i}>
-                      <span className="tech-num">{String(i + 1).padStart(2, "0")}</span>
+                      
                       <span className="tech-text">{item}</span>
                     </div>
                   ))}
@@ -513,16 +522,11 @@ export default function ServicePage() {
                   <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>
-                {isLinking && (
-                  <div className="linking-government-support">
-                    <p>Advising on Government supports scheme in Post Harvestment for Linking Farmers</p>
-                  </div>
-                )}
                 <div className="midh-list">
                   {midh.midhGuidelines.map((item, i) => (
                     <article className="midh-item" key={item.title}>
                       <div className="midh-item-head">
-                        <span className="midh-item-number">{toRomanNumeral(i + 1)}</span>
+                        
                         <div>
                           <span className="midh-item-label">MIDH provision</span>
                           <h3>{item.title}</h3>
@@ -632,7 +636,7 @@ export default function ServicePage() {
                           <div className="course-category">{course.category}</div>
                           <h3>{course.title}</h3>
                         </div>
-                        <span className="course-num">{course.num}</span>
+                        
                       </div>
                       <div className="course-card-body">
                         <div className="course-modules">
@@ -685,7 +689,7 @@ export default function ServicePage() {
                       <p>{option.book.intro}</p>
                     </div>
                     <div className="chapter-panel">
-                      <div className="chapter-panel-head"><span>Chapters covered</span><span className="chapter-count">{String(option.book.chapters.length).padStart(2, "0")}</span></div>
+                      <div className="chapter-panel-head"><span>Chapters covered</span></div>
                       <ol className="chapter-list">
                         {option.book.chapters.map((ch, i) => (
                           <li key={i}>{ch}</li>
@@ -713,7 +717,7 @@ export default function ServicePage() {
       {isCollaborative && (
         <section className="projects section-projects projects-photo-bg">
           <div className="wrap">
-            <h2>Case Studies for educational institutions</h2>
+            <h2 className="case-studies-heading">Case Studies for educational institutions</h2>
             <ProjectCarousel
               items={PROJECTS.filter((project) => project.slug === "lemon-value-chain")}
               imageWidth={340}

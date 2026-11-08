@@ -104,7 +104,7 @@ export default function AudiencePage() {
             <span className="government-serve-rule" aria-hidden="true" />
             <div>
               <div className="section-eyebrow">Our role</div>
-              <h2>{audienceId === "government-institutions" ? "Technical consulting support for government institutions" : `How we work with ${segment.name.toLowerCase()}`}</h2>
+              <h2>{audienceId === "government-institutions" ? "Technical consulting support for state & central agriculture, horticulture and fisheries" : `How we work with ${segment.name.toLowerCase()}`}</h2>
               {audienceId === "government-institutions" && (
                 <div className="government-divider" aria-hidden="true"><span>{leafIcon}</span></div>
               )}
@@ -125,7 +125,7 @@ export default function AudiencePage() {
                   <ul className="whom-list">
                     {b.list.map((item, j) => (
                       <li key={j}>
-                        <span className="num">{j + 1}</span>
+                        
                         {item}
                       </li>
                     ))}
@@ -140,7 +140,7 @@ export default function AudiencePage() {
       {carouselItems.length > 0 && (
         <section className="projects section-projects projects-photo-bg">
           <div className="wrap">
-            <h2>Case Studies for {segment.name.toLowerCase()}</h2>
+            <h2 className="case-studies-heading">Case Studies for {segment.name.toLowerCase()}</h2>
             <ProjectCarousel
               items={carouselItems}
               imageWidth={340}

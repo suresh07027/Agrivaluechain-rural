@@ -2,7 +2,7 @@
 //   Farmers/FPOs          -> Linking Farmers + Capacity Development
 //   Traders / Processors / Retailers -> Technical Support (Private) + Linking Farmers bundle (*)
 //   Government            -> Technical Support (Government)
-//   Financial institutions-> Technical Support (Government + Private)
+//   Financial institutions-> Government page + Private page (project points)
 //   Technology partners   -> Collaborative R&D
 //
 // The (*) bundle is defined ONCE below and reused, so editing it updates every
@@ -15,6 +15,11 @@ const TECH_PRIVATE = {
   label: "Technical Support — Private Companies",
   to: "/technical-support/private-companies"
 };
+
+// Finance stakeholder: one page each for Government and Private (pages/FinancePage.jsx,
+// content in data/content.js -> financePages).
+const FINANCE_GOVERNMENT = { label: "Government", to: "/financial-institutions/government" };
+const FINANCE_PRIVATE = { label: "Private", to: "/financial-institutions/private" };
 
 const TECH_GOVERNMENT = {
   label: "Technical Support — Government",
@@ -43,7 +48,7 @@ export const stakeholderPaths = {
   
   government: [TECH_GOVERNMENT],
   "government-institutions": [TECH_GOVERNMENT],
-  "financial-institutions": [TECH_GOVERNMENT, TECH_PRIVATE],
+  "financial-institutions": [FINANCE_GOVERNMENT, FINANCE_PRIVATE],
   "academic-institutions": [
     { label: "Collaborative Research & Development", to: "/option2" }
   ]

@@ -75,14 +75,14 @@ export const options = [
         quote: "\"Technical report preparation for creating value chains and reducing post-harvest losses.\"",
         blocks: [
           {
-            label: "Our Services",
+            label: "Advisory services",
             list: [
               "To appraise and sanction projects under horticultural value chains, food processing, cold chain, and post-harvest schemes",
               "Detailed process flow charts, lay-out/floor plans, and technical standards for pack houses, pre-cooling, cold rooms, ripening chambers, etc.,",
               "Clear documentation of infrastructure gaps (power, water, connectivity, effluent treatment)"
             ]
           },
-          { label: "We work for State Horticulture Department", text: "State Departments of Horticulture / Agriculture, NHB / NABARD-linked projects, District-level integrated post-harvest infrastructure plans, FPO's and cluster-based post-harvest projects" }
+          { label: "Implemented services", text: "State Departments of Horticulture / Agriculture, NHB / NABARD-linked projects, District-level integrated post-harvest infrastructure plans, FPO's and cluster-based post-harvest projects" }
         ]
       },
       {
@@ -93,18 +93,17 @@ export const options = [
         teaser: "Bankable and investor-ready DPRs for pack houses, cold chain, ripening units, and value-addition plants.",
         quote: null,
         blocks: [
-          { label: "What we do", text: "Detailed Project Report for pack houses, cold storage, ripening units, primary processing, or integrated post-harvest hubs — to secure bankable finance, investor funding, or internal approvals." },
-          { label: "What we deliver", text: "Investor/bankable-ready Detailed Project Reports with robust techno-economic analysis: CAPEX/OPEX, revenue model. Product/process flow, capacity planning and standard operating procedures for post-harvest operations (grading, packing, pre-cooling, storage, etc.)." },
           { label: "Our focus on", text: " Guiding Agri-business companies planning integrated cold chain or pack house networks; entrepreneurs seeking loans for ripening chambers, cold rooms, or mobile pre-cooling units." },
+          { label: "What we deliver", text: "Investor/bankable-ready Detailed Project Reports with robust techno-economic analysis: CAPEX/OPEX, revenue model. Product/process flow, capacity planning and standard operating procedures for post-harvest operations (grading, packing, pre-cooling, storage, etc.)." },
           { label: "Whom we work", list: ["Exporters", "Importers", "Super markets", "Agri entrepreneur"] }
         ]
       }
     ],
     audiencePages: {
       "government-institutions": {
-        heroTitle: "Technical advisory for public horticulture and post-harvest programmes",
+        heroTitle: "Technical advisory for encouraging & guiding private public agriculture, horticulture, fisheries valuechain investments",
         heroSub:
-          "We support government institutions with the reports, layouts, and scheme-ready documentation needed to appraise, sanction, and implement post-harvest infrastructure that cuts losses and builds regional value chains.",
+          "We support government institutions by preparing technical feasibility reports, engineering specification, tendering documents for implementing post-harvest and cold chain infrastructure.",
         photo: "government",
         relatedProjectNums: ["01"]
       },
@@ -113,7 +112,7 @@ export const options = [
         heroSub:
           "We prepare investor- and bankable ready project reports for pack houses, cold storage, ripening units, and integrated hubs — with process flows, capacity planning, and CAPEX/OPEX models that stand up to financing and internal approval.",
         photo: "companies",
-        relatedProjectNums: ["03", "06", "05"]
+        relatedProjectNums: ["06", "05"]
       }
     },
     scope: [
@@ -542,4 +541,269 @@ export const options = [
 export const contact = {
   email: "agrivaluechain@gmail.com",
   phone: "+91 94450 53300"
+};
+
+// Financial-institutions stakeholder -> one page each for Government and Private
+// (route: /financial-institutions/:sectionId, rendered by pages/FinancePage.jsx).
+// Source: "Project Report for Setting up Cold Chain & Distribution Center — AMA International".
+//
+// Sections (above the bills):
+//   text   { kind, label, text }               paragraph (₹ amounts and % are auto-bolded)
+//   chips  { kind, label, items: [string] }    pill list
+//   cards  { kind, label, items: [{ label, text, chips? }] }   numbered cards
+//
+// Bills = the report's itemised tables, shown as invoice-style cards:
+//   { id, title, note?, unit, index?, collapsed?, meter?, columns, rows, total, footnote? }
+//   columns[].type : "text" (default) | "money" (number, shown 1,23,456) | "num" (string, right-aligned) | "status"
+//   index: true    adds a Sl no. column
+//   meter: "status" adds the progress bar + counts above the table (needs a "status" column)
+//   total: { label, col, value, display }   col = key of the column the total sits under
+export const financePages = {
+  government: {
+    id: "government",
+    tag: "Financial institutions · Government",
+    title: "Government",
+    sub: "Subsidy, schemes and statutory clearances",
+    lead: "Subsidy support, related schemes and the status of statutory clearances for the AMA International cold store project.",
+    figures: [
+      { value: "₹182.29 lakhs", label: "Capital subsidy", caption: "State Horticulture Mission, Kerala, under MIDH" },
+      { value: "35%", label: "Subsidy rate", caption: "Cold rooms and pre-cooling" },
+      { value: "100%", label: "Subsidy rate", caption: "Racking, handling equipment, docks and solar" }
+    ],
+    sections: [
+      {
+        kind: "text",
+        label: "Capital subsidy",
+        text: "₹182.29 lakhs from the State Horticulture Mission, Kerala, under MIDH. It is a back-end subsidy paid after the machinery is installed, and the loan is reduced by that amount once it arrives."
+      },
+      {
+        kind: "chips",
+        label: "Related schemes cited",
+        items: ["PM Kisan SAMPADA", "National Horticulture Mission"]
+      }
+    ],
+    billsLabel: "Project report bills",
+    bills: [
+      {
+        id: "subsidy-estimation",
+        title: "Subsidy estimation",
+        note: "State Horticulture Mission-Kerala / MIDH guidelines",
+        unit: "Amounts in Rs lakhs",
+        columns: [
+          { key: "item", label: "Item description" },
+          { key: "capacity", label: "Capacity" },
+          { key: "cost", label: "Eligible cost", type: "num" },
+          { key: "pct", label: "Percentage", type: "num" },
+          { key: "amount", label: "Subsidy amount", type: "num" }
+        ],
+        rows: [
+          { item: "Pre-cooling unit", capacity: "6 MT", cost: "25", pct: "35%", amount: "8.75" },
+          { item: "Cold rooms — 4 rooms, size 1797 m³", capacity: "2112 MT", cost: "168.96", pct: "35%", amount: "59.136" },
+          { item: "Cold rooms (staging) — 3 rooms", capacity: "150 MT", cost: "45", pct: "35%", amount: "15.75" },
+          { item: "Cold room (staging) — 1 room", capacity: "95 MT", cost: "15", pct: "35%", amount: "5.25" },
+          { item: "Material storage", capacity: "1120 nos, 2000/MT", cost: "22.4", pct: "100%", amount: "22.4" },
+          { item: "High reach material handling equipment — 1 no", capacity: "", cost: "17", pct: "100%", amount: "17" },
+          { item: "Dock system — 2 nos", capacity: "", cost: "14", pct: "100%", amount: "14" },
+          { item: "PLC system", capacity: "", cost: "10", pct: "50%", amount: "5" },
+          { item: "Solar panel", capacity: "100 KW", cost: "35", pct: "100%", amount: "35" }
+        ],
+        total: { label: "Total subsidy", col: "amount", value: "182.29", display: "₹182.29 lakhs" },
+        footnote: "3.4 m³/MT has been considered for storage capacity calculation as per Government guidelines."
+      },
+      {
+        id: "statutory-clearances",
+        title: "Statutory clearances",
+        note: "Clearance from Government and other agencies",
+        unit: "Status as per the project report",
+        index: true,
+        meter: "status",
+        columns: [
+          { key: "item", label: "Particulars" },
+          { key: "agency", label: "Agency" },
+          { key: "status", label: "Status", type: "status" }
+        ],
+        rows: [
+          { item: "Approval of plan for civil works", agency: "Municipal / Village Panchayat", status: "Obtained" },
+          { item: "Power sanction / construction power", agency: "KSEB", status: "Applied" },
+          { item: "Pollution control", agency: "Kerala State Pollution Control Board", status: "Applied" },
+          { item: "Fire Department", agency: "State Government", status: "Obtained" },
+          { item: "Health Department", agency: "State Government", status: "Obtained" },
+          { item: "SSI / Inspector of Factories", agency: "State Government", status: "Obtained" },
+          { item: "FSSAI", agency: "Central Government", status: "Still to apply" }
+        ]
+      }
+    ]
+  },
+  private: {
+    id: "private",
+    tag: "Financial institutions · Private",
+    title: "Private",
+    sub: "Promoter, funding and commercial partners",
+    lead: "The promoter, how the project is funded, and the private partners involved in the AMA International cold store project.",
+    figures: [
+      { value: "₹668.37 lakhs", label: "Promoters’ capital", caption: "About 43% of the cost" },
+      { value: "₹700 lakhs", label: "Bank term loan", caption: "Rising to ₹882.29 lakhs until the subsidy arrives" },
+      { value: "6 partners", label: "AMA International", caption: "Family-run fruit traders" }
+    ],
+    sections: [
+      {
+        kind: "cards",
+        label: "Promoter, funding and partners",
+        items: [
+          { label: "Promoter", text: "AMA International, a partnership firm owned by six partners (family-run fruit traders)." },
+          { label: "Land", text: "Bought in the partners’ own names." },
+          { label: "Promoters’ capital", text: "₹668.37 lakhs, about 43% of the cost." },
+          { label: "Bank term loan", text: "₹700 lakhs, rising to ₹882.29 lakhs until the subsidy arrives." },
+          { label: "Operations", text: "The cold store is mainly for the firm’s own fruit trading, with value-added retail packing." },
+          { label: "Consultant", text: "Agri ValueChain Services Pvt. Ltd, a private company." },
+          {
+            label: "Suppliers and buyers",
+            text: "Private firms such as Bitzer, Kion-Linde, Vikram Solar, Lulu Hypermarket and others.",
+            chips: ["Bitzer", "Kion-Linde", "Vikram Solar", "Lulu Hypermarket"]
+          }
+        ]
+      }
+    ],
+    billsLabel: "Project report bills",
+    bills: [
+      {
+        id: "plant-machinery",
+        title: "Plant and machinery",
+        note: "Machinery items required for the project",
+        unit: "Amounts in Rs",
+        index: true,
+        columns: [
+          { key: "item", label: "Description of the item" },
+          { key: "qty", label: "Qty" },
+          { key: "supplier", label: "Supplier" },
+          { key: "amount", label: "Amount (Rs)", type: "money" }
+        ],
+        rows: [
+          { item: "Refrigeration plant (compressor, evaporators and accessories etc.)", qty: "14 sets", supplier: "Bitzer, Germany; Alfa LU-VE", amount: 15805220 },
+          { item: "Electrical plant + transformer + DG set + lighting", qty: "1 set", supplier: "BK Power, Coimbatore", amount: 22160000 },
+          { item: "Material storage system (racks and pallets)", qty: "1120 pallets", supplier: "Schafer, Malaysia", amount: 8727747 },
+          { item: "Material handling equipment (reach trucks and BOPT)", qty: "3 nos", supplier: "Kion-Linde, Germany", amount: 7906000 },
+          { item: "Solar PV system 100 kWp", qty: "1 set", supplier: "Vikram Solar", amount: 5000000 },
+          { item: "Fire fighting", qty: "1 set", supplier: "Reputed make", amount: 2500000 },
+          { item: "Cold storage operational management system", qty: "1 set", supplier: "Reputed make", amount: 1000000 },
+          { item: "CCTV, weighing and barcoding machine", qty: "1 set", supplier: "Reputed make", amount: 2000000 }
+        ],
+        total: { label: "Total machinery cost", col: "amount", value: "6,50,98,967", display: "₹6,50,98,967" }
+      },
+      {
+        id: "civil-works",
+        title: "Building — civil works",
+        note: "Cost break-up for building works, A",
+        unit: "Amounts in Rs",
+        index: true,
+        collapsed: true,
+        columns: [
+          { key: "item", label: "Description of item" },
+          { key: "amount", label: "Amount (Rs)", type: "money" }
+        ],
+        rows: [
+          { item: "Mass cutting of earth and levelling", amount: 308000 },
+          { item: "Filling and compacting", amount: 900000 },
+          { item: "Plain cement concrete", amount: 2000000 },
+          { item: "Footing, pedestal, plinth beam and retaining walls", amount: 4816000 },
+          { item: "Ground floor columns, first floor columns, beams, slab, stairs and water tanks", amount: 6700000 },
+          { item: "Underground tanks", amount: 1200000 },
+          { item: "Electrical room trench R.C.C. work", amount: 600000 },
+          { item: "Blockwork", amount: 1200000 },
+          { item: "Plastering", amount: 700000 },
+          { item: "Painting", amount: 500000 },
+          { item: "Handrails", amount: 900000 },
+          { item: "Flooring", amount: 5700000 },
+          { item: "Wall tiling", amount: 150000 },
+          { item: "Sanitary fitting, drainage and plumbing", amount: 250000 },
+          { item: "Airconditioning", amount: 300000 },
+          { item: "Electrification", amount: 400000 },
+          { item: "Waterproofing", amount: 800000 },
+          { item: "Doors and windows", amount: 400000 },
+          { item: "External glazing", amount: 800000 },
+          { item: "Automatic shutters", amount: 600000 },
+          { item: "Boundary wall and gates", amount: 1000000 },
+          { item: "Interior and furniture", amount: 500000 },
+          { item: "Interlocking", amount: 800000 }
+        ],
+        total: { label: "Total amount", col: "amount", value: "3,15,24,000", display: "₹3,15,24,000" }
+      },
+      {
+        id: "structural-steel",
+        title: "Structural steel, roofing and wall cladding",
+        note: "Cost break-up for building works, B",
+        unit: "Amounts in Rs",
+        index: true,
+        columns: [
+          { key: "item", label: "Description of item" },
+          { key: "amount", label: "Amount (Rs)", type: "money" }
+        ],
+        rows: [
+          { item: "Steel building including canopy", amount: 9225000 },
+          { item: "Roof sheeting", amount: 1630000 },
+          { item: "Roof insulation", amount: 836000 },
+          { item: "Ridge", amount: 22000 },
+          { item: "Gutter", amount: 125000 },
+          { item: "Flashing", amount: 163000 },
+          { item: "Cladding", amount: 1001000 }
+        ],
+        total: { label: "Total amount", col: "amount", value: "1,30,02,000", display: "₹1,30,02,000" }
+      },
+      {
+        id: "insulated-building",
+        title: "Insulated building, floor insulation, doors and docking system",
+        note: "Cost break-up for building works, C",
+        unit: "Amounts in Rs",
+        index: true,
+        columns: [
+          { key: "item", label: "Description of item" },
+          { key: "amount", label: "Amount (Rs)", type: "money" }
+        ],
+        rows: [
+          { item: "Insulated panels", amount: 29071477 },
+          { item: "Floor insulation", amount: null },
+          { item: "Insulated doors", amount: 8695481 },
+          { item: "Docking systems", amount: 1349098 }
+        ],
+        total: { label: "Total amount", col: "amount", value: "3,91,16,000", display: "₹3,91,16,000" },
+        footnote: "The total estimated value for civil, structural and insulated building is ₹836.42 lakhs. The report does not state an amount for floor insulation."
+      },
+      {
+        id: "cost-of-project",
+        title: "Cost of project",
+        note: "Estimated at ₹1550.66 lakhs",
+        unit: "Amounts in Rs lakhs",
+        columns: [
+          { key: "item", label: "Cost of project" },
+          { key: "amount", label: "Rs lakhs", type: "num" }
+        ],
+        rows: [
+          { item: "Land and site development", amount: "0.00" },
+          { item: "Building", amount: "836.42" },
+          { item: "Plant and machinery", amount: "650.99" },
+          { item: "Other miscellaneous assets", amount: "2.00" },
+          { item: "Preliminary and pre-operative expenses", amount: "60.00" },
+          { item: "Margin for working capital", amount: "1.25" }
+        ],
+        total: { label: "Total", col: "amount", value: "1550.66", display: "₹1,550.66 lakhs" },
+        footnote: "Land is purchased in the name of the promoters, so its cost is not taken into the project cost."
+      },
+      {
+        id: "means-of-finance",
+        title: "Means of finance",
+        note: "Promoters’ contribution works out to 43% of the total project cost",
+        unit: "Amounts in Rs lakhs",
+        columns: [
+          { key: "item", label: "Means of finance" },
+          { key: "amount", label: "Rs lakhs", type: "num" }
+        ],
+        rows: [
+          { item: "Promoters’ capital", amount: "668.37" },
+          { item: "Subsidy", amount: "182.29" },
+          { item: "Term loan", amount: "700.00" }
+        ],
+        total: { label: "Total", col: "amount", value: "1550.66", display: "₹1,550.66 lakhs" }
+      }
+    ]
+  }
 };

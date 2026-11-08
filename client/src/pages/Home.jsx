@@ -133,50 +133,54 @@ export default function Home() {
     <div className="page active" id="page-home">
       <div className="home-intro-stakeholders">
 
-      <section className="avc-intro" id="agrivaluechain-intro">
-        <div className="wrap">
+        {/* Common heading + quote */}
+        <div className="his-head">
           <h2 className="avc-intro-title">
             <svg className="avc-intro-leaf" viewBox="0 0 32 32" fill="none" aria-hidden="true">
               <path d="M26.5 5.5C15 5.5 7 9.5 7 18.5c0 4 2.8 7 6.8 7 8.7 0 12.7-8.5 12.7-20Z" />
               <path d="M5 27c4.5-7 9.5-11.5 17-16" />
             </svg>
             <span className="avc-intro-heading-text">
-               <span className="avc-intro-heading-accent">Agrivaluechain</span>
+              <span className="avc-intro-heading-accent">Agrivaluechain</span>
             </span>
           </h2>
-          <div className="avc-intro-body">
-            <div className="avc-intro-kicker">
-              <span>From farm to market</span>
-            </div>
-      
-            <p>
-              Agri value chain Services adopts a holistic, end-to-end value-chain approach,as <strong>integrators</strong> working
-              collaboratively with all key stakeholders — farmers, traders, processors, retailers and
-              supermarkets, government institutions, financial institutions, logistics providers and
-              technology partners — to develop sustainable, efficient and commercially viable
-              agricultural value chains.
-            </p>
-            <p>
-              Agri value chain work across the entire agricultural value chain — to
-              post-harvest management for processing, cold-chain logistics,connecting to markets and finance — to
-              create efficient, sustainable and commercially viable value chains.
-            </p>
-            <p className="avc-intro-tagline">
-              &ldquo;Connecting stakeholders. Strengthening value chains. Creating sustainable impact.&rdquo;
-            </p>
-            <div className="avc-intro-divider" aria-hidden="true">
-              <span />
-              <svg viewBox="0 0 32 32" fill="none">
-                <path d="M26.5 5.5C15 5.5 7 9.5 7 18.5c0 4 2.8 7 6.8 7 8.7 0 12.7-8.5 12.7-20Z" />
-                <path d="M5 27c4.5-7 9.5-11.5 17-16" />
-              </svg>
-              <span />
-            </div>
-          </div>
+          <p className="his-quote">
+            &ldquo;Connecting stakeholders. Strengthening value chains. Creating sustainable impact.&rdquo;
+          </p>
         </div>
-      </section>
 
-        <Stakeholders />
+        {/* Left: intro  |  Right: stakeholders */}
+        <div className="his-grid">
+          <section className="avc-intro" id="agrivaluechain-intro">
+            <div className="avc-intro-body">
+              <div className="avc-intro-kicker">
+                <span>From farm to market</span>
+              </div>
+              <p>
+                Agri value chain Services adopts a holistic, end-to-end value-chain approach, as <strong>integrators</strong> working
+                collaboratively with all key stakeholders — farmers, traders, processors, retailers and
+                supermarkets, government institutions, financial institutions, logistics providers and
+                technology partners — to develop sustainable, efficient and commercially viable
+                agricultural value chains.
+              </p>
+              <p>
+                Agri value chain work across the entire agricultural value chain — to
+                post-harvest management for processing, cold-chain logistics, connecting to markets and finance — to
+                create efficient, sustainable and commercially viable value chains.
+              </p>
+              <div className="avc-intro-divider" aria-hidden="true">
+                <span />
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="M26.5 5.5C15 5.5 7 9.5 7 18.5c0 4 2.8 7 6.8 7 8.7 0 12.7-8.5 12.7-20Z" />
+                  <path d="M5 27c4.5-7 9.5-11.5 17-16" />
+                </svg>
+                <span />
+              </div>
+            </div>
+          </section>
+
+          <Stakeholders embedded />
+        </div>
       </div>
 
       <section className="home-scope" id="project-scope">

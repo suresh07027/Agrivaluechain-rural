@@ -5,12 +5,12 @@
     --forest-deep:#0B2924;
     --wheat:#FFD166;
     --wheat-soft:#FFFDF5;
-    --steel:#1CA7A0;
-    --rust:#F26B4F;
+    --steel:#08736E;
+    --rust:#B9442D;
     --lime:#B8D93D;
-    --sky:#3AA6D0;
+    --sky:#216887;
     --ink:#081613;
-    --ink-soft:#1B3730;
+    --ink-soft:#101814;
     --line: rgba(18,59,54,0.14);
     --glass:rgba(255,253,245,0.76);
     --shadow-deep:rgba(13,55,48,0.32);
@@ -460,7 +460,7 @@
 
   .section{padding:56px 0; border-bottom:1px solid var(--line);}
   .section h2{font-size:1.35rem; margin:0 0 20px;}
-  p, .section p{font-size:1rem; line-height:1.75; color:var(--ink-soft); margin:0 0 14px; text-align:justify; text-justify:inter-word;}
+  p, .section p{font-size:1.05rem; line-height:1.75; color:var(--ink-soft); margin:0 0 14px; text-align:justify; text-justify:inter-word;}
   .bullets{margin:0; padding:0; list-style:none;}
   .bullets li{
     position:relative; padding:0 0 12px 22px; font-size:0.97rem; line-height:1.6; color:var(--ink-soft);
@@ -704,8 +704,6 @@
 
   /* ---------- Solution block (Linking Farmers to the Market) ---------- */
   .section-solution{background:#fff8e8;}
-  #page-option3 .linking-government-support{margin:0 0 36px; padding:18px 22px; border-left:4px solid var(--forest); background:linear-gradient(110deg,#e7f7ee,#fff5dc);}
-  #page-option3 .linking-government-support p{margin:0; color:var(--forest-deep); font-weight:700;}
   .section-eyebrow-note{font-size:0.82rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--rust); margin:-18px 0 26px;}
   .solution-layout{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
   @media (max-width:820px){ .solution-layout{grid-template-columns:1fr;} }
@@ -767,7 +765,7 @@
   }
   .cta-strip .wrap{display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
   .cta-strip h2{color:var(--wheat-soft); font-size:1.4rem; margin:0;}
-  .cta-strip .contact-line{display:flex; align-items:center; flex-wrap:wrap; gap:16px; font-size:0.92rem; color:rgba(247,242,228,0.8);}
+  .cta-strip .contact-line{display:flex; align-items:center; flex-wrap:wrap; gap:16px; font-size:0.92rem; color:rgba(255,253,245,0.96);}
   .cta-strip .contact-method{display:inline-flex; align-items:center; gap:7px;}
   .cta-strip .contact-icon{width:16px; height:16px; flex:none;}
   .cta-strip a{color:var(--wheat-soft); text-decoration:underline;}
@@ -2013,6 +2011,7 @@
     background:none;
     border:0;
   }
+  .private-serve .audience-block:first-child{grid-column:1 / -1;}
   .private-serve .audience-block{
     min-height:300px;
     padding:34px 34px 32px 38px;
@@ -3700,9 +3699,9 @@
     background:repeating-linear-gradient(125deg,transparent 0 96px,rgba(36,67,63,.08) 97px 98px,transparent 99px 190px);
   }
   #page-option3 .section-midh > .wrap{position:relative;z-index:1;max-width:1360px;}
-  #page-option3 .midh-section-heading{max-width:650px;margin:0 0 58px;}
-  #page-option3 .midh-kicker{display:inline-flex;align-items:center;gap:12px;color:#3d9b69;font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;}
-  #page-option3 .midh-kicker::before{content:"";width:38px;height:2px;background:#e7a42b;}
+  #page-option3 .midh-section-heading{width:100%;max-width:none;margin:0 0 58px;}
+  #page-option3 .midh-kicker{display:block;width:100%;color:#3d9b69;font-family:'DM Sans',sans-serif;font-size:clamp(1.15rem,2vw,1.65rem);font-weight:900;letter-spacing:.08em;line-height:1.4;text-align:justify;text-align-last:justify;text-transform:uppercase;}
+  #page-option3 .midh-kicker::before{content:"";display:inline-block;width:48px;height:2px;margin-right:12px;vertical-align:middle;background:#e7a42b;}
   #page-option3 .midh-section-heading h2{margin:14px 0 14px;color:#24433f;font-family:'Bodoni Moda',serif;font-size:clamp(2.5rem,5vw,4.4rem);line-height:.98;}
   #page-option3 .midh-section-heading p{max-width:530px;margin:0;color:#5d706c;font-family:'DM Sans',sans-serif;font-size:1rem;line-height:1.75;}
   #page-option3 .midh-list{gap:30px;}
@@ -4380,7 +4379,7 @@
 /* ---- Footer: single quiet line, no gradient streak ---- */
 footer::before{display:none;}
 footer{
-  border-top:0; background:#0b2924; color:rgba(255,253,245,0.6);
+border-top:0; background:#0b2924; color:rgba(255,253,245,0.92);
   padding:22px 0; border-top:1px solid rgba(255,253,245,0.08);
 }
 

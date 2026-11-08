@@ -1,0 +1,195 @@
+/* Financial institutions -> Government / Private pages.
+   Builds on the shared .eco-page canvas and hero (ecoPackaging.css). */
+
+.fin-page{ --accent:#0F766E; --accent-soft:rgba(15,118,110,.10); }
+.fin-private{ --accent:#E0583B; --accent-soft:rgba(242,107,79,.12); }
+
+/* global paragraph rules justify text; keep this page left-aligned */
+.fin-page p{ text-align:left; text-justify:auto; word-spacing:normal; }
+
+/* ---------- hero ---------- */
+.fin-hero-copy{ position:relative; z-index:1; max-width:1180px; }
+.fin-hero-copy .eco-lead{ max-width:700px; }
+.fin-crumbs{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:22px; font-size:.85rem; color:rgba(255,253,245,.9); }
+.fin-crumbs a{ color:#d9f27a; text-decoration:none; font-weight:700; }
+.fin-crumbs a:hover{ text-decoration:underline; }
+.fin-crumbs i{ font-style:normal; opacity:.8; }
+.fin-crumbs [aria-current]{ color:#fff; font-weight:700; }
+
+.fin-wrap{ margin-top:-70px; padding-bottom:12px; }
+
+/* ---------- key figures ---------- */
+.fin-figures{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.fin-figure{
+  position:relative; padding:26px 28px 24px; border-radius:20px; background:#fff;
+  border:1px solid var(--line); box-shadow:0 28px 54px -30px rgba(13,55,48,.5); overflow:hidden;
+}
+.fin-figure::before{ content:""; position:absolute; left:0; right:0; top:0; height:4px; background:var(--accent); }
+.fin-figure::after{
+  content:""; position:absolute; right:-40px; bottom:-40px; width:140px; height:140px; border-radius:50%;
+  background:var(--accent-soft); pointer-events:none;
+}
+.fin-figure p{ margin:0; position:relative; z-index:1; }
+.fin-figure-label{ font-size:.74rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+.fin-figure-value{
+  margin-top:10px !important; font-family:'Bodoni Moda',serif; font-weight:600; font-size:clamp(1.9rem,3.2vw,2.6rem);
+  line-height:1.05; color:var(--forest-deep);
+}
+.fin-figure-cap{ margin-top:10px !important; font-size:.92rem; line-height:1.5; color:var(--ink-soft); }
+
+/* ---------- blocks ---------- */
+.fin-block{ margin-top:58px; }
+.fin-eyebrow{
+  display:flex; align-items:center; gap:16px; margin:0 0 24px;
+  font-family:'DM Sans',sans-serif; font-size:.8rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+}
+.fin-eyebrow::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+
+.fin-statement{
+  margin:0; max-width:900px; padding:6px 0 6px 28px; border-left:4px solid var(--accent);
+  font-family:'Bodoni Moda',serif; font-size:clamp(1.25rem,2.1vw,1.7rem); line-height:1.55; color:var(--forest-deep);
+}
+.fin-statement strong{ color:var(--accent); font-weight:700; white-space:nowrap; }
+
+/* chips */
+.fin-chips{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:12px; }
+.fin-chips li{
+  display:inline-flex; align-items:center; gap:10px; padding:12px 22px; border-radius:999px;
+  background:#fff; border:1px solid var(--line); box-shadow:0 12px 24px -18px rgba(13,55,48,.5);
+  font-weight:700; color:var(--forest-deep);
+}
+.fin-chips li::before{ content:""; width:9px; height:9px; border-radius:50%; background:var(--accent); }
+.fin-chips-sm{ margin-top:16px; gap:8px; }
+.fin-chips-sm li{ padding:6px 14px; font-size:.85rem; box-shadow:none; background:var(--wheat-soft); }
+
+/* ---------- bills (itemised tables from the project report) ---------- */
+.tone-done{ --tone:#0F766E; --tone-bg:rgba(15,118,110,.10); }
+.tone-progress{ --tone:#C98A06; --tone-bg:rgba(217,154,11,.13); }
+.tone-pending{ --tone:#6B7A76; --tone-bg:rgba(107,122,118,.12); }
+
+.fin-bills{ display:grid; gap:22px; }
+.fin-bill{
+  background:#fff; border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  box-shadow:0 26px 52px -34px rgba(13,55,48,.5);
+}
+.fin-bill[open]{ border-color:rgba(18,59,54,.22); }
+.fin-bill summary{
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:20px; padding:20px 26px;
+  background:linear-gradient(180deg,#fffdf5,#fff); transition:background .2s ease;
+}
+.fin-bill summary::-webkit-details-marker{ display:none; }
+.fin-bill summary:hover{ background:var(--accent-soft); }
+.fin-bill summary:focus-visible{ outline:3px solid #ffd166; outline-offset:-3px; }
+.fin-bill-no{
+  flex:none; width:58px; height:58px; display:grid; place-content:center; text-align:center; border-radius:14px;
+  background:var(--accent); color:#fff; font-family:'Bodoni Moda',serif; font-weight:600; font-size:1.35rem; line-height:1;
+}
+.fin-bill-no small{ display:block; margin-bottom:3px; font-family:'DM Sans',sans-serif; font-size:.56rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; opacity:.8; }
+.fin-bill-title{ flex:1 1 auto; min-width:0; display:grid; gap:3px; }
+.fin-bill-title strong{ font-family:'Bodoni Moda',serif; font-size:clamp(1.1rem,1.8vw,1.4rem); font-weight:600; line-height:1.25; color:var(--forest-deep); }
+.fin-bill-title em{ font-style:normal; font-size:.88rem; color:var(--ink-soft); }
+.fin-bill-total{ flex:none; display:grid; gap:2px; text-align:right; }
+.fin-bill-total small{ font-size:.68rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+.fin-bill-total b{ font-family:'Bodoni Moda',serif; font-size:1.35rem; font-weight:600; color:var(--forest-deep); white-space:nowrap; }
+.fin-chev{
+  flex:none; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); position:relative; background:#fff;
+  transition:transform .3s ease, background .2s ease;
+}
+.fin-chev::before{
+  content:""; position:absolute; left:50%; top:50%; width:8px; height:8px; margin:-6px 0 0 -4px;
+  border-right:2px solid var(--forest-deep); border-bottom:2px solid var(--forest-deep); transform:rotate(45deg);
+}
+.fin-bill[open] .fin-chev{ transform:rotate(180deg); background:var(--accent-soft); }
+
+.fin-bill-body{ padding:6px 26px 26px; border-top:1px dashed rgba(18,59,54,.25); }
+.fin-unit{ margin:16px 0 14px !important; font-size:.76rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); }
+
+/* table */
+.fin-tablewrap{ overflow-x:auto; border:1px solid var(--line); border-radius:14px; }
+.fin-table{ width:100%; border-collapse:collapse; min-width:560px; font-variant-numeric:tabular-nums; }
+.fin-table th{
+  padding:13px 18px; text-align:left; font-size:.72rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase;
+  color:#fff; background:var(--forest-deep); white-space:nowrap;
+}
+.fin-table td{ padding:13px 18px; line-height:1.45; color:var(--ink); border-top:1px solid var(--line); vertical-align:top; }
+.fin-table tbody tr:nth-child(even) td{ background:rgba(255,253,245,.9); }
+.fin-table tbody tr:hover td{ background:var(--accent-soft); }
+.fin-table .is-num{ text-align:right; white-space:nowrap; }
+.fin-table th.is-num{ text-align:right; }
+.fin-sl{ width:72px; color:var(--accent); font-weight:800; }
+th.fin-sl{ color:#fff; }
+.fin-dash{ opacity:.7; }
+.fin-table tfoot td{ border-top:2px solid var(--accent); background:var(--accent-soft); font-weight:800; color:var(--forest-deep); }
+.fin-total-label{ text-transform:uppercase; letter-spacing:.1em; font-size:.8rem; text-align:right; }
+.fin-total-value{ font-family:'Bodoni Moda',serif; font-size:1.15rem; }
+.fin-footnote{ margin:14px 2px 0 !important; font-size:.88rem; line-height:1.6; color:var(--ink-soft); }
+
+/* status pill + meter */
+.fin-pill{
+  display:inline-block; padding:5px 12px; border-radius:999px; font-size:.74rem; font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--tone); background:var(--tone-bg); border:1px solid var(--tone); white-space:nowrap;
+}
+.fin-meter-wrap{ margin:0 0 18px; }
+.fin-meter-top{ margin:0 0 10px !important; color:var(--ink-soft); }
+.fin-meter-top strong{ font-family:'Bodoni Moda',serif; font-size:1.5rem; color:var(--forest-deep); margin-right:4px; }
+.fin-meter{ display:flex; gap:6px; height:12px; }
+.fin-meter span{ border-radius:999px; background:var(--tone); }
+.fin-meter-key{ list-style:none; margin:12px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px 22px; font-size:.85rem; font-weight:700; color:var(--ink-soft); }
+.fin-meter-key li{ display:inline-flex; align-items:center; gap:8px; }
+.fin-meter-key i{ width:10px; height:10px; border-radius:50%; background:var(--tone); }
+.fin-meter-key b{ color:var(--tone); }
+
+/* ---------- numbered cards (Private) ---------- */
+.fin-cards{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+.fin-card{
+  position:relative; padding:26px 28px 28px 28px; border-radius:20px; background:#fff; border:1px solid var(--line);
+  box-shadow:0 24px 48px -32px rgba(13,55,48,.5); transition:transform .3s ease, box-shadow .3s ease;
+}
+.fin-card:hover{ transform:translateY(-4px); box-shadow:0 30px 56px -30px rgba(13,55,48,.6); }
+.fin-card:last-child:nth-child(odd){ grid-column:1 / -1; }
+.fin-card-no{
+  display:inline-grid; place-items:center; width:42px; height:42px; border-radius:12px; margin-bottom:16px;
+  background:var(--accent); color:#fff; font-family:'Bodoni Moda',serif; font-weight:600; font-size:1.05rem;
+}
+.fin-card h3{ margin:0 0 8px; font-family:'DM Sans',sans-serif; font-size:.78rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:var(--accent); }
+.fin-card p{ margin:0; font-size:1.08rem; line-height:1.65; color:var(--ink-soft); }
+.fin-card p strong{ color:var(--forest-deep); font-weight:800; white-space:nowrap; }
+
+/* ---------- switch to the other page ---------- */
+.fin-switch{
+  display:flex; align-items:center; justify-content:space-between; gap:24px; margin:64px 0 56px; padding:28px 34px;
+  border-radius:22px; text-decoration:none; color:#fff;
+  background:linear-gradient(135deg,#0b2924,#0e463f 60%,#0F766E);
+  box-shadow:0 30px 56px -30px rgba(11,41,36,.8); transition:transform .3s ease;
+}
+.fin-switch:hover{ transform:translateY(-3px); }
+.fin-switch-text{ display:grid; gap:4px; }
+.fin-switch small{ font-size:.75rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#d9f27a; }
+.fin-switch strong{ font-family:'Bodoni Moda',serif; font-size:1.9rem; font-weight:600; }
+.fin-switch em{ font-style:normal; color:rgba(255,253,245,.8); }
+.fin-switch-go{
+  flex:none; width:52px; height:52px; display:grid; place-items:center; border-radius:50%; font-size:1.5rem;
+  background:#ffd166; color:#0b2924; transition:transform .3s ease;
+}
+.fin-switch:hover .fin-switch-go{ transform:translateX(6px); }
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .fin-figures{ grid-template-columns:1fr; }
+  .fin-cards{ grid-template-columns:1fr; }
+  .fin-wrap{ margin-top:-52px; }
+}
+@media (max-width:600px){
+  .fin-block{ margin-top:44px; }
+  .fin-statement{ padding-left:18px; }
+  .fin-bill summary{ flex-wrap:wrap; gap:14px; padding:18px 18px; }
+  .fin-bill-title{ flex-basis:calc(100% - 140px); }
+  .fin-bill-total{ order:5; text-align:left; margin-left:72px; }
+  .fin-bill-body{ padding:4px 16px 20px; }
+  .fin-table th,.fin-table td{ padding:11px 13px; }
+  .fin-switch{ padding:22px 22px; }
+  .fin-switch strong{ font-size:1.5rem; }
+}
+@media (prefers-reduced-motion:reduce){
+  .fin-card, .fin-switch, .fin-switch-go{ transition:none; }
+}

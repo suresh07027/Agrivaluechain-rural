@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Routes, Route, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,14 +9,16 @@ import AudiencePage from "./pages/AudiencePage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import "./styles/style.css";
 import "./styles/polish.css";
+import "./styles/premium.css";
 import EcoPackagingPage from "./pages/EcoPackaging";
 import DisplayCabinetsPage from "./pages/DisplayCabinetsPage";
+import FinancePage from "./pages/FinancePage";
 
 function ScrollToTop() {
   const { pathname, hash, state, key } = useLocation();
   const navigationType = useNavigationType();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (hash) {
       requestAnimationFrame(() => {
         document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
@@ -26,17 +28,25 @@ function ScrollToTop() {
 
     if (state?.restoreScrollY != null) {
       requestAnimationFrame(() => {
-        window.scrollTo({ top: state.restoreScrollY, left: 0, behavior: "auto" });
+        scrollToPosition(state.restoreScrollY);
       });
       return;
     }
 
     if (navigationType === "POP") return;
 
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    scrollToPosition(0);
   }, [pathname, hash, state, key, navigationType]);
 
   return null;
+}
+
+function scrollToPosition(top) {
+  const root = document.documentElement;
+  const previousBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo({ top, left: 0, behavior: "auto" });
+  root.style.scrollBehavior = previousBehavior;
 }
 
 function PageBackButton() {
@@ -91,6 +101,7 @@ export default function App() {
         <Route path="/projects/:slug" element={<ProjectDetailPage />} />
         <Route path="/eco-packaging" element={<EcoPackagingPage />} />
         <Route path="/display-cabinets" element={<DisplayCabinetsPage />} />
+        <Route path="/financial-institutions/:sectionId" element={<FinancePage />} />
         <Route path="/:optionId" element={<ServicePage />} />
 
       </Routes>

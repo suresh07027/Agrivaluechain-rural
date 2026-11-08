@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { options, contact } from "../data/content";
 import { CtaStrip } from "../components/Footer";
@@ -164,13 +163,6 @@ function AgroHighlights({ project, gallery }) {
 
 export default function ProjectDetailPage() {
   const { slug } = useParams();
-  // Always open the page scrolled to the top, showing the title/content
-  // first — without this, React Router keeps whatever scroll position
-  // you were at on the previous page, which made it look like the
-  // gallery photos loaded "first".
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [slug]);
 
   // Technical Consultancy (option1) is the only option with projects for now.
   const option = options.find((o) => o.id === "option1");
