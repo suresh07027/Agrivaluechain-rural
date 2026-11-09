@@ -102,6 +102,7 @@
   text-justify:inter-word;
   text-shadow:none;
 }
+#page-home .avc-intro-body strong{ color:#FFD166; font-weight:800; }
 #page-home .avc-intro-body .avc-intro-tagline{
   text-align:center;
   color:#ffe08a;
@@ -557,6 +558,16 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 
 .stk-paths-list,
 .stk-path-sub{ list-style:none; margin:0; padding:0; }
+.stk-paths-details{ display:grid; gap:6px; }
+.stk-paths-details span{
+  padding:7px 10px;
+  border:1px solid rgba(23,61,50,.12);
+  border-radius:12px;
+  background:rgba(255,255,255,.8);
+  color:#173d32;
+  font-size:.82rem;
+  line-height:1.35;
+}
 .stk-paths-list{ display:grid; gap:10px; }
 .stk-paths-list > li{ animation:stkRowIn .4s cubic-bezier(.2,.9,.3,1) both; animation-delay:calc(var(--i) * 80ms + 120ms); }
 @keyframes stkRowIn{ from{ opacity:0; transform:translateX(-14px); } to{ opacity:1; transform:none; } }
@@ -631,6 +642,24 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   }
   .stk-node-pos .stk-paths::after{ display:none; }
 }
+@media (max-width:700px){
+  #page-home .stk-node-pos .stk-paths-retailers{
+    width:min(340px,calc(100vw - 24px));
+    min-width:0;
+    max-width:none;
+    max-height:calc(100vh - 24px);
+    transform:none;
+    animation:none;
+  }
+}
+@media (min-width:701px){
+  #page-home .stk-paths-retailers{
+    max-height:calc(100vh - 24px);
+    overflow-y:auto;
+    transform:none;
+    animation:none;
+  }
+}
 @keyframes stkSheetIn{
   from{ opacity:0; transform:translateY(28px); }
   to  { opacity:1; transform:none; }
@@ -649,10 +678,36 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 /* ---------------------------------------------------------------------
    Header: Home / About Us / Contact Us  (the 4 pillar links were removed)
    --------------------------------------------------------------------- */
-.navlinks a.nav-about:hover{ color:#fff; background:var(--steel); }
+.nav-lead > .nav-about{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:10px 18px;
+  border:1px solid transparent;
+  border-radius:999px;
+  color:var(--ink-soft);
+  font-size:clamp(.72rem,.9vw,.8rem);
+  font-weight:600;
+  letter-spacing:.02em;
+  text-decoration:none;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.nav-lead > .nav-about:hover{ color:#fff; background:var(--steel); transform:translateY(-2px); }
+.nav-lead > .nav-about:focus-visible{ outline:2px solid var(--rust); outline-offset:4px; }
 .navlinks a.nav-home,
-.navlinks a.nav-about,
 .navlinks a.nav-contact{ display:inline-flex; align-items:center; gap:5px; }
+@media (max-width:1000px){
+  .nav-lead > .nav-about{ padding:9px 14px; font-size:.7rem; }
+}
+@media (max-width:820px){
+  .nav-lead > .nav-about{ padding:8px 10px; font-size:.64rem; }
+}
+@media (max-width:420px){
+  .nav-lead > .nav-about{ padding:7px; font-size:.58rem; }
+  .nav-lead > .nav-about .nav-icon{ display:none; }
+}
 /* only 3 links now, so they no longer need the tiny mobile sizes */
 @media (max-width:1000px){
   .navlinks a{ font-size:.7rem; padding-left:8px; padding-right:8px; }

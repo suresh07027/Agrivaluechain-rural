@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import stakeholderImage from "../assets/logo.webp";
@@ -89,16 +89,15 @@ export default function Stakeholders({ embedded = false }) {
   const [openIndex, setOpenIndex] = useState(null);
   const [hoverIndex, setHoverIndex] = useState(null);
   const [expanded, setExpanded] = useState(null); // which Government / Private group is open
-  const panelRef = useRef(null);
+  const retailerPopupRef = useRef(null);
   const activeIndex = openIndex ?? hoverIndex;
   const active = activeIndex !== null ? stakeholders[activeIndex] : null;
-  const activePaths = active ? stakeholderPaths[active.slug] || [] : [];
 
   // Close the destination card on Escape or when clicking outside the open node.
   useEffect(() => {
     if (openIndex === null) return undefined;
     const onPointerDown = (e) => {
-      if (!e.target.closest?.(".stk-node-pos.is-open, .stk-panel")) setOpenIndex(null);
+      if (!e.target.closest?.(".stk-node-pos.is-open")) setOpenIndex(null);
     };
     const onKeyDown = (e) => {
       if (e.key === "Escape") setOpenIndex(null);
@@ -117,12 +116,47 @@ export default function Stakeholders({ embedded = false }) {
   // Start with every group collapsed whenever a different stakeholder is opened or closed.
   useEffect(() => setExpanded(null), [openIndex]);
 
-  // Phones: bring the detail panel into view after a tap.
-  useEffect(() => {
-    if (embedded && isMobile && openIndex !== null) {
-      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, [embedded, isMobile, openIndex]);
+  useLayoutEffect(() => {
+    const popup = retailerPopupRef.current;
+    if (!embedded || active?.slug !== "retailers" || !popup) return undefined;
+
+    const positionPopup = () => {
+      const node = popup.parentElement;
+      if (!node) return;
+      const nodeRect = node.getBoundingClientRect();
+      const popupRect = popup.getBoundingClientRect();
+      const margin = 12;
+      const horizontalGap = 12;
+      const rightSide = nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2;
+      const preferredLeft = isMobile
+        ? (window.innerWidth - popupRect.width) / 2
+        : rightSide
+          ? nodeRect.right + horizontalGap
+          : nodeRect.left - popupRect.width - horizontalGap;
+      const left = Math.max(
+        margin,
+        Math.min(preferredLeft, window.innerWidth - popupRect.width - margin)
+      );
+      const preferredTop = nodeRect.top + (nodeRect.height - popupRect.height) / 2;
+      const top = Math.max(
+        margin,
+        Math.min(preferredTop, window.innerHeight - popupRect.height - margin)
+      );
+      popup.style.position = "absolute";
+      popup.style.left = `${left - nodeRect.left}px`;
+      popup.style.right = "auto";
+      popup.style.top = `${top - nodeRect.top}px`;
+      popup.style.bottom = "auto";
+    };
+
+    positionPopup();
+    window.addEventListener("resize", positionPopup);
+    window.addEventListener("scroll", positionPopup, true);
+    return () => {
+      window.removeEventListener("resize", positionPopup);
+      window.removeEventListener("scroll", positionPopup, true);
+    };
+  }, [active, embedded, isMobile, openIndex]);
 
   return (
     <section className={`stk${embedded ? " stk-embedded" : ""}`} id="stakeholders" aria-label="Stakeholders">
@@ -262,9 +296,23 @@ export default function Stakeholders({ embedded = false }) {
                       {s.details.map((detail) => <span key={detail}>{detail}</span>)}
                     </div>
                   )}
-                  {!embedded && isOpen && paths.length > 0 && (
-                    <div className="stk-node-popup stk-paths" id={pathsId} role="dialog" aria-label={`${s.label}: where to go`}>
-                      <button type="button" className="stk-paths-close" aria-label="Close" onClick={() => setOpenIndex(null)}>
+                  {paths.length > 0 && (isOpen || (embedded && activeIndex === i)) && (
+                    <div
+                      className={`stk-node-popup stk-paths${embedded && s.slug === "retailers" ? " stk-paths-retailers" : ""}`}
+                      id={pathsId}
+                      ref={embedded && s.slug === "retailers" ? retailerPopupRef : undefined}
+                      role="dialog"
+                      aria-label={`${s.label}: where to go`}
+                    >
+                      <button
+                        type="button"
+                        className="stk-paths-close"
+                        aria-label="Close"
+                        onClick={() => {
+                          setOpenIndex(null);
+                          if (embedded) setHoverIndex(null);
+                        }}
+                      >
                         &times;
                       </button>
                       <div className="stk-paths-head">
@@ -273,6 +321,13 @@ export default function Stakeholders({ embedded = false }) {
                           <p className="stk-paths-title">{s.label}</p>
                         </div>
                       </div>
+                      {embedded && s.details.length > 0 && (
+                        <div className="stk-paths-details">
+                          <p className="stk-paths-hint">What they look for</p>
+                          {s.details.map((detail) => <span key={detail}>{detail}</span>)}
+                        </div>
+                      )}
+                      <p className="stk-paths-hint">How we can help</p>
                       <ul className="stk-paths-list">
                         {paths.map((path, idx) => (
                           <li key={path.to || path.label} style={{ "--i": idx }}>
@@ -321,87 +376,6 @@ export default function Stakeholders({ embedded = false }) {
             );
           })}
         </div>
-
-        {embedded && (
-          <div className="stk-panel" ref={panelRef} aria-live="polite">
-            {active ? (
-              <div className="stk-panel-card" key={active.slug}>
-                <div className="stk-panel-head">
-                  <img className="stk-panel-thumb" src={active.image} alt="" />
-                  <div className="stk-panel-headtext">
-                    <p className="stk-panel-eyebrow">Key stakeholder</p>
-                    <h4 className="stk-panel-title">{active.label}</h4>
-                  </div>
-                  {openIndex !== null && (
-                    <button type="button" className="stk-panel-close" aria-label="Close" onClick={() => setOpenIndex(null)}>
-                      &times;
-                    </button>
-                  )}
-                </div>
-
-                <p className="stk-panel-label">What they look for</p>
-                <ul className="stk-panel-focus">
-                  {active.details.map((d) => (
-                    <li key={d}>{d}</li>
-                  ))}
-                </ul>
-
-                {openIndex !== null && activePaths.length > 0 ? (
-                  <>
-                    <p className="stk-panel-label">How we can help</p>
-                    <ul className="stk-panel-links">
-                      {activePaths.map((path, idx) => (
-                        <li key={path.to || path.label}>
-                          {path.to ? (
-                            <Link to={path.to} className="stk-panel-link">
-                              <span className="stk-panel-linktext">{path.label}</span>
-                              <span className="stk-panel-go" aria-hidden="true">&rarr;</span>
-                            </Link>
-                          ) : (
-                            <button
-                              type="button"
-                              className="stk-panel-link is-toggle"
-                              aria-expanded={expanded === path.label}
-                              onClick={() => toggleGroup(path.label)}
-                            >
-                              <span className="stk-panel-linktext">{path.label}</span>
-                              <span className="stk-panel-go" aria-hidden="true">&#9662;</span>
-                            </button>
-                          )}
-                          {path.children && (
-                            <ul className="stk-panel-sub">
-                              {path.children.map((child) => (
-                                <li key={child.to}>
-                                  <Link to={child.to}>{child.label}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                          {path.facts && expanded === path.label && (
-                            <ul className="stk-panel-sub stk-facts">
-                              {path.facts.map((f) => (
-                                <li key={f.label}>
-                                  <b>{f.label}</b>
-                                  <span>{f.text}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <p className="stk-panel-hint">Click the hexagon to see how we can help.</p>
-                )}
-              </div>
-            ) : (
-              <div className="stk-panel-card stk-panel-empty">
-                <p>Hover over or tap a stakeholder to see what they look for and how we can help.</p>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </section>
   );

@@ -10,11 +10,6 @@
 /* ---------- hero ---------- */
 .fin-hero-copy{ position:relative; z-index:1; max-width:1180px; }
 .fin-hero-copy .eco-lead{ max-width:700px; }
-.fin-crumbs{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:22px; font-size:.85rem; color:rgba(255,253,245,.9); }
-.fin-crumbs a{ color:#d9f27a; text-decoration:none; font-weight:700; }
-.fin-crumbs a:hover{ text-decoration:underline; }
-.fin-crumbs i{ font-style:normal; opacity:.8; }
-.fin-crumbs [aria-current]{ color:#fff; font-weight:700; }
 
 .fin-wrap{ margin-top:-70px; padding-bottom:12px; }
 

@@ -15,6 +15,23 @@ export default function Header({ children }) {
             </span>
             Agrivaluechain
           </Link>
+          <Link className="nav-about" to="/#agrivaluechain-intro">
+            <svg
+              className="nav-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 11v5" />
+              <path d="M12 7.5h.01" />
+            </svg>
+            About Us
+          </Link>
         </div>
         <nav className="navlinks">
           <Link className="nav-home" to="/">
@@ -32,23 +49,6 @@ export default function Header({ children }) {
               <path d="M5 9v12h14V9M9 21v-7h6v7" />
             </svg>
             Home
-          </Link>
-          <Link className="nav-about" to="/#agrivaluechain-intro">
-            <svg
-              className="nav-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 11v5" />
-              <path d="M12 7.5h.01" />
-            </svg>
-            About Us
           </Link>
           <Link className="nav-contact" to="/#contact">
             <svg

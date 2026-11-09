@@ -162,13 +162,6 @@ export default function FinancePage() {
       <section className="eco-hero">
         <HeroBackdrop />
         <div className="wrap fin-hero-copy">
-          <nav className="fin-crumbs" aria-label="Breadcrumb">
-            <Link to="/#stakeholders">Stakeholders</Link>
-            <i aria-hidden="true">/</i>
-            <span>Financial institutions</span>
-            <i aria-hidden="true">/</i>
-            <span aria-current="page">{page.title}</span>
-          </nav>
           <span className="eco-tag">{page.tag}</span>
           <h1>{page.title}</h1>
           <p className="eco-lead">{page.lead}</p>
