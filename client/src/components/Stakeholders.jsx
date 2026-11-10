@@ -127,7 +127,8 @@ export default function Stakeholders({ embedded = false }) {
       const popupRect = popup.getBoundingClientRect();
       const margin = 12;
       const horizontalGap = 12;
-      const rightSide = nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2;
+      const forceRightSide = active?.slug === "retailers";
+      const rightSide = forceRightSide || nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2;
       const preferredLeft = isMobile
         ? (window.innerWidth - popupRect.width) / 2
         : rightSide
@@ -196,7 +197,9 @@ export default function Stakeholders({ embedded = false }) {
             const paths = stakeholderPaths[s.slug] || [];
             // Side-by-side layout: the diagram sits in the right column, so pop-ups open
             // inwards (right-hand nodes -> left, left-hand nodes -> right) and stay on screen.
-            const tooltipSide = isMobile
+            const tooltipSide = s.slug === "retailers"
+              ? "right"
+              : isMobile
               ? i === count - 1 || i % 2 === 0 ? "right" : "left"
               : embedded
               ? cos < -0.3 ? "right" : "left"
