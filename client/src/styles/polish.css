@@ -1738,7 +1738,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 
 /* Let the home-page About passage blend into the shared backdrop, without a card. */
 #page-home .his-grid{
-  align-items:center;
+  align-items:start;
   column-gap:clamp(36px,6vw,88px);
   row-gap:clamp(30px,5vw,56px);
 }
