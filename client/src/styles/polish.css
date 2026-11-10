@@ -1798,6 +1798,8 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   color:#fffdf5;
   font-size:clamp(1rem,1.14vw,1.12rem);
   line-height:1.9;
+  text-align:justify;
+  text-justify:inter-word;
   text-wrap:pretty;
   text-shadow:0 2px 8px rgba(0,0,0,.68);
 }
