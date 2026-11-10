@@ -1110,7 +1110,7 @@
   border-bottom: 1px solid rgba(54, 105, 61, .14);
   color: #204632;
   outline: none;
-  cursor: help;
+  cursor: default;
   transition: color .25s ease, transform .25s ease;
 }
 
