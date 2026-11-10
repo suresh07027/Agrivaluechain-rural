@@ -1735,6 +1735,88 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   #page-home .stk-panel-card{ padding:18px 16px 18px 20px; }
   #page-home .stk-subhead{ letter-spacing:.04em; }
 }
+
+/* Let the home-page About passage blend into the shared backdrop, without a card. */
+#page-home .his-grid{
+  align-items:center;
+  column-gap:clamp(36px,6vw,88px);
+  row-gap:clamp(30px,5vw,56px);
+}
+#page-home .his-grid .avc-intro{
+  max-width:680px;
+  margin-inline:auto 0;
+  margin-left:clamp(-18px,-1.2vw,-6px);
+}
+#page-home .his-grid .avc-intro-body{
+  max-width:68ch;
+  margin:0;
+  padding:clamp(8px,1.2vw,18px) 0;
+  overflow:visible;
+  border:0;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+#page-home .his-grid .avc-intro-body::before,
+#page-home .his-grid .avc-intro-body::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  pointer-events:none;
+}
+#page-home .his-grid .avc-intro-body::before{
+  inset:-24% -20%;
+  background:
+    radial-gradient(ellipse 48% 58% at 23% 46%,rgba(1,24,14,.96) 0%,rgba(3,42,23,.84) 35%,rgba(7,61,30,.46) 58%,transparent 82%),
+    radial-gradient(ellipse 34% 44% at 60% 34%,rgba(10,66,30,.52) 0%,rgba(13,77,34,.3) 48%,transparent 82%),
+    radial-gradient(ellipse 30% 38% at 38% 82%,rgba(5,58,25,.56) 0%,rgba(12,82,35,.28) 52%,transparent 84%),
+    radial-gradient(ellipse 24% 26% at 7% 22%,rgba(36,101,43,.32) 0%,transparent 82%);
+  filter:blur(24px);
+  opacity:1;
+  mix-blend-mode:multiply;
+}
+#page-home .his-grid .avc-intro-body::after{
+  inset:-14% -12%;
+  background:
+    radial-gradient(circle,rgba(170,218,108,.2) 0 1px,transparent 1.8px) 8% 30% / 31px 29px,
+    radial-gradient(circle,rgba(130,192,87,.16) 0 1px,transparent 2px) 20% 55% / 43px 39px,
+    radial-gradient(ellipse 48% 52% at 24% 48%,rgba(40,105,47,.16),transparent 82%),
+    radial-gradient(ellipse 30% 34% at 66% 56%,rgba(55,121,50,.1),transparent 84%);
+  -webkit-mask-image:radial-gradient(ellipse 68% 76% at 32% 50%,#000 24%,rgba(0,0,0,.7) 58%,transparent 100%);
+          mask-image:radial-gradient(ellipse 68% 76% at 32% 50%,#000 24%,rgba(0,0,0,.7) 58%,transparent 100%);
+  opacity:.58;
+  mix-blend-mode:screen;
+}
+#page-home .his-grid .avc-intro-kicker{
+  margin-bottom:18px;
+  color:#ffe08a;
+}
+#page-home .his-grid .avc-intro-body p{
+  margin:0 0 22px;
+  color:#fffdf5;
+  font-size:clamp(1rem,1.14vw,1.12rem);
+  line-height:1.9;
+  text-wrap:pretty;
+  text-shadow:0 2px 8px rgba(0,0,0,.68);
+}
+#page-home .his-grid .avc-intro-body p:last-of-type{
+  margin-bottom:0;
+}
+#page-home .his-grid .avc-intro-body strong{
+  color:#c8ed89;
+}
+#page-home .his-grid .avc-intro-divider{
+  max-width:220px;
+  margin-top:26px;
+  opacity:.75;
+}
+@media (max-width:1000px){
+  #page-home .his-grid .avc-intro{
+    margin-left:0;
+  }
+}
 @media (prefers-reduced-motion:reduce){
   #page-home .his-quote,
   #page-home .stk-panel-card{ animation:none; opacity:1; transform:none; }
