@@ -460,7 +460,7 @@
 
   .section{padding:56px 0; border-bottom:1px solid var(--line);}
   .section h2{font-size:1.35rem; margin:0 0 20px;}
-  p, .section p{font-size:1.05rem; line-height:1.75; color:var(--ink-soft); margin:0 0 14px; text-align:left; text-align-last:left; text-justify:auto; word-spacing:normal;}
+  p, .section p{font-size:1.05rem; line-height:1.75; color:var(--ink-soft); margin:0 0 14px; text-align:justify; text-justify:inter-word;}
   .bullets{margin:0; padding:0; list-style:none;}
   .bullets li{
     position:relative; padding:0 0 12px 22px; font-size:0.97rem; line-height:1.6; color:var(--ink-soft);
@@ -882,6 +882,9 @@
   /* ================================================================
      Technical page (option1) — full uncropped photo hero
      ================================================================ */
+  #page-option1{
+    overflow-x:clip;
+  }
   .technical-hero{
     position:relative;
     min-height:100vh;

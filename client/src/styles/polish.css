@@ -1824,7 +1824,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 
 /* Keep these stakeholder messages distinct from the page-wide paragraph alignment. */
 #page-home .his-head p.his-quote{ text-align:center; text-align-last:center; text-justify:auto; word-spacing:normal; }
-#page-home .stk-panel .stk-panel-card p{ text-align:left; text-justify:auto; word-spacing:normal; }
+#page-home .stk-panel .stk-panel-card p{ text-align:justify; text-justify:inter-word; }
 #page-home .stk-panel .stk-panel-card.stk-panel-empty p{ text-align:center; }
 
 /* ---------- Stakeholder paths: static headings + text "facts" (Financial institutions) ---------- */

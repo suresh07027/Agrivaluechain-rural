@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./scopeStyles.css";
 import "./ProjectScope.css"; // also styles .deliverables-heading
-import projectGlanceImage from "../../assets/project_glance.webp";
 
 import {
   GlanceIcon,
@@ -19,94 +18,62 @@ import {
 const deliverables = [
   {
     type: "glance",
-    image: projectGlanceImage,
-    imageAlt: "Agricultural value chain from farm to market",
-    text: (
-      <>
-        <strong>Project at a glance</strong> — summary, investment, key outcomes
-      </>
-    ),
+    title: "Project at a glance — summary, investment, key outcomes",
+    description: "A concise overview of the proposal, its investment requirement and expected results.",
     Icon: GlanceIcon,
   },
   {
     type: "applicant",
-    image: "/images/projects/carrot-value-chain.webp",
-    imageAlt: "Agricultural project and crop production",
-    text: <>About the applicant / promoter</>,
+    title: "About the applicant / promoter",
+    description: "The promoter profile, experience, capabilities and project vision.",
     Icon: ApplicantIcon,
   },
   {
     type: "feasibility",
-    image: "/images/projects/agro-food-supply.webp",
-    imageAlt: "Fresh agricultural produce supply chain",
-    text: <>Technical feasibility & market potential</>,
+    title: "Technical feasibility & market potential",
+    description: "Assessment of technical viability, demand, supply and market opportunities.",
     Icon: FeasibilityIcon,
   },
   {
     type: "infrastructure",
-    image: "/images/projects/twc-cold-storage.webp",
-    imageAlt: "Modern agricultural cold storage facility",
-    text: (
-      <>
-        Post-harvest infrastructure scenario / geography of the state or region
-      </>
-    ),
+    title: "Post-harvest infrastructure scenario / geography of the state or region",
+    description: "A regional view of existing facilities, infrastructure gaps and location context.",
     Icon: InfrastructureIcon,
   },
   {
     type: "flow",
-    image: "/images/projects/lemon-value-chain.webp",
-    imageAlt: "Lemon value chain process flow",
-    text: <>Process flow chart and layout / floor plan of operations</>,
+    title: "Process flow chart and layout / floor plan of operations",
+    description: "Clear process sequencing with a practical facility layout and operational flow.",
     Icon: FlowIcon,
   },
   {
     type: "operations",
-    image: "/images/projects/agro-food-supply.webp",
-    imageAlt: "Post-harvest agricultural operations",
-    text: (
-      <>
-        Post-harvest operations — pre-cooling, grading, packaging, storage, cold
-        chain, ripening
-      </>
-    ),
+    title: "Post-harvest operations — pre-cooling, grading, packaging, storage, cold chain, ripening",
+    description: "Produce-specific handling systems that protect quality from harvest through dispatch.",
     Icon: OperationsIcon,
   },
   {
     type: "standards",
-    image: "/images/projects/carrot-value-chain.webp",
-    imageAlt: "Agricultural infrastructure and technical survey",
-    text: (
-      <>Technical standards for civil infrastructure and plant & machinery</>
-    ),
+    title: "Technical standards for civil infrastructure and plant & machinery",
+    description: "Design specifications for buildings, utilities, equipment and installation.",
     Icon: StandardsIcon,
   },
   {
     type: "financial",
-    image: "/images/projects/lemon-value-chain.webp",
-    imageAlt: "Agricultural value chain business opportunity",
-    text: (
-      <>
-        Financial feasibility — capital, revenue and operating cost model;
-        profitability evaluation
-      </>
-    ),
+    title: "Financial feasibility — capital, revenue and operating cost model; profitability evaluation",
+    description: "Investment and operating projections, revenue assumptions and returns analysis.",
     Icon: FinancialIcon,
   },
   {
     type: "implementation",
-    image: "/images/projects/carrot-value-chain.webp",
-    imageAlt: "Agricultural project implementation",
-    text: <>Implementation plan</>,
+    title: "Implementation plan",
+    description: "A phased path from approvals and procurement to construction and commissioning.",
     Icon: ImplementationIcon,
   },
   {
     type: "annexures",
-    image: "/images/projects/twc-cold-storage.webp",
-    imageAlt: "Agricultural project supporting documentation",
-    text: (
-      <>Annexures — data sheets, quotations, technical drawings, references</>
-    ),
+    title: "Annexures — data sheets, quotations, technical drawings, references",
+    description: "Supporting documentation that makes the report traceable and ready for review.",
     Icon: AnnexuresIcon,
   },
 ];
@@ -398,95 +365,38 @@ function ParticlesCanvas({ sectionRef }) {
 }
 
 function DeliverableCard({ item, index }) {
-  const cardRef = useRef(null);
-  const innerRef = useRef(null);
-  const contentRef = useRef(null);
-
-  const handleMouseMove = (event) => {
-    const card = cardRef.current;
-    const inner = innerRef.current;
-    const content = contentRef.current;
-
-    if (!card || !inner || !content) return;
-
-    const rect = card.getBoundingClientRect();
-
-    const px = (event.clientX - rect.left) / rect.width;
-    const py = (event.clientY - rect.top) / rect.height;
-
-    const rx = (0.5 - py) * 8;
-    const ry = (px - 0.5) * 10;
-
-    inner.style.setProperty("--rx", `${rx.toFixed(2)}deg`);
-    inner.style.setProperty("--ry", `${ry.toFixed(2)}deg`);
-    inner.style.setProperty("--tz", "15px");
-    inner.style.setProperty("--s", "1.01");
-
-    inner.style.setProperty("--lx", `${(px * 100).toFixed(1)}%`);
-
-    inner.style.setProperty("--ly", `${(py * 100).toFixed(1)}%`);
-
-    content.style.setProperty("--ctx", `${((px - 0.5) * 6).toFixed(1)}px`);
-
-    content.style.setProperty("--cty", `${((py - 0.5) * 6).toFixed(1)}px`);
-  };
-
-  const resetCard = () => {
-    const inner = innerRef.current;
-    const content = contentRef.current;
-
-    if (!inner || !content) return;
-
-    inner.style.setProperty("--rx", "0deg");
-    inner.style.setProperty("--ry", "0deg");
-    inner.style.setProperty("--tz", "0px");
-    inner.style.setProperty("--s", "1");
-
-    inner.style.setProperty("--lx", "50%");
-    inner.style.setProperty("--ly", "50%");
-
-    content.style.setProperty("--ctx", "0px");
-    content.style.setProperty("--cty", "0px");
-  };
-
   const Icon = item.Icon;
-
-  const row = Math.floor(index / 2);
-  const col = index % 2;
-
-  const delay = row * 0.09 + col * 0.045;
+  const descriptionId = `scope-description-${index + 1}`;
 
   return (
     <article
-      ref={cardRef}
-      className="card"
+      className="roadmap-step"
       data-anim={item.type}
       style={{
-        "--d": `${delay.toFixed(3)}s`,
+        "--step-index": index,
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetCard}
       tabIndex={0}
+      aria-describedby={descriptionId}
     >
-      <div ref={innerRef} className="card-inner">
-        <div ref={contentRef} className="card-content">
-          <span className="dot" aria-hidden="true" />
-
-          <p>{item.text}</p>
-        </div>
-
-        <img className="card-image" src={item.image} alt={item.imageAlt} />
-
-        <span className="card-icon">
+      <span className="roadmap-milestone" aria-hidden="true">
+        <span className="roadmap-number">{String(index + 1).padStart(2, "0")}</span>
+        <span className="roadmap-icon">
           <Icon />
         </span>
-      </div>
+      </span>
+      <h3 className="roadmap-title">{item.title}</h3>
+      <span className="roadmap-leaf roadmap-leaf-one" aria-hidden="true" />
+      <span className="roadmap-leaf roadmap-leaf-two" aria-hidden="true" />
+      <span className="roadmap-tooltip" id={descriptionId} role="tooltip">
+        {item.description}
+      </span>
     </article>
   );
 }
 
 export default function ScopeOfDeliverables() {
   const sectionRef = useRef(null);
+  const vinePathRef = useRef(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -515,16 +425,41 @@ export default function ScopeOfDeliverables() {
     };
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    const path = vinePathRef.current;
+    if (!section || !path) return undefined;
+
+    const pathLength = path.getTotalLength();
+    path.style.strokeDasharray = `${pathLength}`;
+
+    const updateVine = () => {
+      const bounds = section.getBoundingClientRect();
+      const start = window.innerHeight * 0.82;
+      const end = window.innerHeight * 0.18;
+      const progress = Math.max(
+        0,
+        Math.min(1, (start - bounds.top) / (bounds.height + start - end)),
+      );
+      path.style.strokeDashoffset = `${pathLength * (1 - progress)}`;
+    };
+
+    updateVine();
+    window.addEventListener("scroll", updateVine, { passive: true });
+    window.addEventListener("resize", updateVine);
+
+    return () => {
+      window.removeEventListener("scroll", updateVine);
+      window.removeEventListener("resize", updateVine);
+    };
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       id="scopeSection"
       className={`scope-section ${inView ? "in-view" : ""}`}
     >
-      <ParticlesCanvas sectionRef={sectionRef} />
-
-      <Blueprint />
-
       <div className="scope-inner">
         <header className="scope-header">
           <div className="scope-header-flag">
@@ -542,7 +477,15 @@ export default function ScopeOfDeliverables() {
           What the project report contains
         </h3>
 
-        <div className="deliverables-grid">
+        <div className="deliverables-roadmap">
+          <svg className="roadmap-vine" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
+            <path
+              ref={vinePathRef}
+              className="roadmap-vine-stem"
+              d="M50 0 C38 36 62 62 50 100 C38 138 62 162 50 200 C38 238 62 262 50 300 C38 338 62 362 50 400 C38 438 62 462 50 500 C38 538 62 562 50 600 C38 638 62 662 50 700 C38 738 62 762 50 800 C38 838 62 862 50 900 C38 938 62 962 50 1000"
+            />
+            <path className="roadmap-vine-leaves" d="M46 78 C28 68 23 54 27 43 C40 46 48 57 46 78 M53 178 C71 168 77 154 73 143 C60 146 52 157 53 178 M46 278 C28 268 23 254 27 243 C40 246 48 257 46 278 M53 378 C71 368 77 354 73 343 C60 346 52 357 53 378 M46 478 C28 468 23 454 27 443 C40 446 48 457 46 478 M53 578 C71 568 77 554 73 543 C60 546 52 557 53 578 M46 678 C28 668 23 654 27 643 C40 646 48 657 46 678 M53 778 C71 768 77 754 73 743 C60 746 52 757 53 778 M46 878 C28 868 23 854 27 843 C40 846 48 857 46 878 M53 978 C71 968 77 954 73 943 C60 946 52 957 53 978" />
+          </svg>
           {deliverables.map((item, index) => (
             <DeliverableCard key={item.type} item={item} index={index} />
           ))}
