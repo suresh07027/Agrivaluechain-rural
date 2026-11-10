@@ -98,8 +98,10 @@
   color:#f8fbf8;
   font-size:1.08rem;
   line-height:1.85;
-  text-align:justify;
-  text-justify:inter-word;
+  text-align:left;
+  text-align-last:left;
+  text-justify:auto;
+  word-spacing:normal;
   text-shadow:none;
 }
 #page-home .avc-intro-body strong{ color:#FFD166; font-weight:800; }
@@ -1461,10 +1463,12 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   }
 }
 
-/* Keep paragraph copy consistently justified across all site pages. */
+/* Keep paragraph copy consistently left-aligned across all site pages. */
 #root .page p{
-  text-align:justify;
-  text-justify:inter-word;
+  text-align:left;
+  text-align-last:left;
+  text-justify:auto;
+  word-spacing:normal;
 }
 
 /* Shared botanical heading detail for every interior page, never the home page. */
@@ -1589,6 +1593,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   font-size:clamp(1rem,1.2vw,1.1rem);
   line-height:1.75;
   text-align:left;
+  text-align-last:left;
   margin:0 0 16px;
 }
 #page-home .his-grid .avc-intro-divider{ justify-content:flex-start; }
@@ -1734,7 +1739,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   #page-home .stk-panel-card{ animation:none; opacity:1; transform:none; }
 }
 
-/* beat the global "#root .page p { text-align:justify }" rule */
+/* Keep these stakeholder messages distinct from the page-wide paragraph alignment. */
 #page-home .his-head p.his-quote{ text-align:center; text-align-last:center; text-justify:auto; word-spacing:normal; }
 #page-home .stk-panel .stk-panel-card p{ text-align:left; text-justify:auto; word-spacing:normal; }
 #page-home .stk-panel .stk-panel-card.stk-panel-empty p{ text-align:center; }

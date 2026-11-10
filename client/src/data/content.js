@@ -44,7 +44,7 @@ export const heroShowcase = {
     },
     {
       icon: "people",
-      text: "Agrivaluechain works with **stakeholders across the value chain** — state and central governmentinstitutions, banking institutions, traders, super markets, and farmer groups — with capacity-building at the centre of our work."
+      text: "**Agrivaluechain works with stakeholders across the value chain — state and central government institutions, banking institutions, traders, super markets, and farmer groups — with capacity-building at the centre of our work.**"
     }
   ]
 };

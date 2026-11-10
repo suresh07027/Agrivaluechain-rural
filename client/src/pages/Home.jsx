@@ -157,16 +157,15 @@ export default function Home() {
                 <span>From farm to market</span>
               </div>
               <p>
-                Agri value chain Services adopts a holistic, end-to-end value-chain approach, as <strong>integrators</strong> working
-                collaboratively with all key stakeholders — farmers, traders, processors, retailers and
+                Agri Value Chain Services takes a holistic, end-to-end approach to agricultural value chains. As <strong>integrators</strong>,
+                we work collaboratively with all key stakeholders — farmers, traders, processors, retailers and
                 supermarkets, government institutions, financial institutions, logistics providers and
-                technology partners — to develop sustainable, efficient and commercially viable
-                agricultural value chains.
+                technology partners — to develop sustainable, efficient and commercially viable value chains.
               </p>
               <p>
-                Agri value chain work across the entire agricultural value chain — to
-                post-harvest management for processing, cold-chain logistics, connecting to markets and finance — to
-                create efficient, sustainable and commercially viable value chains.
+                We work across the entire agricultural value chain — from post-harvest management and processing
+                to cold-chain logistics, market access and finance — to create efficient, sustainable and
+                commercially viable value chains.
               </p>
               <div className="avc-intro-divider" aria-hidden="true">
                 <span />
