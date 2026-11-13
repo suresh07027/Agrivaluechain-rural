@@ -26,7 +26,7 @@ const impacts = [
   },
   {
     title: "Sustainable cooling",
-    text: "Solar energy, biomass and passive cooling are integrated into pre-cooling and cold rooms.",
+    text: "Photovoltaic supporting cooling, biomass and evaporative cooling are integrated into pre-cooling and cold rooms.",
     icon: (
       <>
         <path d="M12 3v18m-7.8-13.5 15.6 9m-15.6 0 15.6-9M8.2 5.2 12 7l3.8-1.8M8.2 18.8 12 17l3.8 1.8M4.6 10.1 8 12l-3.4 1.9m14.8-3.8L16 12l3.4 1.9" />
@@ -34,8 +34,8 @@ const impacts = [
     ),
   },
   {
-    title: "Evaporative cooling",
-    text: "Evaporative cooling solutions are designed and implemented for the pack house.",
+    title: "Promoting Exports",
+    text: "Awareness on exports standards and protocols.",
     icon: (
       <>
         <path d="M12 3v18m-7.8-13.5 15.6 9m-15.6 0 15.6-9M8.2 5.2 12 7l3.8-1.8M8.2 18.8 12 17l3.8 1.8" />
@@ -56,7 +56,7 @@ const impacts = [
   },
   {
     title: "Market-ready quality",
-    text: "Quality parameters, grades and packing requirements are matched to domestic and export markets.",
+    text: "Quality parameters, grades and packing requirements are matched to domestic organized and export markets.",
     icon: (
       <>
         <path d="M4 20h16M6 17v-5h3v5m3 0V8h3v9m3 0V4h3v13" />
@@ -119,10 +119,7 @@ export default function AvcImpact() {
             </span>
             <LeafMark className="avc-impact-leaf avc-impact-leaf-right" />
           </h2>
-          <p>
-            What we learned from our pack house study shows where future pack house projects can do
-            more. These are the seven areas we plan around.
-          </p>
+        
           <span className="avc-impact-underline" aria-hidden="true" />
         </div>
 

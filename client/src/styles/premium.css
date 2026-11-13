@@ -521,3 +521,212 @@
   text-align:justify;
   text-justify:inter-word;
 }
+/* =====================================================================
+   HOME — heading + quote up top; intro (painted, no box) | integrators
+   wheel side by side, same top line and same bottom line
+   PASTE AT THE VERY END of: client/src/styles/premium.css
+   (delete any earlier version of this block first)
+   ===================================================================== */
+
+/* 1. Section: heading sits high, room below for the paint to breathe */
+#root #page-home .home-intro-stakeholders{
+  max-width:1400px;
+  margin:0 auto;
+  padding:clamp(10px,1.4vw,22px) clamp(18px,3vw,44px) clamp(56px,6vw,96px);
+}
+
+/* 2. Heading + quote */
+#root #page-home .his-head{
+  margin-bottom:clamp(48px,5vw,76px);
+}
+#root #page-home .his-head .avc-intro-title{
+  gap:6px;
+  padding-bottom:10px;
+  margin-bottom:10px;
+  font-size:clamp(2.1rem,4.4vw,3.4rem);
+  line-height:1.05;
+}
+#root #page-home .his-head p.his-quote{
+  margin:0 auto;
+  font-size:clamp(1.05rem,1.9vw,1.45rem);
+  line-height:1.5;
+}
+
+/* 3. Two equal columns that STRETCH to the same height */
+#root #page-home .his-grid{
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  align-items:stretch;
+  column-gap:clamp(24px,3vw,48px);
+  row-gap:48px;
+}
+
+/* 3a. Left: intro text — justified, spread from the top line to the bottom line */
+#root #page-home .his-grid .avc-intro{
+  display:flex;
+  flex-direction:column;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+#root #page-home .his-grid .avc-intro > .wrap,
+#root #page-home .his-grid .avc-intro-body{
+  flex:1 1 auto;
+}
+#root #page-home .his-grid .avc-intro-body{
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;     /* kicker at top line … leaf divider at bottom line */
+  box-sizing:border-box;
+  max-width:none;
+  margin:0;
+  padding:0 clamp(24px,2.6vw,42px);
+  border:0;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+  -webkit-backdrop-filter:none;
+          backdrop-filter:none;
+  overflow:visible;
+}
+#root #page-home .his-grid .avc-intro-body > *{
+  position:relative;
+  z-index:1;
+}
+
+/* PAINT EFFECT — a rough-edged brush swash behind the text (no box) */
+#root #page-home .his-grid .avc-intro-body::before,
+#root #page-home .his-grid .avc-intro-body::after{
+  content:"";
+  display:block;
+  position:absolute;
+  inset:-9% -7%;
+  width:auto;
+  height:auto;
+  margin:0;
+  transform:none;
+  z-index:0;
+  pointer-events:none;
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-position:center;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  mix-blend-mode:normal;
+  filter:none;
+  -webkit-mask-image:none;
+          mask-image:none;
+  opacity:1;
+  animation:avcPaintWipe 1.25s cubic-bezier(.22,1,.36,1) .25s both;
+}
+/* main dark-green swash with bristle streaks */
+#root #page-home .his-grid .avc-intro-body::before{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E %3Cdefs%3E %3Cfilter id='r' x='-12%25' y='-12%25' width='124%25' height='124%25'%3E %3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.03' numOctaves='4' seed='7' result='n'/%3E %3CfeDisplacementMap in='SourceGraphic' in2='n' scale='70' xChannelSelector='R' yChannelSelector='G'/%3E %3C/filter%3E %3Cfilter id='s' x='-12%25' y='-12%25' width='124%25' height='124%25'%3E %3CfeTurbulence type='fractalNoise' baseFrequency='0.003 0.5' numOctaves='2' seed='3' result='t'/%3E %3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 2.2 -0.9' result='streak'/%3E %3CfeComposite in='streak' in2='SourceGraphic' operator='in'/%3E %3C/filter%3E %3C/defs%3E %3Cg filter='url(%23r)'%3E %3Cpath d='M70 90 C 260 40, 520 120, 760 70 S 950 60, 940 200 C 965 380, 910 520, 945 700 C 955 850, 900 930, 760 920 C 560 962, 330 900, 150 935 C 60 942, 38 860, 60 700 C 92 520, 40 380, 65 240 C 72 170, 52 130, 70 90 Z' fill='%23041a12' fill-opacity='.82'/%3E %3Cg opacity='.16' filter='url(%23s)'%3E%3Cpath d='M70 90 C 260 40, 520 120, 760 70 S 950 60, 940 200 C 965 380, 910 520, 945 700 C 955 850, 900 930, 760 920 C 560 962, 330 900, 150 935 C 60 942, 38 860, 60 700 C 92 520, 40 380, 65 240 C 72 170, 52 130, 70 90 Z' fill='%23fff'/%3E%3C/g%3E %3C/g%3E %3C/svg%3E");
+  filter:drop-shadow(0 10px 22px rgba(0,0,0,.35));
+}
+/* gold + leaf-green dry-brush strokes on the edges */
+#root #page-home .his-grid .avc-intro-body::after{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E %3Cdefs%3E %3Cfilter id='r' x='-12%25' y='-12%25' width='124%25' height='124%25'%3E %3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.04' numOctaves='3' seed='11' result='n'/%3E %3CfeDisplacementMap in='SourceGraphic' in2='n' scale='55' xChannelSelector='R' yChannelSelector='G'/%3E %3C/filter%3E %3Cfilter id='g' filterUnits='userSpaceOnUse' x='0' y='0' width='1000' height='1000'%3E %3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.55' numOctaves='2' seed='5' result='t'/%3E %3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 1  0 0 0 0 .82  0 0 0 0 .4  0 0 0 3.4 -0.8' result='streak'/%3E %3CfeComposite in='streak' in2='SourceGraphic' operator='in'/%3E %3C/filter%3E %3Cfilter id='l' filterUnits='userSpaceOnUse' x='0' y='0' width='1000' height='1000'%3E %3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.55' numOctaves='2' seed='9' result='t'/%3E %3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 .66  0 0 0 0 .85  0 0 0 0 .46  0 0 0 3.4 -0.8' result='streak'/%3E %3CfeComposite in='streak' in2='SourceGraphic' operator='in'/%3E %3C/filter%3E %3C/defs%3E %3Cg filter='url(%23r)'%3E %3Cpath d='M30 120 C 40 60, 140 30, 330 52' stroke='%23fff' stroke-width='22' fill='none' stroke-linecap='round' filter='url(%23l)'/%3E %3Cpath d='M980 880 C 960 950, 860 975, 640 962' stroke='%23fff' stroke-width='22' fill='none' stroke-linecap='round' filter='url(%23l)'/%3E %3Cpath d='M110 962 C 340 934, 640 978, 905 940' stroke='%23fff' stroke-width='14' fill='none' stroke-linecap='round' filter='url(%23g)'/%3E %3Cpath d='M96 48 C 300 24, 560 70, 820 36' stroke='%23fff' stroke-width='10' fill='none' stroke-linecap='round' filter='url(%23g)'/%3E %3C/g%3E %3C/svg%3E");
+  animation-delay:.6s;
+}
+@keyframes avcPaintWipe{
+  from{ clip-path:inset(0 100% 0 0); }
+  to  { clip-path:inset(0 0 0 0); }
+}
+
+/* text */
+#root #page-home .his-grid .avc-intro-kicker{
+  margin:0;
+}
+#root #page-home .his-grid .avc-intro-body p{
+  margin:0;
+  font-size:clamp(1.02rem,1.55vw,1.42rem);
+  line-height:2;
+  text-align:justify;
+  text-align-last:left;
+  text-justify:inter-word;
+  hyphens:none;
+  -webkit-hyphens:none;
+  text-wrap:pretty;
+  color:#fffdf5;
+  text-shadow:0 1px 3px rgba(0,0,0,.7);
+}
+#root #page-home .his-grid .avc-intro-divider{
+  margin:0 auto;
+  width:100%;
+  max-width:220px;
+}
+
+/* remove the old fade bars / frame that were made for the separate sections */
+#root #page-home .his-grid .avc-intro::before,
+#root #page-home .his-grid .avc-intro::after,
+#root #page-home .his-grid .stk::before,
+#root #page-home .his-grid .stk::after{
+  display:none;
+}
+
+/* 3b. Right: pill + wheel, no extra top space so the pill meets the top line */
+#root #page-home .his-grid .stk{
+  padding:0 0 clamp(34px,3.4vw,46px);  /* room for captions under the bottom hexagons */
+  overflow:visible;
+}
+#root #page-home .his-grid .stk-subhead{
+  margin:0 auto clamp(16px,2vw,26px);
+}
+#root #page-home .his-grid .stk-stage{
+  width:100%;
+  max-width:660px;
+  margin:0 auto;
+  container-type:inline-size;
+}
+#root #page-home .his-grid .stk-node-caption{
+  font-size:clamp(.68rem,2.05cqw,.95rem);
+  line-height:1.3;
+  padding:.32em .85em;
+}
+
+/* 4. Tablet / phone: stack — painted intro first, wheel below */
+@media (max-width:1000px){
+  #root #page-home .his-grid{
+    grid-template-columns:minmax(0,1fr);
+    row-gap:64px;
+  }
+  #root #page-home .his-grid .avc-intro{
+    max-width:760px;
+    margin:0 auto;
+  }
+  #root #page-home .his-grid .avc-intro-body{
+    justify-content:flex-start;
+    gap:22px;
+    padding:clamp(22px,5vw,40px) clamp(22px,5vw,40px);
+  }
+  #root #page-home .his-grid .avc-intro-body::before,
+  #root #page-home .his-grid .avc-intro-body::after{
+    inset:-4% -4%;
+  }
+  #root #page-home .his-grid .stk-stage{
+    max-width:min(100%,640px);
+  }
+}
+@media (max-width:700px){
+  /* narrow screens: left-align so words are never stretched apart */
+  #root #page-home .his-grid .avc-intro-body p{
+    font-size:1rem;
+    line-height:1.85;
+    text-align:left;
+  }
+  #root #page-home .his-grid .stk-stage{
+    max-width:420px;
+  }
+  #root #page-home .his-grid .stk-node-caption{
+    font-size:.85rem;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  #root #page-home .his-grid .avc-intro-body::before,
+  #root #page-home .his-grid .avc-intro-body::after{
+    animation:none;
+  }
+}

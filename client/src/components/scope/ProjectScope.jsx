@@ -9,6 +9,18 @@ import "./ProjectScope.css";
 const projectScope = [
   {
     no: "1",
+    title: "Post-harvest management process design for market preparation",
+    items: [
+      { text: "Process design for specified produce groups" },
+      { text: "Pre-cooling , ripening and cooling solution."},
+      { text: "Material handling equipment like planning , sorting and grading." },
+      { text: "Food safety and hygiene system standards" },
+      { text: "Packaging system planning, in coordination with the client" },
+      { text: "Capacity of pack house equipment" },
+    ],
+  },
+  {
+    no: "2",
     title: "Establishing pack house infrastructure",
     items: [
       { text: "Environmental site study" },
@@ -20,27 +32,14 @@ const projectScope = [
         text: "Energy-efficient cooling for the packing area, including evaporative cooling",
       },
       {
-        text: "Energy-efficient refrigeration plant and electrical system design",
-        fromImpact: true,
-      },
-      {
         text: "Thermally insulated building with high-quality insulation materials and automatic doors",
         fromImpact: true,
       },
       {
         text: "Renewable energy integration: solar PV or biomass-based solutions for a greener building",
       },
-    ],
-  },
-  {
-    no: "2",
-    title: "Post-harvest management process design for market preparation",
-    items: [
-      { text: "Process design for specified produce groups" },
-      { text: "Specification of pack house equipment" },
-      { text: "Material handling equipment planning" },
-      { text: "Food safety and hygiene system standards" },
-      { text: "Packaging system planning, in coordination with the client" },
+      { text: "Adopting food safety and hygine standards in flooring and drainage" },
+      { text: "Lighting and ventilation system for packing area" },
     ],
   },
   {
@@ -58,16 +57,18 @@ const projectScope = [
         text: "Quality parameters, grades and packing requirements for domestic and export markets",
         fromImpact: true,
       },
+      { text: " Technical Training on the Operation of Pre-Cooling, Ripening, and Cold rooms"},
     ],
   },
 ];
 
 // Short labels + icons for the journey path (one per stage above).
 const stageMeta = [
-  { short: "Pack house infrastructure", Icon: IconBuilding, tag: "Build" },
-  { short: "Process design", Icon: IconFlow, tag: "Design" },
-  { short: "Protocols", Icon: IconShield, tag: "Certify" },
+  { short: "Process design", Icon: IconFlow, tag: "Planning" },
+  { short: "Packhouse infrastructure", Icon: IconBuilding, tag: "Build" },
+  { short: "Protocols, standards & best practices", Icon: IconShield, tag: "Capacity development" },
 ];
+
 
 function IconBuilding() {
   return (
@@ -135,7 +136,7 @@ export default function ProjectScope() {
     <div className="project-scope ps-journey">
       <p className="ps-eyebrow">From site to shelf</p>
       <h3 className="project-scope-heading" id="project-scope-heading">
-        Project scope and adaptations
+        Project scope &amp; deliverables
       </h3>
 
       <div className="ps-track" role="tablist" aria-labelledby="project-scope-heading" aria-orientation="horizontal">

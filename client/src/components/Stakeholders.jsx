@@ -163,9 +163,9 @@ export default function Stakeholders({ embedded = false }) {
     <section className={`stk${embedded ? " stk-embedded" : ""}`} id="stakeholders" aria-label="Stakeholders">
       <div className="wrap">
         {embedded ? (
-          <h3 className="stk-subhead">Key stakeholders to whom we work</h3>
+          <h3 className="stk-subhead">Agrivaluechain Integrators</h3>
         ) : (
-          <h2 className="stk-title">Stakeholders</h2>
+          <h2 className="stk-title">Agrivaluechain Integrators</h2>
         )}
 
         <div className="stk-stage">
