@@ -9,6 +9,7 @@ import marketImage from "../assets/Stakeholder/Market.webp";
 import processorImage from "../assets/Stakeholder/Processor.webp";
 import academicImage from "../assets/Stakeholder/Tech-partners.webp";
 import tradersImage from "../assets/Stakeholder/Traders.webp";
+import { contact } from "../data/content";
 import { stakeholderPaths } from "../data/StakeholderPaths";
 
 const DARK_ARROW = "#2b2d2d";
@@ -20,42 +21,51 @@ const stakeholders = [
     color: DARK_ARROW,
     image: fpoImage,
     slug: "farmers-fpos",
-    details: ["Productivity", "Post-Harvest Management access", "Aggregation"]
+    details: [
+      "Enable producers to obtain a higher share of the final value of their produce through the value chain",
+      "Productivity",
+      "Post-Harvest Management access",
+      "Aggregation",
+    ]
   },
   {
     label: "Traders / Aggregators",
     color: DARK_ARROW,
     image: tradersImage,
     slug: "traders-aggregators",
-    details: ["Efficient sourcing, handling, logistics and market linkages"]
+    details: ["To enable efficient sourcing, handling, processing,logistics and market linkages"]
   },
   {
     label: "Processors",
     color: DARK_ARROW,
     image: processorImage,
     slug: "processors",
-    details: ["Raw-material supply, processing efficiency and market development"]
+    details: ["To support raw-material supply, processing efficiency and market development"]
   },
   {
     label: "Supermarkets / Retailers",
     color: DARK_ARROW,
     image: marketImage,
     slug: "retailers",
-    details: ["Quality, traceability, reliable supply and cold-chain solutions"]
+    details: ["Quality, traceability, reliable supply and cold-chain solutions",
+              "Supporting organized fresh food retail distribution and trade."
+    ]
   },
   {
     label: "Government Institutions",
     color: DARK_ARROW,
     image: governmentImage,
     slug: "government",
-    details: ["Programme design, implementation, infrastructure and policy support"]
+    details: ["Programme design, implementation, infrastructure and policy support",
+              "Institution support to state and central government."
+    ]
   },
   {
     label: "Financial institutions",
     color: DARK_ARROW,
     image: financialImage,
     slug: "financial-institutions",
-    details: ["Bankable projects, investment appraisal and financing structures"]
+    details: ["To support bankable projects, investment appraisal and financing structures"]
   },
   {
     label: "Academic institutions",
@@ -320,7 +330,6 @@ export default function Stakeholders({ embedded = false }) {
                       </button>
                       <div className="stk-paths-head">
                         <div>
-                          <p className="stk-paths-hint">How we can help</p>
                           <p className="stk-paths-title">{s.label}</p>
                         </div>
                       </div>
@@ -330,7 +339,7 @@ export default function Stakeholders({ embedded = false }) {
                           {s.details.map((detail) => <span key={detail}>{detail}</span>)}
                         </div>
                       )}
-                      <p className="stk-paths-hint">How we can help</p>
+                      <p className="stk-paths-hint">AVC's Scope of Work</p>
                       <ul className="stk-paths-list">
                         {paths.map((path, idx) => (
                           <li key={path.to || path.label} style={{ "--i": idx }}>
@@ -372,6 +381,11 @@ export default function Stakeholders({ embedded = false }) {
                           </li>
                         ))}
                       </ul>
+                      <div className="stk-paths-contact">
+                        <p className="stk-paths-hint">For further details, connect with us</p>
+                        <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>{contact.phone}</a>
+                        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                      </div>
                     </div>
                   )}
                 </div>

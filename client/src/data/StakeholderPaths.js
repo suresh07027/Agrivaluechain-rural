@@ -42,8 +42,18 @@ export const stakeholderPaths = {
     { label: "Linking Farmers to the Market", to: "/option3" },
     { label: "Capacity Development Program", to: "/option4" }
   ],
-  "traders-aggregators": [TECH_PRIVATE, LINKING_BUNDLE],
-  processors: [TECH_PRIVATE, LINKING_BUNDLE],
+  "traders-aggregators": [
+    TECH_PRIVATE,
+    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    { label: "Adopting sustainable techniques", to: "/option3#sustainable-techniques" },
+    { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
+  ],
+  processors: [
+    TECH_PRIVATE,
+    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    { label: "Adopting sustainable techniques", to: "/option3#sustainable-techniques" },
+    { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
+  ],
   retailers: [TECH_PRIVATE, LINKING_BUNDLE, { label: "Eco-friendly Packaging Recommendations", to: "/eco-packaging" }, { label: "Display Cabinets for Fresh Produce", to: "/display-cabinets" }],
   
   government: [TECH_GOVERNMENT],

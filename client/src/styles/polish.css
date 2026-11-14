@@ -535,7 +535,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 /* while the card is open, hide the hover tooltip so they never overlap */
 .stk-node-pos.is-open .stk-node-popup:not(.stk-paths){ display:none; }
 
-/* ---- "How we can help" card: header avatar + numbered destination rows ---- */
+/* ---- Stakeholder scope card: heading + destination rows ---- */
 .stk-node-pos .stk-paths{
   display:grid;
   gap:14px;
@@ -572,6 +572,9 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 }
 .stk-paths-list{ display:grid; gap:10px; }
 .stk-paths-list > li{ animation:stkRowIn .4s cubic-bezier(.2,.9,.3,1) both; animation-delay:calc(var(--i) * 80ms + 120ms); }
+.stk-paths-contact{ display:grid; gap:5px; padding-top:10px; border-top:1px solid rgba(23,61,50,.14); }
+.stk-paths-contact .stk-paths-hint{ margin-bottom:2px; }
+.stk-paths-contact a{ color:#173d32; font-size:.86rem; font-weight:700; overflow-wrap:anywhere; }
 @keyframes stkRowIn{ from{ opacity:0; transform:translateX(-14px); } to{ opacity:1; transform:none; } }
 
 .stk-path-link{

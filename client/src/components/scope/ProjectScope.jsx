@@ -12,8 +12,8 @@ const projectScope = [
     title: "Post-harvest management process design for market preparation",
     items: [
       { text: "Process design for specified produce groups" },
-      { text: "Pre-cooling , ripening and cooling solution."},
-      { text: "Material handling equipment like planning , sorting and grading." },
+      { text: "Pre-cooling, ripening and cooling solution"},
+      { text: "Material handling equipment for planning, sorting and grading" },
       { text: "Food safety and hygiene system standards" },
       { text: "Packaging system planning, in coordination with the client" },
       { text: "Capacity of pack house equipment" },
@@ -38,7 +38,7 @@ const projectScope = [
       {
         text: "Renewable energy integration: solar PV or biomass-based solutions for a greener building",
       },
-      { text: "Adopting food safety and hygine standards in flooring and drainage" },
+      { text: "Adopting food safety and hygiene standards in flooring and drainage" },
       { text: "Lighting and ventilation system for packing area" },
     ],
   },
@@ -57,7 +57,7 @@ const projectScope = [
         text: "Quality parameters, grades and packing requirements for domestic and export markets",
         fromImpact: true,
       },
-      { text: " Technical Training on the Operation of Pre-Cooling, Ripening, and Cold rooms"},
+      { text: "Technical training on the operation of pre-cooling, ripening and cold rooms"},
     ],
   },
 ];
