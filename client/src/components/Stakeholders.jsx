@@ -23,9 +23,7 @@ const stakeholders = [
     slug: "farmers-fpos",
     details: [
       "Enable producers to obtain a higher share of the final value of their produce through the value chain",
-      "Productivity",
-      "Post-Harvest Management access",
-      "Aggregation",
+      
     ]
   },
   {
@@ -47,7 +45,7 @@ const stakeholders = [
     color: DARK_ARROW,
     image: marketImage,
     slug: "retailers",
-    details: ["Quality, traceability, reliable supply and cold-chain solutions",
+    details: [
               "Supporting organized fresh food retail distribution and trade."
     ]
   },
@@ -56,7 +54,7 @@ const stakeholders = [
     color: DARK_ARROW,
     image: governmentImage,
     slug: "government",
-    details: ["Programme design, implementation, infrastructure and policy support",
+    details: [
               "Institution support to state and central government."
     ]
   },
