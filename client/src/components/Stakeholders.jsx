@@ -31,7 +31,7 @@ const stakeholders = [
     color: DARK_ARROW,
     image: tradersImage,
     slug: "traders-aggregators",
-    details: ["To enable efficient sourcing, handling, processing,logistics and market linkages"]
+    details: ["To enable efficient sourcing, handling, primary processing,logistics and market linkages"]
   },
   {
     label: "Processors",
@@ -41,7 +41,7 @@ const stakeholders = [
     details: ["To support raw-material supply, processing efficiency and market development"]
   },
   {
-    label: "Supermarkets / Retailers",
+    label: "Supermarkets & Retailers",
     color: DARK_ARROW,
     image: marketImage,
     slug: "retailers",
@@ -171,9 +171,9 @@ export default function Stakeholders({ embedded = false }) {
     <section className={`stk${embedded ? " stk-embedded" : ""}`} id="stakeholders" aria-label="Stakeholders">
       <div className="wrap">
         {embedded ? (
-          <h3 className="stk-subhead">Agrivaluechain Integrators</h3>
+          <h3 className="stk-subhead">Agrivaluechain Services as Integrators</h3>
         ) : (
-          <h2 className="stk-title">Agrivaluechain Integrators</h2>
+          <h2 className="stk-title">Agrivaluechain Services as Integrators</h2>
         )}
 
         <div className="stk-stage">
@@ -331,13 +331,14 @@ export default function Stakeholders({ embedded = false }) {
                           <p className="stk-paths-title">{s.label}</p>
                         </div>
                       </div>
-                      {embedded && s.details.length > 0 && (
+                      {s.slug !== "academic-institutions" && embedded && s.details.length > 0 && (
                         <div className="stk-paths-details">
-                          <p className="stk-paths-hint">What they look for</p>
                           {s.details.map((detail) => <span key={detail}>{detail}</span>)}
                         </div>
                       )}
-                      <p className="stk-paths-hint">AVC's Scope of Work</p>
+                      {s.slug !== "academic-institutions" ? (
+                        <p className="stk-paths-hint">AVC's Scope of Work</p>
+                      ) : null}
                       <ul className="stk-paths-list">
                         {paths.map((path, idx) => (
                           <li key={path.to || path.label} style={{ "--i": idx }}>
@@ -379,6 +380,11 @@ export default function Stakeholders({ embedded = false }) {
                           </li>
                         ))}
                       </ul>
+                      {s.slug === "academic-institutions" && embedded && s.details.length > 0 && (
+                        <div className="stk-paths-details">
+                          {s.details.map((detail) => <span key={detail}>{detail}</span>)}
+                        </div>
+                      )}
                       <div className="stk-paths-contact">
                         <p className="stk-paths-hint">For further details, connect with us</p>
                         <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>{contact.phone}</a>

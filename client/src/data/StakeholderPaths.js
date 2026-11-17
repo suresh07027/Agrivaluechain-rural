@@ -45,16 +45,23 @@ export const stakeholderPaths = {
   "traders-aggregators": [
     TECH_PRIVATE,
     { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
-    { label: "Adopting sustainable techniques", to: "/option3#sustainable-techniques" },
+    { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
     { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
   ],
   processors: [
     TECH_PRIVATE,
     { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
-    { label: "Adopting sustainable techniques", to: "/option3#sustainable-techniques" },
+    { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
     { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
   ],
-  retailers: [TECH_PRIVATE, LINKING_BUNDLE, { label: "Eco-friendly Packaging Recommendations", to: "/eco-packaging" }, { label: "Display Cabinets for Fresh Produce", to: "/display-cabinets" }],
+  retailers: [
+    TECH_PRIVATE,
+    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
+    { label: "MIDH guidelines", to: "/option3#midh-guidelines" },
+    { label: "Eco-friendly Packaging Recommendations", to: "/eco-packaging" },
+    { label: "Display Cabinets for Fresh Produce", to: "/display-cabinets" }
+  ],
   
   government: [TECH_GOVERNMENT],
   "government-institutions": [TECH_GOVERNMENT],

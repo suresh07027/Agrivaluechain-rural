@@ -154,11 +154,11 @@ export default function Home() {
           <section className="avc-intro" id="agrivaluechain-intro">
             <div className="avc-intro-body">
               <div className="avc-intro-kicker">
-                <span>From farm to market</span>
+                <span>About Us</span>
               </div>
               <p>
                 Agri Value Chain Services takes a holistic, end-to-end approach to agricultural value chains. As <strong>Agrivaluechain Integrators</strong>,
-                we work collaboratively with farmers, traders, processors, retailers and supermarkets,
+                we work collaboratively with farmers, traders, processors, retailers, supermarkets,
                 government institutions, financial institutions, logistics providers and technology partners —
                 to develop sustainable, efficient and commercially viable value chains.
               </p>
@@ -182,13 +182,13 @@ export default function Home() {
         </div>
       </div>
 
+      <AvcImpact />
+
       <section className="home-scope" id="project-scope">
         <div className="wrap">
           <ProjectScope />
         </div>
       </section>
-
-      <AvcImpact />
 
       <div className="hero-intro-wrap" id="intro">
         <div className="hero-bg"></div>

@@ -13,10 +13,10 @@ const projectScope = [
     items: [
       { text: "Process design for specified produce groups" },
       { text: "Pre-cooling, ripening and cooling solution"},
-      { text: "Material handling equipment for planning, sorting and grading" },
+      { text: "Sorting and grading" },
       { text: "Food safety and hygiene system standards" },
       { text: "Packaging system planning, in coordination with the client" },
-      { text: "Capacity of pack house equipment" },
+      { text: "Material handling  and planning." },
     ],
   },
   {

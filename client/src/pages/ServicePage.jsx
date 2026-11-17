@@ -404,7 +404,7 @@ export default function ServicePage() {
 
                       <article className="linking-field-card linking-solution-card">
                         <header className="linking-card-head">
-                          <span className="linking-card-label">Our Solution</span>
+                          <span className="linking-card-label">Our Approach</span>
                         </header>
                         <figure className="linking-solution-figure">
                           <img

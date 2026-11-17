@@ -15,7 +15,7 @@ const impacts = [
     ),
   },
   {
-    title: "Energy-efficient technology",
+    title: "Environmental Impact",
     text: "Energy-efficiency solutions are built into the refrigeration plant and the electrical system, in both design and operation.",
     icon: (
       <>
@@ -26,20 +26,10 @@ const impacts = [
   },
   {
     title: "Sustainable cooling",
-    text: "Photovoltaic supporting cooling, biomass and evaporative cooling are integrated into pre-cooling and cold rooms.",
+    text: "Photovoltaic supported cooling, biomass and evaporative cooling are integrated into pre-cooling and cold rooms.",
     icon: (
       <>
         <path d="M12 3v18m-7.8-13.5 15.6 9m-15.6 0 15.6-9M8.2 5.2 12 7l3.8-1.8M8.2 18.8 12 17l3.8 1.8M4.6 10.1 8 12l-3.4 1.9m14.8-3.8L16 12l3.4 1.9" />
-      </>
-    ),
-  },
-  {
-    title: "Promoting Exports",
-    text: "Awareness on exports standards and protocols.",
-    icon: (
-      <>
-        <path d="M12 3v18m-7.8-13.5 15.6 9m-15.6 0 15.6-9M8.2 5.2 12 7l3.8-1.8M8.2 18.8 12 17l3.8 1.8" />
-        <path d="M16.3 4.2c2.2-.1 3.5 1.1 3.5 3.3-2.2.1-3.5-1.1-3.5-3.3Zm-1 4.8c.3-2 1.6-3 3.7-2.9-.3 2-1.6 3-3.7 2.9Z" />
       </>
     ),
   },
@@ -61,6 +51,16 @@ const impacts = [
       <>
         <path d="M4 20h16M6 17v-5h3v5m3 0V8h3v9m3 0V4h3v13" />
         <path d="m5 9 5-3 4 1 5-4m-3 0h3v3" />
+      </>
+    ),
+  },
+   {
+    title: "Promoting Exports",
+    text: "Awareness on exports standards and protocols.",
+    icon: (
+      <>
+        <path d="M12 3v18m-7.8-13.5 15.6 9m-15.6 0 15.6-9M8.2 5.2 12 7l3.8-1.8M8.2 18.8 12 17l3.8 1.8" />
+        <path d="M16.3 4.2c2.2-.1 3.5 1.1 3.5 3.3-2.2.1-3.5-1.1-3.5-3.3Zm-1 4.8c.3-2 1.6-3 3.7-2.9-.3 2-1.6 3-3.7 2.9Z" />
       </>
     ),
   },
