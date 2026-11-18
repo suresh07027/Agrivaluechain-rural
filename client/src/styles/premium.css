@@ -1038,6 +1038,9 @@ html body #root #page-home .his-grid .avc-intro-body::before{
   opacity:.78;
   z-index:0;
 }
+html body #root #page-home .his-grid .avc-intro-body::after{
+  display:none;
+}
 html body #root #page-home .his-grid .avc-intro-body p{
   color:#fffdf5;
   font-weight:600;
