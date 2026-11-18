@@ -1020,36 +1020,22 @@
 }
 #page-home::before{ filter:brightness(.66) saturate(1.25) contrast(1.05); }
 
-/* ---------- ABOUT US: bright frosted card ---------- */
+/* ---------- ABOUT US: irregular green paint layer ---------- */
 html body #root #page-home .his-grid .avc-intro-body{
   padding:clamp(28px,3.2vw,48px) clamp(26px,3vw,46px);
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.12);
-  -webkit-backdrop-filter:blur(8px) saturate(115%);
-          backdrop-filter:blur(8px) saturate(115%);
-  box-shadow:0 12px 32px rgba(0,0,0,.14);
-  overflow:hidden;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  -webkit-backdrop-filter:none;
+          backdrop-filter:none;
+  box-shadow:none;
+  overflow:visible;
 }
 html body #root #page-home .his-grid .avc-intro-body::before{
-  inset:0 0 auto 0;
+  inset:-9% -7%;
   width:auto;
-  height:10px;
-  background:var(--hm-bar);
-  filter:none;
-  animation:none;
-  clip-path:none;
-  z-index:1;
-}
-html body #root #page-home .his-grid .avc-intro-body::after{
-  inset:auto -70px -70px auto;
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  display:none;
-  filter:none;
-  animation:none;
-  clip-path:none;
+  height:auto;
+  opacity:.78;
   z-index:0;
 }
 html body #root #page-home .his-grid .avc-intro-body p{
@@ -1079,10 +1065,6 @@ html body #root #page-home .his-grid .avc-intro-body .avc-intro-kicker span::bef
 html body #root #page-home .his-grid .avc-intro-divider svg{ stroke:#00b3a4; }
 html body #root #page-home .his-grid .avc-intro-divider span{
   background:linear-gradient(90deg,transparent,#27e08b,transparent);
-}
-
-@media (max-width:640px){
-  html body #root #page-home .his-grid .avc-intro-body{ border-radius:22px; }
 }
 
 /* Keep the home stakeholders heading upright and highlight their definitions. */

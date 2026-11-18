@@ -572,6 +572,17 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 }
 .stk-paths-list{ display:grid; gap:10px; }
 .stk-paths-list > li{ animation:stkRowIn .4s cubic-bezier(.2,.9,.3,1) both; animation-delay:calc(var(--i) * 80ms + 120ms); }
+.stk-paths-section-heading{
+  padding-top:8px;
+  border-top:1px solid rgba(23,61,50,.14);
+}
+.stk-paths-section-heading h3{
+  margin:0;
+  color:#8a5a00;
+  font-size:.7rem;
+  font-weight:800;
+  line-height:1.3;
+}
 .stk-paths-contact{ display:grid; gap:5px; padding-top:10px; border-top:1px solid rgba(23,61,50,.14); }
 .stk-paths-contact .stk-paths-hint{ margin-bottom:2px; }
 .stk-paths-contact a{ color:#173d32; font-size:.86rem; font-weight:700; overflow-wrap:anywhere; }
@@ -584,9 +595,14 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   color:#173d32; text-decoration:none;
   transition:background .2s ease, border-color .2s ease, transform .2s ease;
 }
-.stk-path-no{
-  flex:0 0 auto; display:grid; place-items:center; width:30px; height:30px; border-radius:50%;
-  background:#b7e07a; color:#0b2924; font-size:.85rem; font-weight:800;
+.stk-path-bullet{
+  flex:0 0 7px;
+  width:7px;
+  height:7px;
+  margin:0 8px;
+  border-radius:50%;
+  background:#568846;
+  box-shadow:0 0 0 3px rgba(86,136,70,.14);
 }
 .stk-path-label{ flex:1 1 auto; font-size:.92rem; font-weight:700; line-height:1.3; }
 .stk-path-go{

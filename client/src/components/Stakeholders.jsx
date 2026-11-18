@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import stakeholderImage from "../assets/logo.webp";
@@ -208,6 +208,12 @@ export default function Stakeholders({ embedded = false }) {
             const pathsId = `stk-paths-${i}`;
             const isOpen = openIndex === i;
             const paths = stakeholderPaths[s.slug] || [];
+            const isLinkingStakeholder = ["traders-aggregators", "processors", "retailers"].includes(s.slug);
+            const linkingHeading = s.slug === "traders-aggregators"
+              ? "Linking Traders to the Farmers"
+              : s.slug === "processors"
+              ? "Linking Processors to the Farmers"
+              : "Linking Supermarkets to the Farmers";
             // Side-by-side layout: the diagram sits in the right column, so pop-ups open
             // inwards (right-hand nodes -> left, left-hand nodes -> right) and stay on screen.
             const tooltipSide = s.slug === "retailers"
@@ -346,43 +352,53 @@ export default function Stakeholders({ embedded = false }) {
                       ) : null}
                       <ul className="stk-paths-list">
                         {paths.map((path, idx) => (
-                          <li key={path.to || path.label} style={{ "--i": idx }}>
-                            {path.to ? (
-                              <Link to={path.to} className="stk-path-link">
-                                <span className="stk-path-label">{path.label}</span>
-                                <span className="stk-path-go" aria-hidden="true">&rarr;</span>
-                              </Link>
-                            ) : (
-                              <button
-                                type="button"
-                                className="stk-path-link is-toggle"
-                                aria-expanded={expanded === path.label}
-                                onClick={() => toggleGroup(path.label)}
-                              >
-                                <span className="stk-path-label">{path.label}</span>
-                                <span className="stk-path-go" aria-hidden="true">&#9662;</span>
-                              </button>
+                          <Fragment key={path.to || path.label}>
+                            {isLinkingStakeholder && idx === 1 && (
+                              <li className="stk-paths-section-heading" style={{ "--i": idx }}>
+                                <h3>{linkingHeading}</h3>
+                              </li>
                             )}
-                            {path.children && (
-                              <ul className="stk-path-sub">
-                                {path.children.map((child) => (
-                                  <li key={child.to}>
-                                    <Link to={child.to}>{child.label}</Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                            {path.facts && expanded === path.label && (
-                              <ul className="stk-path-sub stk-facts">
-                                {path.facts.map((f) => (
-                                  <li key={f.label}>
-                                    <b>{f.label}</b>
-                                    <span>{f.text}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
+                            <li style={{ "--i": idx }}>
+                              {path.to ? (
+                                <Link to={path.to} className="stk-path-link">
+                                  {isLinkingStakeholder && idx >= 1 && idx <= 3 && (
+                                    <span className="stk-path-bullet" aria-hidden="true" />
+                                  )}
+                                  <span className="stk-path-label">{path.label}</span>
+                                  <span className="stk-path-go" aria-hidden="true">&rarr;</span>
+                                </Link>
+                              ) : (
+                                <button
+                                  type="button"
+                                  className="stk-path-link is-toggle"
+                                  aria-expanded={expanded === path.label}
+                                  onClick={() => toggleGroup(path.label)}
+                                >
+                                  <span className="stk-path-label">{path.label}</span>
+                                  <span className="stk-path-go" aria-hidden="true">&#9662;</span>
+                                </button>
+                              )}
+                              {path.children && (
+                                <ul className="stk-path-sub">
+                                  {path.children.map((child) => (
+                                    <li key={child.to}>
+                                      <Link to={child.to}>{child.label}</Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                              {path.facts && expanded === path.label && (
+                                <ul className="stk-path-sub stk-facts">
+                                  {path.facts.map((f) => (
+                                    <li key={f.label}>
+                                      <b>{f.label}</b>
+                                      <span>{f.text}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </li>
+                          </Fragment>
                         ))}
                       </ul>
                       {s.slug === "academic-institutions" && embedded && s.details.length > 0 && (
