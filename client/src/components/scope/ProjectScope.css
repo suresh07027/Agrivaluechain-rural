@@ -195,3 +195,89 @@
   .ps-node.is-active .ps-orb-ring{ animation:none; }
   .ps-orb{ transition:none; }
 }
+
+
+/* =====================================================================
+   STAGE COLOURS — Planning = aqua, Build = fresh lime, Capacity = sunny gold (the site's teal-to-gold gradient).
+   Each stage gets its own bright colour on its orb, tag chip and label box,
+   and the stage panel below picks up the colour of the selected stage.
+   Edit the 4 variables per stage to change a colour.
+   ===================================================================== */
+.ps-track > .ps-node:nth-of-type(1){ --nc-a:#8ff3ea; --nc-b:#2fd4c6; --nc-ink:#04302c; --nc-soft:#e6fffb; --nc-glow:rgba(47,212,198,.6); }
+.ps-track > .ps-node:nth-of-type(2){ --nc-a:#d9f76a; --nc-b:#7fe34a; --nc-ink:#17330a; --nc-soft:#f3ffd9; --nc-glow:rgba(127,227,74,.6); }
+.ps-track > .ps-node:nth-of-type(3){ --nc-a:#ffe680; --nc-b:#ffb347; --nc-ink:#3d2300; --nc-soft:#fff6d6; --nc-glow:rgba(255,179,71,.6); }
+
+.ps-journey[data-stage="1"]{ --st-a:#8ff3ea; --st-b:#2fd4c6; --st-ink:#04302c; --st-soft:#e6fffb; }
+.ps-journey[data-stage="2"]{ --st-a:#d9f76a; --st-b:#7fe34a; --st-ink:#17330a; --st-soft:#f3ffd9; }
+.ps-journey[data-stage="3"]{ --st-a:#ffe680; --st-b:#ffb347; --st-ink:#3d2300; --st-soft:#fff6d6; }
+
+/* orb */
+html body #root #page-home .home-scope .ps-track .ps-node .ps-orb{
+  background:linear-gradient(145deg,var(--nc-a),var(--nc-b));
+  border-color:rgba(255,255,255,.9);
+  box-shadow:0 10px 24px -10px var(--nc-glow);
+}
+html body #root #page-home .home-scope .ps-track .ps-node .ps-orb-icon{ color:var(--nc-ink); }
+html body #root #page-home .home-scope .ps-track .ps-node.is-active .ps-orb{
+  background:linear-gradient(145deg,var(--nc-a),var(--nc-b));
+  border-color:#fff;
+  box-shadow:0 0 0 6px var(--nc-glow), 0 14px 34px -8px rgba(0,0,0,.6), 0 0 38px var(--nc-glow);
+}
+html body #root #page-home .home-scope .ps-track .ps-node.is-active .ps-orb-ring{ border-color:var(--nc-a); }
+html body #root #page-home .home-scope .ps-track .ps-node:hover .ps-orb{ border-color:#fff; }
+
+/* tag chip: PLANNING / BUILD / CAPACITY DEVELOPMENT */
+html body #root #page-home .home-scope .ps-track .ps-node .ps-node-tag{
+  background:linear-gradient(100deg,var(--nc-a),var(--nc-b));
+  color:var(--nc-ink);
+  font-weight:800;
+  text-shadow:none;
+  box-shadow:0 8px 18px -8px var(--nc-glow), inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* label box */
+html body #root #page-home .home-scope .ps-track .ps-node .ps-node-label{
+  position:relative;
+  color:#0b2924;
+  font-weight:700;
+  text-shadow:none;
+  background:linear-gradient(165deg,#ffffff 0%,var(--nc-soft) 100%);
+  border:2px solid var(--nc-a);
+  border-bottom:5px solid var(--nc-b);
+  box-shadow:0 12px 26px -12px var(--nc-glow);
+}
+html body #root #page-home .home-scope .ps-track .ps-node.is-active .ps-node-label{
+  background:linear-gradient(165deg,var(--nc-a),var(--nc-b));
+  color:var(--nc-ink);
+  border-color:#fff;
+  border-bottom-color:#fff;
+  box-shadow:0 0 0 4px var(--nc-glow), 0 14px 30px -10px var(--nc-glow);
+}
+
+/* stage panel follows the selected stage's colour */
+html body #root #page-home .home-scope .ps-stage-head{
+  background:linear-gradient(115deg,#0b6670,#083f54 78%);
+  border-color:var(--st-a);
+  box-shadow:0 12px 30px -12px var(--st-b), inset 0 1px 0 rgba(255,255,255,.14);
+}
+html body #root #page-home .home-scope .ps-count{
+  background:linear-gradient(100deg,var(--st-a),var(--st-b));
+  color:var(--st-ink);
+}
+html body #root #page-home .home-scope ul.ps-items li::before{
+  background:linear-gradient(180deg,var(--st-a),var(--st-b));
+}
+html body #root #page-home .home-scope .ps-leaf{
+  background:var(--st-soft);
+  color:var(--st-b);
+}
+html body #root #page-home .home-scope ul.ps-items li:hover{
+  background:var(--st-soft);
+  border-color:var(--st-a);
+}
+html body #root #page-home .home-scope .ps-dots i.on{
+  background:linear-gradient(90deg,var(--st-a),var(--st-b));
+}
+html body #root #page-home .home-scope .ps-nav button:hover:not(:disabled){
+  background:var(--st-soft);
+}

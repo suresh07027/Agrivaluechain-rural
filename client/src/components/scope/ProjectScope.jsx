@@ -133,7 +133,7 @@ export default function ProjectScope() {
   const progress = (active / last) * 100;
 
   return (
-    <div className="project-scope ps-journey">
+    <div className="project-scope ps-journey" data-stage={active + 1}>
       <p className="ps-eyebrow">From site to shelf</p>
       <h3 className="project-scope-heading" id="project-scope-heading">
         Project scope &amp; deliverables

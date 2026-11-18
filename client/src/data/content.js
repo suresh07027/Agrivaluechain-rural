@@ -330,6 +330,7 @@ export const options = [
       imageAlt: "Six-stage flow of farm-level post-harvest infrastructure: collection centres, pack houses, sorting and grading, packaging, pre-cooling, and storage and transport",
     },
     capacityTitle: "Our solutions",
+    capacityHeading: "A. Packhouse Infrastructure & Model Capacities for Small, Medium and Large Scale Farmers Groups",
     capacityIntro: "A solar-supported pack house can reduce post-harvest losses and enhance value addition for fruits, vegetables, greens, spices, and millets. Key components include receiving, sorting, grading, and washing units; a pre-cool room and cold room powered by solar-assisted refrigeration; and value-addition units such as a solar dryer and a solar thresher.",
 
     capacityTiers: [
@@ -349,7 +350,7 @@ export const options = [
         details: ["3 MT (pre-cooling) and 20 MT (cold room)", "Sorting and grading hall", "Receiving and delivery area"]
       }
     ],
-    sustainableTechTitle: "Adopting sustainable technologies in Post-Harvestment Management",
+    sustainableTechTitle: "B. Adopting sustainable technologies in Post-Harvestment Management",
     sustainableTech: [
       "Integration of solar panels system",
       "Evaporative cooling",

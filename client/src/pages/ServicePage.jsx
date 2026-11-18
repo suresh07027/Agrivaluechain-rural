@@ -435,6 +435,9 @@ export default function ServicePage() {
             <section className="section section-capacity" id="packhouse-capacity">
               <div className="wrap">
                 <h2>{option.capacityTitle || "Capacities"}</h2>
+                {option.capacityHeading && (
+                  <h3 className="capacity-subheading linking-step-heading">{option.capacityHeading}</h3>
+                )}
                 {option.capacityIntro && <p className="capacity-intro">{option.capacityIntro}</p>}
                 <div className="capacity-grid">
                   {option.capacityTiers.map((tier, i) => (
@@ -484,7 +487,7 @@ export default function ServicePage() {
           {option.sustainableTech && (
             <section className="section section-tech" id="sustainable-techniques">
               <div className="wrap">
-                <h2>{renderAccentTitle(option.sustainableTechTitle || "Sustainable technologies")}</h2>
+                <h2 className={isLinking ? "linking-step-heading" : undefined}>{renderAccentTitle(option.sustainableTechTitle || "Sustainable technologies")}</h2>
                 {isLinking ? (
                   <p className="linking-tech-intro">We embrace innovative and eco-friendly solutions to build a resilient and sustainable agricultural value chain for a better tomorrow.</p>
                 ) : null}
@@ -518,7 +521,7 @@ export default function ServicePage() {
             <section className="section section-midh" id="midh-guidelines">
               <div className="wrap">
                 <div className="midh-section-heading">
-                  <span className="midh-kicker">Advising on government support schemes for post-harvest management</span>
+                  <span className="midh-kicker linking-step-heading">C. Advising on government support schemes for post-harvest management</span>
                   <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>

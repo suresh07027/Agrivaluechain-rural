@@ -97,7 +97,7 @@ export default function Stakeholders({ embedded = false }) {
   const [openIndex, setOpenIndex] = useState(null);
   const [hoverIndex, setHoverIndex] = useState(null);
   const [expanded, setExpanded] = useState(null); // which Government / Private group is open
-  const retailerPopupRef = useRef(null);
+  const positionedPopupRef = useRef(null);
   const activeIndex = openIndex ?? hoverIndex;
   const active = activeIndex !== null ? stakeholders[activeIndex] : null;
 
@@ -125,8 +125,10 @@ export default function Stakeholders({ embedded = false }) {
   useEffect(() => setExpanded(null), [openIndex]);
 
   useLayoutEffect(() => {
-    const popup = retailerPopupRef.current;
-    if (!embedded || active?.slug !== "retailers" || !popup) return undefined;
+    const popup = positionedPopupRef.current;
+    const isPositionedStakeholder = active?.slug === "retailers" ||
+      (!isMobile && active?.slug === "traders-aggregators");
+    if (!embedded || !isPositionedStakeholder || !popup) return undefined;
 
     const positionPopup = () => {
       const node = popup.parentElement;
@@ -171,7 +173,7 @@ export default function Stakeholders({ embedded = false }) {
     <section className={`stk${embedded ? " stk-embedded" : ""}`} id="stakeholders" aria-label="Stakeholders">
       <div className="wrap">
         {embedded ? (
-          <h3 className="stk-subhead">Agrivaluechain Services as Integrators</h3>
+          <h3 className="stk-subhead">Agrivaluechain Services as <em>Integrators</em></h3>
         ) : (
           <h2 className="stk-title">Agrivaluechain Services as Integrators</h2>
         )}
@@ -309,9 +311,9 @@ export default function Stakeholders({ embedded = false }) {
                   )}
                   {paths.length > 0 && (isOpen || (embedded && activeIndex === i)) && (
                     <div
-                      className={`stk-node-popup stk-paths${embedded && s.slug === "retailers" ? " stk-paths-retailers" : ""}`}
+                      className={`stk-node-popup stk-paths${embedded && s.slug === "retailers" ? " stk-paths-retailers" : ""}${embedded && s.slug === "traders-aggregators" ? " stk-paths-traders" : ""}`}
                       id={pathsId}
-                      ref={embedded && s.slug === "retailers" ? retailerPopupRef : undefined}
+                      ref={embedded && (s.slug === "retailers" || s.slug === "traders-aggregators") ? positionedPopupRef : undefined}
                       role="dialog"
                       aria-label={`${s.label}: where to go`}
                     >

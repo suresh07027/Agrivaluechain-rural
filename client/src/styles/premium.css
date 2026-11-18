@@ -931,3 +931,224 @@
   #root #page-option3 .linking-field-connector{ justify-self:center; transform:rotate(90deg); }
   #root #page-option3 .linking-field-figure{ min-height:220px; }
 }
+
+/* "A. Packhouse infrastructure..." sub-heading: sits between the h2 and the
+   paragraph + image row. Paragraph and image keep their look, just move down a row. */
+#root #page-option3 .section-capacity .wrap{
+  grid-template-rows:auto auto auto;
+}
+#root #page-option3 .section-capacity .wrap > .capacity-subheading{
+  grid-column:1 / -1;
+  grid-row:2;
+  margin:0 !important;
+}
+#root #page-option3 .section-capacity .wrap > .capacity-intro{ grid-row:3; }
+#root #page-option3 .section-capacity > .wrap::after{ grid-row:3; }
+
+@media (max-width:900px){
+  #root #page-option3 .section-capacity .wrap{
+    grid-template-rows:auto auto auto 200px;
+  }
+  #root #page-option3 .section-capacity .wrap > .capacity-subheading{ grid-column:1; grid-row:2; }
+  #root #page-option3 .section-capacity .wrap > .capacity-intro{ grid-row:3; }
+  #root #page-option3 .section-capacity > .wrap::after{ grid-column:1; grid-row:4; }
+}
+
+/* ---------------------------------------------------------------------
+   A / B / C step headings on the Linking Farmers page:
+   identical size, colour and weight, kept on a single line.
+   Change the 3 values below to restyle all three at once.
+   --------------------------------------------------------------------- */
+#root #page-option3 .linking-step-heading{
+  display:block !important;
+  width:auto !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:none !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  font-family:'DM Sans', sans-serif !important;
+  font-size:clamp(1rem, 1.6vw, 1.35rem) !important;   /* size  */
+  font-weight:700 !important;
+  letter-spacing:normal !important;
+  line-height:1.4 !important;
+  color:#1b4d3e !important;                             /* colour */
+  text-transform:none !important;
+  text-align:left !important;
+  text-align-last:left !important;
+  hyphens:none !important;
+  white-space:nowrap !important;                        /* single line */
+}
+#root #page-option3 .linking-step-heading::before,
+#root #page-option3 .linking-step-heading::after{
+  content:none !important;
+  display:none !important;
+}
+/* "B" is an h2 that was lifted for its old large size: keep it in place */
+#root #page-option3 .section-tech .wrap > h2.linking-step-heading{
+  top:0 !important;
+  margin-bottom:6px !important;
+}
+/* "C" sits above the MIDH title with a little breathing room */
+#root #page-option3 .midh-section-heading > .linking-step-heading{
+  margin-bottom:10px !important;
+}
+/* Phones: a line this long cannot fit, so let it wrap there */
+@media (max-width:900px){
+  #root #page-option3 .linking-step-heading{
+    white-space:normal !important;
+    font-size:1.05rem !important;
+  }
+}
+
+/* =====================================================================
+   HOME — About Us glass card
+   ===================================================================== */
+#root #page-home{
+  --hm-bar:linear-gradient(90deg,#00d1c1,#27e08b,#c8f03c,#ffd93d);
+}
+#page-home::before{ filter:brightness(.66) saturate(1.25) contrast(1.05); }
+
+/* ---------- ABOUT US: bright frosted card ---------- */
+html body #root #page-home .his-grid .avc-intro-body{
+  padding:clamp(28px,3.2vw,48px) clamp(26px,3vw,46px);
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.68);
+  background:linear-gradient(145deg,rgba(6,42,34,.34),rgba(11,57,47,.24) 55%,rgba(35,79,56,.28));
+  -webkit-backdrop-filter:blur(28px) saturate(175%);
+          backdrop-filter:blur(28px) saturate(175%);
+  box-shadow:0 26px 60px -18px rgba(0,30,24,.52),inset 0 1px 0 rgba(255,255,255,.58),inset 0 -1px 0 rgba(255,255,255,.24);
+  overflow:hidden;
+}
+html body #root #page-home .his-grid .avc-intro-body::before{
+  inset:0 0 auto 0;
+  width:auto;
+  height:10px;
+  background:var(--hm-bar);
+  filter:none;
+  animation:none;
+  clip-path:none;
+  z-index:1;
+}
+html body #root #page-home .his-grid .avc-intro-body::after{
+  inset:auto -70px -70px auto;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,rgba(200,240,60,.38),rgba(0,209,193,.2) 55%,transparent 72%);
+  filter:none;
+  animation:none;
+  clip-path:none;
+  z-index:0;
+}
+html body #root #page-home .his-grid .avc-intro-body p{
+  color:#fffdf5;
+  font-weight:600;
+  text-shadow:0 1px 3px rgba(0,0,0,.5);
+}
+html body #root #page-home .his-grid .avc-intro-body strong{
+  color:#ffd166;
+  font-weight:800;
+  text-shadow:0 1px 3px rgba(0,0,0,.58);
+}
+html body #root #page-home .his-grid .avc-intro-body .avc-intro-kicker span{
+  display:inline-flex;
+  align-items:center;
+  padding:.42em 1em;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:999px;
+  background:linear-gradient(120deg,#0b2924,#126652);
+  box-shadow:0 8px 18px rgba(11,41,36,.25),inset 0 1px 0 rgba(255,255,255,.3);
+  color:#ffd166;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-shadow:none;
+}
+html body #root #page-home .his-grid .avc-intro-body .avc-intro-kicker span::before{ display:none; }
+html body #root #page-home .his-grid .avc-intro-divider svg{ stroke:#00b3a4; }
+html body #root #page-home .his-grid .avc-intro-divider span{
+  background:linear-gradient(90deg,transparent,#27e08b,transparent);
+}
+
+@media (max-width:640px){
+  html body #root #page-home .his-grid .avc-intro-body{ border-radius:22px; }
+}
+
+/* Keep the home stakeholders heading upright and highlight their definitions. */
+#root #page-home .his-grid .stk-subhead em{
+  font-style:normal !important;
+}
+#root #page-home .his-grid .stk-paths-details span{
+  box-sizing:border-box;
+  width:100%;
+  border:1px solid rgba(178,126,24,.34);
+  border-left:4px solid #d5a027;
+  border-radius:8px;
+  background:linear-gradient(135deg,rgba(255,244,198,.98),rgba(255,250,231,.94));
+  box-shadow:0 5px 14px rgba(11,41,36,.1);
+  color:#173d32;
+  font-weight:700;
+  line-height:1.45;
+  text-align:justify;
+  text-align-last:left;
+  text-justify:inter-word;
+}
+
+@media (min-width:701px){
+  #root #page-home .his-grid .stk-paths-traders{
+    width:min(300px,calc(100vw - 32px));
+    min-width:min(260px,calc(100vw - 32px));
+    transform:none;
+    animation:none;
+  }
+}
+
+/* Give the home stakeholder tiles a framed, glassy finish. */
+#root #page-home .his-grid .stk-node{
+  position:relative;
+  box-sizing:border-box;
+  border:2px solid rgba(255,255,255,.82);
+  background:rgba(255,255,255,.12);
+  filter:drop-shadow(0 10px 12px rgba(0,0,0,.3)) drop-shadow(0 0 7px rgba(255,209,102,.28));
+}
+#root #page-home .his-grid .stk-node::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  clip-path:inherit;
+  background:linear-gradient(145deg,rgba(255,255,255,.24),transparent 42%,rgba(255,209,102,.12));
+  pointer-events:none;
+}
+#root #page-home .his-grid .stk-node-link{ z-index:1; }
+#root #page-home .his-grid .stk-node-link:focus-visible{ z-index:3; }
+#root #page-home .his-grid .stk-node:hover{
+  filter:drop-shadow(0 12px 15px rgba(0,0,0,.34)) drop-shadow(0 0 10px rgba(255,209,102,.68));
+}
+#root #page-home .his-grid .stk-node-caption{
+  max-width:min(210px,calc(100vw - 32px));
+  padding:6px 12px;
+  border:1px solid rgba(255,209,102,.7);
+  border-radius:999px;
+  background:rgba(8,41,34,.86);
+  box-shadow:0 7px 18px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.22);
+  color:#fffaf0;
+  font-size:clamp(.66rem,1.3vw,.84rem);
+  font-weight:700;
+  line-height:1.25;
+  letter-spacing:.015em;
+  text-shadow:none;
+  -webkit-backdrop-filter:blur(10px) saturate(145%);
+          backdrop-filter:blur(10px) saturate(145%);
+  transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+}
+#root #page-home .his-grid .stk-node-pos:hover .stk-node-caption,
+#root #page-home .his-grid .stk-node-pos:focus-within .stk-node-caption{
+  border-color:#fff1b8;
+  background:#ffd166;
+  color:#0b2924;
+  transform:translateX(-50%) translateY(-2px);
+}
