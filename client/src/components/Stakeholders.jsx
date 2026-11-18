@@ -31,7 +31,7 @@ const stakeholders = [
     color: DARK_ARROW,
     image: tradersImage,
     slug: "traders-aggregators",
-    details: ["To enable efficient sourcing, handling, primary processing,logistics and market linkages"]
+    details: ["To enable efficient sourcing, handling, primary processing, logistics and market linkages"]
   },
   {
     label: "Processors",
@@ -200,6 +200,9 @@ export default function Stakeholders({ embedded = false }) {
             const rad = (angle * Math.PI) / 180;
             const cos = Math.cos(rad);
             const sin = Math.sin(rad);
+            const horizontalOffset = embedded && !isMobile
+              ? s.slug === "retailers" ? 5 : s.slug === "government" ? -5 : 0
+              : 0;
             const travel = (RADIUS / NODE_SIZE) * 100; // % of the node's own size
             const tooltipId = `stk-tooltip-${i}`;
             const pathsId = `stk-paths-${i}`;
@@ -222,7 +225,7 @@ export default function Stakeholders({ embedded = false }) {
                   <div
                     className="stk-arrow-pos"
                     style={{
-                      left: `${50 + ARROW_RADIUS * cos}%`,
+                      left: `${50 + ARROW_RADIUS * cos + horizontalOffset * (ARROW_RADIUS / RADIUS)}%`,
                       top: `${50 + ARROW_RADIUS * sin}%`,
                       transform: `translate(-50%, -50%) rotate(${angle + 90}deg)`
                     }}
@@ -249,7 +252,7 @@ export default function Stakeholders({ embedded = false }) {
                     isMobile
                       ? undefined
                       : {
-                          left: `${50 + RADIUS * cos}%`,
+                          left: `${50 + RADIUS * cos + horizontalOffset}%`,
                           top: `${50 + RADIUS * sin}%`
                         }
                   }
