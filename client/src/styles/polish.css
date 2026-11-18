@@ -531,7 +531,7 @@ button.stk-node-link{ background:none; border:0; padding:0; margin:0; cursor:poi
 button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; font-family:inherit; text-align:center; }
 .stk-node-link:focus-visible{ outline:3px solid #fff2d0; outline-offset:4px; border-radius:50%; }
 
-.stk-node-pos.is-open{ z-index:30; }
+#page-home .stk-embedded .stk-node-pos.is-open{ z-index:80; }
 /* while the card is open, hide the hover tooltip so they never overlap */
 .stk-node-pos.is-open .stk-node-popup:not(.stk-paths){ display:none; }
 
@@ -551,12 +551,41 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
   box-shadow:0 26px 50px -20px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.9);
 }
 .stk-paths::after{ background:#f4f8e9; border-color:rgba(23,61,50,.2); }
-.stk-paths-head{ display:flex; align-items:center; padding-right:30px; }
+.stk-paths-head{
+  display:flex;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:3;
+  align-self:start;
+  padding:8px 30px 8px 0;
+  background:linear-gradient(145deg, #fffdf5, #eaf5e8);
+}
 .stk-paths-hint{
   margin:0 0 3px; font-size:.68rem; font-weight:800; letter-spacing:.2em;
   text-transform:uppercase; color:#8a5a00;
 }
-.stk-paths-title{ margin:0; font-size:1.12rem; font-weight:800; line-height:1.2; color:#173d32; }
+.stk-paths-title{
+  display:block;
+  margin:0;
+  padding:8px 10px;
+  border-left:4px solid #b7e07a;
+  border-radius:6px;
+  background:#173d32;
+  color:#fff;
+  font-size:1.12rem;
+  font-weight:800;
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+#page-home .stk-paths-retailers .stk-paths-head > div{
+  min-width:0;
+  flex:1 1 auto;
+}
+#page-home .stk-paths-retailers .stk-paths-title{
+  max-width:100%;
+  font-size:1.08rem;
+}
 
 .stk-paths-list,
 .stk-path-sub{ list-style:none; margin:0; padding:0; }
@@ -636,7 +665,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 .stk-path-sub a:focus-visible{ background:#ffd166; color:#0b2924; border-color:#ffd166; outline:none; }
 
 .stk-paths-close{
-  position:absolute; top:12px; right:12px; z-index:2;
+  position:absolute; top:12px; right:12px; z-index:4;
   width:28px; height:28px;
   border:1px solid rgba(23,61,50,.22); border-radius:50%;
   background:rgba(255,255,255,.78);
@@ -653,11 +682,12 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 /* Phones: the card becomes a bottom sheet so it can never run off-screen */
 @media (max-width:700px){
   .stk-node-pos .stk-paths{
-    position:fixed;
-    left:12px; right:12px; top:auto; bottom:12px;
+    position:fixed !important;
+    left:12px !important; right:12px !important; top:auto !important; bottom:12px !important;
     width:auto; min-width:0; max-width:none;
-    max-height:72vh; overflow-y:auto;
-    transform:none;
+    box-sizing:border-box !important;
+    max-height:72vh !important; overflow-y:auto;
+    transform:none !important;
     z-index:60;
     animation:stkSheetIn .32s cubic-bezier(.2,.9,.3,1) both;
   }
@@ -668,7 +698,8 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
     width:min(320px,calc(100vw - 24px));
     min-width:0;
     max-width:none;
-    max-height:calc(100vh - 24px);
+    box-sizing:border-box !important;
+    max-height:calc(100vh - 112px) !important;
     transform:none;
     animation:none;
   }
@@ -1651,7 +1682,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 }
 
 /* highlight the hovered / selected hexagon */
-#page-home .stk-embedded .stk-node-pos.is-active{ z-index:9; }
+#page-home .stk-embedded .stk-node-pos.is-active{ z-index:80; }
 #page-home .stk-embedded .stk-node-pos.is-active .stk-node{
   filter:drop-shadow(0 0 0 #ffd166) drop-shadow(0 0 12px rgba(255,209,102,.95)) drop-shadow(0 8px 7px rgba(0,0,0,.3));
   transform:scale(1.08);

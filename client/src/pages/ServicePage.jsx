@@ -521,7 +521,7 @@ export default function ServicePage() {
             <section className="section section-midh" id="midh-guidelines">
               <div className="wrap">
                 <div className="midh-section-heading">
-                  <span className="midh-kicker linking-step-heading">C. Advising on government support schemes for post-harvest management</span>
+                  <span className="midh-kicker linking-step-heading">C. Advising on government support schemes for post-harvest development</span>
                   <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>

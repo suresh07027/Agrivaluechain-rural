@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import stakeholderImage from "../assets/logo.webp";
@@ -27,7 +27,7 @@ const stakeholders = [
     ]
   },
   {
-    label: "Traders / Aggregators",
+    label: "Importers / Exporters",
     color: DARK_ARROW,
     image: tradersImage,
     slug: "traders-aggregators",
@@ -38,7 +38,7 @@ const stakeholders = [
     color: DARK_ARROW,
     image: processorImage,
     slug: "processors",
-    details: ["To support raw-material supply, processing efficiency and market development"]
+    details: ["To support raw-material supply, efficient processing, market guidance and process innovation."]
   },
   {
     label: "Supermarkets & Retailers",
@@ -126,31 +126,49 @@ export default function Stakeholders({ embedded = false }) {
 
   useLayoutEffect(() => {
     const popup = positionedPopupRef.current;
-    const isPositionedStakeholder = active?.slug === "retailers" ||
-      (!isMobile && active?.slug === "traders-aggregators");
-    if (!embedded || !isPositionedStakeholder || !popup) return undefined;
+    if (!embedded || !popup) return undefined;
 
     const positionPopup = () => {
       const node = popup.parentElement;
       if (!node) return;
+      const margin = 12;
+      const headerBottom = document.querySelector("header")?.getBoundingClientRect().bottom ?? 0;
+      const topInset = Math.max(margin, headerBottom + margin);
+      const availableHeight = Math.max(120, window.innerHeight - topInset - margin);
+      const maxHeight = active?.slug === "retailers"
+        ? availableHeight
+        : Math.min(availableHeight, window.innerHeight * 0.72);
+      popup.style.boxSizing = "border-box";
+      popup.style.maxHeight = `${maxHeight}px`;
+
+      if (window.matchMedia("(max-width: 700px)").matches) {
+        popup.style.position = "fixed";
+        popup.style.left = "12px";
+        popup.style.right = "12px";
+        popup.style.top = "auto";
+        popup.style.bottom = "12px";
+        popup.style.transform = "none";
+        popup.style.animation = "none";
+        return;
+      }
+
+      popup.style.transform = "none";
+      popup.style.animation = "none";
       const nodeRect = node.getBoundingClientRect();
       const popupRect = popup.getBoundingClientRect();
-      const margin = 12;
       const horizontalGap = 12;
       const forceRightSide = active?.slug === "retailers";
       const rightSide = forceRightSide || nodeRect.left + nodeRect.width / 2 < window.innerWidth / 2;
-      const preferredLeft = isMobile
-        ? (window.innerWidth - popupRect.width) / 2
-        : rightSide
-          ? nodeRect.right + horizontalGap
-          : nodeRect.left - popupRect.width - horizontalGap;
+      const preferredLeft = rightSide
+        ? nodeRect.right + horizontalGap
+        : nodeRect.left - popupRect.width - horizontalGap;
       const left = Math.max(
         margin,
         Math.min(preferredLeft, window.innerWidth - popupRect.width - margin)
       );
       const preferredTop = nodeRect.top + (nodeRect.height - popupRect.height) / 2;
       const top = Math.max(
-        margin,
+        topInset,
         Math.min(preferredTop, window.innerHeight - popupRect.height - margin)
       );
       popup.style.position = "absolute";
@@ -208,12 +226,10 @@ export default function Stakeholders({ embedded = false }) {
             const pathsId = `stk-paths-${i}`;
             const isOpen = openIndex === i;
             const paths = stakeholderPaths[s.slug] || [];
+            const popupTitle = s.slug === "academic-institutions"
+              ? s.label
+              : `Supporting the ${s.label}`;
             const isLinkingStakeholder = ["traders-aggregators", "processors", "retailers"].includes(s.slug);
-            const linkingHeading = s.slug === "traders-aggregators"
-              ? "Linking Traders to the Farmers"
-              : s.slug === "processors"
-              ? "Linking Processors to the Farmers"
-              : "Linking Supermarkets to the Farmers";
             // Side-by-side layout: the diagram sits in the right column, so pop-ups open
             // inwards (right-hand nodes -> left, left-hand nodes -> right) and stay on screen.
             const tooltipSide = s.slug === "retailers"
@@ -322,7 +338,7 @@ export default function Stakeholders({ embedded = false }) {
                     <div
                       className={`stk-node-popup stk-paths${embedded && s.slug === "retailers" ? " stk-paths-retailers" : ""}${embedded && s.slug === "traders-aggregators" ? " stk-paths-traders" : ""}`}
                       id={pathsId}
-                      ref={embedded && (s.slug === "retailers" || s.slug === "traders-aggregators") ? positionedPopupRef : undefined}
+                      ref={embedded ? positionedPopupRef : undefined}
                       role="dialog"
                       aria-label={`${s.label}: where to go`}
                     >
@@ -339,7 +355,7 @@ export default function Stakeholders({ embedded = false }) {
                       </button>
                       <div className="stk-paths-head">
                         <div>
-                          <p className="stk-paths-title">{s.label}</p>
+                          <p className="stk-paths-title">{popupTitle}</p>
                         </div>
                       </div>
                       {s.slug !== "academic-institutions" && embedded && s.details.length > 0 && (
@@ -347,58 +363,48 @@ export default function Stakeholders({ embedded = false }) {
                           {s.details.map((detail) => <span key={detail}>{detail}</span>)}
                         </div>
                       )}
-                      {s.slug !== "academic-institutions" ? (
-                        <p className="stk-paths-hint">AVC's Scope of Work</p>
-                      ) : null}
                       <ul className="stk-paths-list">
                         {paths.map((path, idx) => (
-                          <Fragment key={path.to || path.label}>
-                            {isLinkingStakeholder && idx === 1 && (
-                              <li className="stk-paths-section-heading" style={{ "--i": idx }}>
-                                <h3>{linkingHeading}</h3>
-                              </li>
+                          <li key={path.to || path.label} style={{ "--i": idx }}>
+                            {path.to ? (
+                              <Link to={path.to} className="stk-path-link">
+                                {isLinkingStakeholder && idx >= 1 && idx <= 3 && (
+                                  <span className="stk-path-bullet" aria-hidden="true" />
+                                )}
+                                <span className="stk-path-label">{path.label}</span>
+                                <span className="stk-path-go" aria-hidden="true">&rarr;</span>
+                              </Link>
+                            ) : (
+                              <button
+                                type="button"
+                                className="stk-path-link is-toggle"
+                                aria-expanded={expanded === path.label}
+                                onClick={() => toggleGroup(path.label)}
+                              >
+                                <span className="stk-path-label">{path.label}</span>
+                                <span className="stk-path-go" aria-hidden="true">&#9662;</span>
+                              </button>
                             )}
-                            <li style={{ "--i": idx }}>
-                              {path.to ? (
-                                <Link to={path.to} className="stk-path-link">
-                                  {isLinkingStakeholder && idx >= 1 && idx <= 3 && (
-                                    <span className="stk-path-bullet" aria-hidden="true" />
-                                  )}
-                                  <span className="stk-path-label">{path.label}</span>
-                                  <span className="stk-path-go" aria-hidden="true">&rarr;</span>
-                                </Link>
-                              ) : (
-                                <button
-                                  type="button"
-                                  className="stk-path-link is-toggle"
-                                  aria-expanded={expanded === path.label}
-                                  onClick={() => toggleGroup(path.label)}
-                                >
-                                  <span className="stk-path-label">{path.label}</span>
-                                  <span className="stk-path-go" aria-hidden="true">&#9662;</span>
-                                </button>
-                              )}
-                              {path.children && (
-                                <ul className="stk-path-sub">
-                                  {path.children.map((child) => (
-                                    <li key={child.to}>
-                                      <Link to={child.to}>{child.label}</Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                              {path.facts && expanded === path.label && (
-                                <ul className="stk-path-sub stk-facts">
-                                  {path.facts.map((f) => (
-                                    <li key={f.label}>
-                                      <b>{f.label}</b>
-                                      <span>{f.text}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </li>
-                          </Fragment>
+                            {path.children && (
+                              <ul className="stk-path-sub">
+                                {path.children.map((child) => (
+                                  <li key={child.to}>
+                                    <Link to={child.to}>{child.label}</Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                            {path.facts && expanded === path.label && (
+                              <ul className="stk-path-sub stk-facts">
+                                {path.facts.map((f) => (
+                                  <li key={f.label}>
+                                    <b>{f.label}</b>
+                                    <span>{f.text}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
                         ))}
                       </ul>
                       {s.slug === "academic-institutions" && embedded && s.details.length > 0 && (

@@ -358,7 +358,7 @@ export const options = [
       "Natural refrigerants"
     ],
     midh: {
-         midhTitle: "MIDH guidelines",
+         midhTitle: "Mission for Integrated Development of Horticulture (MIDH) Guidelines",
     midhGuidelines: [
       {
         number: "01",

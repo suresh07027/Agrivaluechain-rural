@@ -16,6 +16,11 @@ const TECH_PRIVATE = {
   to: "/technical-support/private-companies"
 };
 
+const PACKHOUSE_PLANNING = {
+  label: "Packhouse infrastructure planning",
+  to: "/option3#packhouse-capacity"
+};
+
 // Finance stakeholder: one page each for Government and Private (pages/FinancePage.jsx,
 // content in data/content.js -> financePages).
 const FINANCE_GOVERNMENT = { label: "Government", to: "/financial-institutions/government" };
@@ -44,19 +49,19 @@ export const stakeholderPaths = {
   ],
   "traders-aggregators": [
     TECH_PRIVATE,
-    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    PACKHOUSE_PLANNING,
     { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
     { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
   ],
   processors: [
     TECH_PRIVATE,
-    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    PACKHOUSE_PLANNING,
     { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
     { label: "Government MIDH guidelines", to: "/option3#midh-guidelines" }
   ],
   retailers: [
     TECH_PRIVATE,
-    { label: "Pack house capacity models", to: "/option3#packhouse-capacity" },
+    PACKHOUSE_PLANNING,
     { label: "Adopting sustainable technology", to: "/option3#sustainable-techniques" },
     { label: "MIDH guidelines", to: "/option3#midh-guidelines" },
     { label: "Eco-friendly Packaging Recommendations", to: "/eco-packaging" },
