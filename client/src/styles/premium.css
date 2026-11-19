@@ -190,7 +190,6 @@
 #root #page-option3 .midh-item-head h3{
   color:var(--pm-ink) !important;
 }
-
 #root .section-scope .bullets li{
   background:var(--pm-surface) !important;
   border:1px solid var(--pm-rule) !important;
@@ -469,7 +468,7 @@
   text-justify:inter-word;
 }
 #root #page-home .his-grid .stk-paths-traders .stk-paths-details span{
-  text-align:left;
+  text-align:justify;
   text-justify:auto;
 }
 
@@ -587,7 +586,7 @@
   font-size:clamp(1.02rem,1.55vw,1.42rem);
   line-height:2;
   text-align:justify;
-  text-align-last:left;
+  text-align-last:justify;
   text-justify:inter-word;
   hyphens:none;
   -webkit-hyphens:none;
@@ -694,8 +693,8 @@
   width:100%;
   max-width:none;
   margin:0;
-  text-align:left;
-  text-align-last:left;
+  text-align:justify;
+  text-align-last:justify;
   hyphens:none;
   position:relative !important;
   top:-40px !important;            /* change: -30px to -60px */
@@ -789,6 +788,20 @@
   }
 }
 
+#root #page-option3 .section-capacity .wrap > .capacity-image-caption{
+  grid-column:2;
+  grid-row:4;
+  width:100%;
+  margin:8px 0 0 !important;
+  color:#24433f;
+  font-family:'DM Sans',sans-serif;
+  font-size:.88rem;
+  font-weight:700;
+  line-height:1.45;
+  text-align:center !important;
+  text-align-last:center !important;
+}
+
 /* =====================================================================
    PILLAR 3 · "Field Insight → Our Solution" cards (/linking-farmers)
    ===================================================================== */
@@ -848,26 +861,22 @@
 
 #root #page-option3 .linking-field-text{
   position:relative;
+  width:100%;
+  box-sizing:border-box;
   margin:0 0 18px;
-  padding:8px 0 0 46px;
+  padding:8px 0 0;
   border-left:0;
   color:#1f3f37;
   font-size:clamp(1rem,1.15vw,1.1rem);
   line-height:1.7;
   text-align:justify;
-  text-align-last:left;
-  hyphens:auto;
-}
-#root #page-option3 .linking-field-text::before{
-  content:"\201C";
-  position:absolute;
-  left:0;
-  top:-8px;
-  font-family:'Bodoni Moda',Georgia,serif;
-  font-size:4rem;
-  line-height:1;
-  color:#3d9b69;
-  opacity:.55;
+  text-align-last:justify;
+  text-justify:inter-word;
+  white-space:normal;
+  word-break:normal;
+  overflow-wrap:normal;
+  hyphens:none;
+  -webkit-hyphens:none;
 }
 
 #root #page-option3 .linking-field-figure{
@@ -943,7 +952,7 @@
 /* "A. Packhouse infrastructure..." sub-heading: sits between the h2 and the
    paragraph + image row. Paragraph and image keep their look, just move down a row. */
 #root #page-option3 .section-capacity .wrap{
-  grid-template-rows:auto auto auto;
+  grid-template-rows:auto auto auto auto;
 }
 #root #page-option3 .section-capacity .wrap > .capacity-subheading{
   grid-column:1 / -1;
@@ -955,11 +964,15 @@
 
 @media (max-width:900px){
   #root #page-option3 .section-capacity .wrap{
-    grid-template-rows:auto auto auto 200px;
+    grid-template-rows:auto auto auto 200px auto;
   }
   #root #page-option3 .section-capacity .wrap > .capacity-subheading{ grid-column:1; grid-row:2; }
   #root #page-option3 .section-capacity .wrap > .capacity-intro{ grid-row:3; }
   #root #page-option3 .section-capacity > .wrap::after{ grid-column:1; grid-row:4; }
+  #root #page-option3 .section-capacity .wrap > .capacity-image-caption{
+    grid-column:1;
+    grid-row:5;
+  }
 }
 
 /* ---------------------------------------------------------------------
@@ -1002,7 +1015,18 @@
 }
 /* "C" sits above the MIDH title with a little breathing room */
 #root #page-option3 .midh-section-heading > .linking-step-heading{
-  margin-bottom:10px !important;
+  margin-bottom:8px !important;
+}
+#root #page-option3 .midh-section-heading > h2.linking-step-heading{
+  margin-bottom:0 !important;
+  white-space:normal !important;
+}
+#root #page-option3 .midh-section-heading > p{
+  max-width:none !important;
+  font-size:1rem !important;
+  margin:8px 0 0 !important;
+  text-align:left !important;
+  text-align-last:left !important;
 }
 /* Phones: a line this long cannot fit, so let it wrap there */
 @media (max-width:900px){

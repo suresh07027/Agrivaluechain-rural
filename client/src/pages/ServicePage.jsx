@@ -439,6 +439,7 @@ export default function ServicePage() {
                   <h3 className="capacity-subheading linking-step-heading">{option.capacityHeading}</h3>
                 )}
                 {option.capacityIntro && <p className="capacity-intro">{option.capacityIntro}</p>}
+                {isLinking && <p className="capacity-image-caption">Model Packhouse Infrastructure</p>}
                 <div className="capacity-grid">
                   {option.capacityTiers.map((tier, i) => (
                     <div className="capacity-card" key={i}>
@@ -522,7 +523,7 @@ export default function ServicePage() {
               <div className="wrap">
                 <div className="midh-section-heading">
                   <span className="midh-kicker linking-step-heading">C. Advising on government support schemes for post-harvest development</span>
-                  <h2>{midh.midhTitle || "MIDH guidelines"}</h2>
+                  <h2 className="linking-step-heading">{midh.midhTitle || "MIDH guidelines"}</h2>
                   <p>Infrastructure pathways designed to protect quality, extend shelf life, and strengthen market access.</p>
                 </div>
                 <div className="midh-list">
@@ -531,7 +532,7 @@ export default function ServicePage() {
                       <div className="midh-item-head">
                         
                         <div>
-                          <span className="midh-item-label">MIDH provision</span>
+                          {i === 0 && <span className="midh-item-label">MIDH guidelines</span>}
                           <h3>{item.title}</h3>
                         </div>
                       </div>

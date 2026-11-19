@@ -568,11 +568,7 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 .stk-paths-title{
   display:block;
   margin:0;
-  padding:8px 10px;
-  border-left:4px solid #b7e07a;
-  border-radius:6px;
-  background:#173d32;
-  color:#fff;
+  color:#173d32;
   font-size:1.12rem;
   font-weight:800;
   line-height:1.25;
@@ -584,7 +580,6 @@ button.stk-node-caption{ background:none; border:0; padding:0; cursor:pointer; f
 }
 #page-home .stk-paths-retailers .stk-paths-title{
   max-width:100%;
-  font-size:1.08rem;
 }
 
 .stk-paths-list,
